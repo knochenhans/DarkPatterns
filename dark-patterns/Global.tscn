@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://do2ohb2ikqw23"]
+
+[ext_resource type="Script" uid="uid://b60xf42623xno" path="res://scripts/global.gd" id="1_4mbhf"]
+
+[node name="Global" type="Control" unique_id=901337494 node_paths=PackedStringArray("tick_timer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4mbhf")
+tick_timer = NodePath("Tick")
+
+[node name="Tick" type="Timer" parent="." unique_id=1075824089]
+autostart = true

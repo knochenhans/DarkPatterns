@@ -24,6 +24,15 @@ window/size/viewport_height=720
 
 project/assembly_name="DarkPatterns"
 
+[autoload]
+
+Global="*uid://do2ohb2ikqw23"
+
+[global_group]
+
+Pattern=""
+person=""
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

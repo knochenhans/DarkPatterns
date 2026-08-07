@@ -1,14 +1,14 @@
-[gd_scene format=3 uid="uid://do48maiwinjql"]
+[gd_scene format=3 uid="uid://c8vkakuq6a2pr"]
 
-[ext_resource type="Script" uid="uid://e81vynd6d0sa" path="res://assets/scripts/figure.gd" id="1_so2hn"]
-[ext_resource type="Texture2D" uid="uid://tpg5ymbvg2yw" path="res://assets/mock_smiley_sad.svg" id="2_fqnpk"]
-[ext_resource type="Texture2D" uid="uid://brkhkjp5x8y7u" path="res://assets/mock_smiley.svg" id="3_x7v12"]
+[ext_resource type="Script" path="res://scripts/figure.gd" id="1_32ojp"]
+[ext_resource type="Texture2D" uid="uid://brkhkjp5x8y7u" path="res://assets/mock_smiley.svg" id="2_key23"]
+[ext_resource type="Texture2D" uid="uid://tpg5ymbvg2yw" path="res://assets/mock_smiley_sad.svg" id="2_qhnav"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n6tbd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_fqnpk")
+"texture": ExtResource("2_qhnav")
 }],
 "loop": 1,
 "name": &"sad",
@@ -16,7 +16,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_x7v12")
+"texture": ExtResource("2_key23")
 }],
 "loop": 1,
 "name": &"smile",

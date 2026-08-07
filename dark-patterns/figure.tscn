@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c8vkakuq6a2pr"]
 
-[ext_resource type="Script" path="res://scripts/figure.gd" id="1_32ojp"]
+[ext_resource type="Script" uid="uid://e81vynd6d0sa" path="res://assets/scripts/figure.gd" id="1_qhnav"]
 [ext_resource type="Texture2D" uid="uid://brkhkjp5x8y7u" path="res://assets/mock_smiley.svg" id="2_key23"]
 [ext_resource type="Texture2D" uid="uid://tpg5ymbvg2yw" path="res://assets/mock_smiley_sad.svg" id="2_qhnav"]
 
@@ -27,7 +27,7 @@ animations = [{
 radius = 23.021729
 
 [node name="figure" type="CharacterBody2D" unique_id=333006212]
-script = ExtResource("1_32ojp")
+script = ExtResource("1_qhnav")
 
 [node name="tick" type="Timer" parent="." unique_id=221341262]
 autostart = true

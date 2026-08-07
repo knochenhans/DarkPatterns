@@ -2,7 +2,7 @@ extends Node
 
 var ingame = true
 
-var figure = preload("res://figure.tscn")
+var figure = preload("res://assets/scenes/figure.tscn")
 func _ready() -> void:
 	pass
 

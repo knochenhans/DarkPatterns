@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://do2ohb2ikqw23"]
 
-[ext_resource type="Script" uid="uid://b60xf42623xno" path="res://scripts/global.gd" id="1_4mbhf"]
+[ext_resource type="Script" uid="uid://b60xf42623xno" path="res://assets/scripts/global.gd" id="1_4mbhf"]
 
 [node name="Global" type="Control" unique_id=901337494 node_paths=PackedStringArray("tick_timer")]
 layout_mode = 3

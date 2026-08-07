@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="DarkPattern" format=3 uid="uid://dghyql5mfb8u2"]
 
-[ext_resource type="Script" uid="uid://dhjlpyysxbnjj" path="res://scripts/pattern_template.gd" id="1_3b4kp"]
+[ext_resource type="Script" uid="uid://dhjlpyysxbnjj" path="res://assets/scripts/pattern_template.gd" id="1_3b4kp"]
 
 [resource]
 script = ExtResource("1_3b4kp")

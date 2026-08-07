@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dd8vhrkfouup0"]
 
-[ext_resource type="Script" uid="uid://c3b7i7n0gumfp" path="res://scripts/placed_pattern.gd" id="1_6fr4k"]
+[ext_resource type="Script" uid="uid://c3b7i7n0gumfp" path="res://assets/scripts/placed_pattern.gd" id="1_6fr4k"]
 
 [node name="PlacedPattern" type="Area2D" unique_id=2032930721 node_paths=PackedStringArray("collision_polygon_2d", "polygon_2d") groups=["Pattern"]]
 script = ExtResource("1_6fr4k")

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://do48maiwinjql"]
+
+[ext_resource type="Script" uid="uid://e81vynd6d0sa" path="res://scripts/figure.gd" id="1_32ojp"]
+[ext_resource type="Texture2D" uid="uid://brkhkjp5x8y7u" path="res://assets/mock_smiley.svg" id="2_key23"]
+[ext_resource type="Texture2D" uid="uid://tpg5ymbvg2yw" path="res://assets/mock_smiley_sad.svg" id="2_qhnav"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6tbd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qhnav")
+}],
+"loop": 1,
+"name": &"sad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_key23")
+}],
+"loop": 1,
+"name": &"smile",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n6tbd"]
+radius = 23.021729
+
+[node name="figure" type="Node2D" unique_id=1375122366]
+script = ExtResource("1_32ojp")
+
+[node name="tick" type="Timer" parent="." unique_id=221341262]
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=333518446]
+sprite_frames = SubResource("SpriteFrames_n6tbd")
+animation = &"smile"
+
+[node name="Area2D" type="StaticBody2D" parent="." unique_id=696696917]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1204698797]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_n6tbd")
+
+[connection signal="timeout" from="tick" to="." method="_on_tick_timeout"]

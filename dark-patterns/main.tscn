@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c6pajagn1oi57"]
+
+[ext_resource type="Script" uid="uid://dm8y8otv02ow5" path="res://scripts/main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://do48maiwinjql" path="res://figure.tscn" id="1_ig7tw"]
+
+[node name="main" type="Node" unique_id=594861777]
+script = ExtResource("1_0xm2m")
+
+[node name="tick" type="Timer" parent="." unique_id=765994102]
+autostart = true
+
+[node name="figure" parent="." unique_id=1375122366 instance=ExtResource("1_ig7tw")]
+position = Vector2(138, 56)
+
+[connection signal="timeout" from="tick" to="." method="_on_tick_timeout"]

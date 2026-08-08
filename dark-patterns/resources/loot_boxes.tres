@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="DarkPattern" format=3 uid="uid://cjyv0jmndeprs"]
+
+[ext_resource type="Texture2D" uid="uid://cl1xoi1141gov" path="res://assets/graphics/shape-lootbox.svg" id="1_5ec5p"]
+[ext_resource type="AudioStream" uid="uid://l43ave3pd6ak" path="res://assets/sounds/patterns/pattern_created.ogg" id="2_bov2p"]
+[ext_resource type="Script" uid="uid://dhjlpyysxbnjj" path="res://assets/scripts/pattern_template.gd" id="3_pecnb"]
+
+[resource]
+script = ExtResource("3_pecnb")
+name = "Loot Boxes"
+icon = ExtResource("1_5ec5p")
+description = "Lootboxes.
+Mostly remove happiness but also a bit of community."
+duration = 5.0
+size = 75.0
+depression_effect = 5
+price = 10
+effect = "lootboxes"
+color = Color(1, 1, 0.3372549, 1)
+placement_sound = ExtResource("2_bov2p")
+money_added = 5
+metadata/_custom_type_script = "uid://dhjlpyysxbnjj"

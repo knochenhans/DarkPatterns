@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="DarkPattern" format=3 uid="uid://dghyql5mfb8u2"]
+
+[ext_resource type="Texture2D" uid="uid://5cqokn7ysni8" path="res://assets/graphics/icon-infinite-scroll.png" id="1_c800k"]
+[ext_resource type="AudioStream" uid="uid://l43ave3pd6ak" path="res://assets/sounds/patterns/pattern_created.ogg" id="2_63fq3"]
+[ext_resource type="Script" uid="uid://dhjlpyysxbnjj" path="res://assets/scripts/pattern_template.gd" id="3_0cvmi"]
+
+[resource]
+script = ExtResource("3_0cvmi")
+name = "Infinite Scrolling"
+icon = ExtResource("1_c800k")
+description = "Sends your users into an everlasting doom scrolling session.
+Removes mostly community and a bit of happiness"
+duration = 10.0
+size = 160.0
+depression_effect = 1
+price = 5
+effect = "infinite_scrolling"
+color = Color(1, 0.4072455, 0.33865213, 1)
+placement_sound = ExtResource("2_63fq3")
+money_added = 1
+use_collision = false
+metadata/_custom_type_script = "uid://dhjlpyysxbnjj"

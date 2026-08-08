@@ -20,41 +20,43 @@
 [ext_resource type="SpriteFrames" uid="uid://dvp8uuogy1voo" path="res://resources/person2_frames.tres" id="13_uwelg"]
 [ext_resource type="SpriteFrames" uid="uid://beja4i7ovr52y" path="res://resources/person3_frames.tres" id="14_v3q3d"]
 [ext_resource type="Script" uid="uid://665sme57bmf1" path="res://assets/scenes/ticker_controller.gd" id="16_m64nd"]
-[ext_resource type="PackedScene" uid="uid://cqqlabfh7mev4" path="res://assets/scenes/UI/ticker_label.tscn" id="16_q5xp6"]
 [ext_resource type="Texture2D" uid="uid://dfhypn51xya8p" path="res://assets/graphics/metal-background.png" id="16_q5xp6"]
 [ext_resource type="Texture2D" uid="uid://b5ip2oikqqto4" path="res://assets/graphics/button-stop-out.png" id="18_onyvt"]
 [ext_resource type="Texture2D" uid="uid://58o0mlb0y5t7" path="res://assets/graphics/button-stop-in.png" id="19_q5xp6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
-size = Vector2(1162, 526)
+size = Vector2(1162, 477)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n6tbd"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m64nd"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86cna"]
-bg_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_sfrgt"]
-font = ExtResource("12_ytb86")
-font_size = 36
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahyqc"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vwth2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m64nd"]
 shader = ExtResource("11_rin3v")
-shader_parameter/smearing = 0.050000002375
-shader_parameter/color_offset = -0.00099999841756
-shader_parameter/sharpening = 0.190000009025
-shader_parameter/static_noise = 0.030000001425
+shader_parameter/smearing = 0.1450000068875
+shader_parameter/color_offset = -0.04000000027006
+shader_parameter/sharpening = 0.210000009975
+shader_parameter/static_noise = 0.0650000030875
 shader_parameter/crack_center = Vector2(0.15, 0.85)
 shader_parameter/crack_intensity = 0.0
 shader_parameter/crack_size = 0.0
-shader_parameter/vertical_jitter = 0.0010000000475
-shader_parameter/scanline_opacity = 0.050000002375
-shader_parameter/vignette_intensity = 0.10000000475
+shader_parameter/vertical_jitter = 0.002
+shader_parameter/scanline_opacity = 0.1
+shader_parameter/vignette_intensity = 0.1450000068875
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ye0uq"]
+shader = ExtResource("11_rin3v")
+shader_parameter/smearing = 0.5
+shader_parameter/color_offset = 0.005
+shader_parameter/sharpening = 0.4
+shader_parameter/static_noise = 0.08
+shader_parameter/crack_center = Vector2(0.15, 0.85)
+shader_parameter/crack_intensity = 0.0
+shader_parameter/crack_size = 0.0
+shader_parameter/vertical_jitter = 0.002
+shader_parameter/scanline_opacity = 0.1
+shader_parameter/vignette_intensity = 0.3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m64nd"]
+bg_color = Color(0.84313726, 0.827451, 0.75686276, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86cna"]
 bg_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
@@ -103,13 +105,13 @@ pattern_button_container = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/Patte
 pattern_button_scene = ExtResource("8_6rsl6")
 pattern_preview_scene = ExtResource("11_ahyqc")
 figure_sprites = Array[SpriteFrames]([ExtResource("12_xqcey"), ExtResource("13_uwelg"), ExtResource("14_v3q3d")])
-ticker = NodePath("UI/VBoxContainer/Ticker/TickerController")
+ticker = NodePath("UI/VBoxContainer/Main/MarginContainer/black/grey/HBoxContainer/Ticker/TickerController")
 
 [node name="tick" type="Timer" parent="." unique_id=765994102]
 autostart = true
 
 [node name="play_area" type="CollisionShape2D" parent="." unique_id=47767852]
-position = Vector2(640, 329)
+position = Vector2(640, 292.5)
 shape = SubResource("RectangleShape2D_n6tbd")
 
 [node name="figures" type="Node2D" parent="." unique_id=193396737]
@@ -174,17 +176,27 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
 [node name="vhs" type="ColorRect" parent="UI/VBoxContainer/Main/MarginContainer/black/grey" unique_id=1932893916]
+material = SubResource("ShaderMaterial_m64nd")
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="UI/VBoxContainer/Main/MarginContainer/black/grey" unique_id=372444106]
-material = SubResource("ShaderMaterial_vwth2")
+[node name="HBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/Main/MarginContainer/black/grey" unique_id=87634220]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/VBoxContainer/Main/MarginContainer/black/grey/HBoxContainer" unique_id=372444106]
+material = SubResource("ShaderMaterial_ye0uq")
 propagate_maximum_size = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Ticker" type="MarginContainer" parent="UI/VBoxContainer" unique_id=1723856803]
+[node name="Ticker" type="MarginContainer" parent="UI/VBoxContainer/Main/MarginContainer/black/grey/HBoxContainer" unique_id=1723856803]
+propagate_maximum_size = false
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
 
-[node name="TickerController" type="Panel" parent="UI/VBoxContainer/Ticker" unique_id=1310630970]
+[node name="TickerController" type="Panel" parent="UI/VBoxContainer/Main/MarginContainer/black/grey/HBoxContainer/Ticker" unique_id=1310630970]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_m64nd")

@@ -14,7 +14,6 @@ var SpawnedFigures : Array[CharacterBody2D] = []
 var play_area : CollisionShape2D = null
 
 func _ready() -> void:
-	# zum test
 	CurrentPatternSelection = AvailablePatterns[0]
 	play_area = $play_area
 

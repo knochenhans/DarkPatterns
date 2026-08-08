@@ -85,11 +85,11 @@ func _input(event: InputEvent) -> void:
 				print("Cannot place pattern, figures in radius: ", number_of_figures_in_radius)
 				ui_sound_player.stream = cannot_place_pattern_sound
 				ui_sound_player.play()
-				add_mouse_error(event.position, "Cannot place pattern on figures")
+				# add_mouse_error(event.position, "Cannot place pattern on figures")
 				return
 
 		if not check_money(CurrentPatternSelection.price):
-			add_mouse_error(event.position, "Not enough money to place pattern")
+			# add_mouse_error(event.position, "Not enough money to place pattern")
 			return
 
 		ui_sound_player.stream = buy_pattern_sound

@@ -19,6 +19,9 @@ var figure_scene = preload("res://assets/scenes/figure.tscn") as PackedScene
 @export var pattern_button_container: Container
 @export var pattern_button_scene: PackedScene
 
+var first_names: PackedStringArray
+var last_names: PackedStringArray
+
 var current_pattern_selection : DarkPattern
 
 var CurrentPatternSelection : DarkPattern
@@ -38,6 +41,8 @@ func _ready() -> void:
 		button_instance.set_pattern(pattern)
 		button_instance.connect("pattern_selected", on_pattern_selected)
 
+	first_names = get_text_file_content("res://assets/first_names.txt").split("\n")
+	last_names = get_text_file_content("res://assets/last_names.txt").split("\n")
 
 func _process(delta: float) -> void:
 	pass
@@ -89,11 +94,14 @@ func _on_tick_timeout() -> void:
 	if ingame and SpawnedFigures.size() < number_of_figures:
 		var figure_instance = spawn_figure()
 		SpawnedFigures.append(figure_instance)
+		figure_instance.figure_died.connect(on_figure_died)
 
 func spawn_figure() -> Figure:
 	var figure_instance = figure_scene.instantiate()
 	figure_instance.play_area = play_area
 	figure_instance.position = get_random_spawn_location()
+	figure_instance.first_name = first_names[randi() % first_names.size()]
+	figure_instance.last_name = last_names[randi() % last_names.size()]
 	$figures.add_child(figure_instance)
 	return figure_instance
 
@@ -113,3 +121,13 @@ func get_figure_in_radius(position: Vector2, radius: float) -> Array[Figure]:
 		if figure.position.distance_to(position) <= radius:
 			figures_in_radius.append(figure)
 	return figures_in_radius
+
+func on_figure_died(figure: Figure) -> void:
+	if figure in SpawnedFigures:
+		SpawnedFigures.erase(figure)
+
+func get_text_file_content(filePath) -> String:
+	var file = FileAccess.open(filePath, FileAccess.READ)
+	var content = file.get_as_text()
+	file.close()
+	return content

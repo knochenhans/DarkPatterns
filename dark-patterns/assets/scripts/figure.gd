@@ -9,20 +9,24 @@ var play_area = null
 var move_target: Vector2 = Vector2.ZERO
 var alive = true
 
+var first_name = ""
+var last_name = ""
+
 @export var community = 0
 @export var area_2d: Area2D
 @export var speed_scale: float = 1.0
 
-@onready
-var happy_ui_value = $debug_ui/happy/happy_value
-@onready
-var community_ui_value = $debug_ui/community/community_value
-@onready 
-var death_timer = $death_timer
+@onready var debug_name_label = $debug_ui/DebugContainer/NameLabel
+@onready var debug_happy_label = $debug_ui/DebugContainer/HappyLabel
+@onready var debug_community_label = $debug_ui/DebugContainer/CommunityLabel
+@onready var death_timer = $death_timer
+
+signal figure_died(figure: Figure)
 
 
 func _ready():
-	happy_ui_value.text = str(happiness)
+	debug_name_label.text = get_figure_name()
+	debug_happy_label.text = str(happiness)
 
 func _process(_delta) -> void:
 	if happiness > 50:
@@ -96,10 +100,14 @@ func _on_tick_timeout() -> void:
 	apply_happiness_effect(len(area_2d.get_overlapping_bodies()))
 	apply_community_effect(5)
 	move_target = get_random_move_location()
-	happy_ui_value.text = str(happiness)
-	community_ui_value.text = str(community)
+	debug_happy_label.text = str(happiness)
+	debug_community_label.text = str(community)
 
 
 func _on_death_timer_timeout() -> void:
 	print("ded")
+	emit_signal("figure_died", self)
 	queue_free()
+
+func get_figure_name() -> String:
+	return first_name + " " + last_name

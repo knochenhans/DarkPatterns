@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ukfrdx1lygeu" path="res://assets/graphics/figures/person1-0-01.png" id="4_x7v12"]
 [ext_resource type="Texture2D" uid="uid://dst08gxo3kpu3" path="res://assets/graphics/figures/person1-0-02.png" id="5_f4ydd"]
 [ext_resource type="Texture2D" uid="uid://cystbhwopr0nx" path="res://assets/graphics/shadow.png" id="7_8epu0"]
+[ext_resource type="LabelSettings" uid="uid://c8ftatmk2240v" path="res://resources/debug_label.tres" id="7_p1hqm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n6tbd"]
 animations = [{
@@ -76,47 +77,28 @@ shape = SubResource("CircleShape2D_n6tbd")
 layout_mode = 3
 anchors_preset = 0
 
-[node name="happy" type="HBoxContainer" parent="debug_ui" unique_id=1290056530]
+[node name="DebugContainer" type="VBoxContainer" parent="debug_ui" unique_id=1772507527]
 layout_mode = 0
-offset_left = -24.0
-offset_top = -92.0
-offset_right = 41.0
-offset_bottom = -72.0
+offset_left = -21.0
+offset_top = -95.0
+offset_right = 19.0
+offset_bottom = -55.0
+theme_override_constants/separation = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="debug_ui/happy" unique_id=1893019946]
+[node name="NameLabel" type="Label" parent="debug_ui/DebugContainer" unique_id=440717637]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 10
-text = "happy"
+text = "1"
+label_settings = ExtResource("7_p1hqm")
 
-[node name="happy_value" type="RichTextLabel" parent="debug_ui/happy" unique_id=317868140]
+[node name="HappyLabel" type="Label" parent="debug_ui/DebugContainer" unique_id=634340353]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 10
-text = "10"
+text = "2"
+label_settings = ExtResource("7_p1hqm")
 
-[node name="community" type="HBoxContainer" parent="debug_ui" unique_id=1309879534]
-layout_mode = 0
-offset_left = -25.0
-offset_top = -77.0
-offset_right = 92.0
-offset_bottom = -61.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="debug_ui/community" unique_id=665905928]
+[node name="CommunityLabel" type="Label" parent="debug_ui/DebugContainer" unique_id=1172773239]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 10
-text = "community"
-
-[node name="community_value" type="RichTextLabel" parent="debug_ui/community" unique_id=113833321]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 10
-text = "10"
+text = "3	"
+label_settings = ExtResource("7_p1hqm")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1877635821]
 

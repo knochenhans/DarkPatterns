@@ -38,7 +38,7 @@ func _ready() -> void:
 		button_instance.set_pattern(pattern)
 		button_instance.connect("pattern_selected", on_pattern_selected)
 
-		
+
 func _process(delta: float) -> void:
 	pass
 	
@@ -76,7 +76,11 @@ func _input(event: InputEvent) -> void:
 			add_child(instance)
 
 func on_figure_entered_pattern(figure: Figure, pattern: DarkPattern) -> void:
-	Global.money += pattern.money_added
+	match pattern.effect:
+		"addictive_design":
+			Global.money += pattern.money_added
+		"lootboxes":
+			Global.money += pattern.money_added * ((100 - figure.community) / 2)
 	print("money: ", Global.money)
 	ui_sound_player.stream = money_add_sound
 	ui_sound_player.play()

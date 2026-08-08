@@ -20,8 +20,8 @@ func _ready() -> void:
 	for i in range(16):
 		var angle = i * PI/8
 		points.append(dark_pattern.size*Vector2.from_angle(angle))
-		polygon_2d.polygon = points
-		collision_polygon_2d.polygon = points
+	polygon_2d.polygon = points
+	collision_polygon_2d.polygon = points
 	polygon_2d.color = dark_pattern.color
 	placement_sound_player.stream = dark_pattern.placement_sound
 	placement_sound_player.play()
@@ -29,7 +29,7 @@ func _ready() -> void:
 func on_tick():
 	for b in get_overlapping_bodies():
 		if b.is_in_group("Person"):
-			apply_depression_effect(b, dark_pattern.depression_effect)
+			apply_effect(b, dark_pattern.effect)
 			figure_entered.emit(b)
 			
 	ticks_remaining -= 1
@@ -41,5 +41,11 @@ func on_tick():
 		await placement_sound_player.finished
 		queue_free()
 
-func apply_depression_effect(figure: Figure, depression_effect: int):
-	figure.apply_happiness_effect(-depression_effect)
+func apply_effect(figure: Figure, effect: String):
+	match effect:
+		"addictive_design":
+			figure.apply_happiness_effect(-2)
+			figure.apply_community_effect(-10)
+		"lootboxes":
+			figure.apply_happiness_effect(-10)
+			figure.apply_community_effect(-2)

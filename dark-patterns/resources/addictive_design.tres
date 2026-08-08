@@ -6,7 +6,8 @@
 [resource]
 script = ExtResource("1_3b4kp")
 name = "Addictive Design"
-description = "Sends your users into an everlasting doom scrolling session"
+description = "Sends your users into an everlasting doom scrolling session.
+Removes mostly community and a bit of happiness"
 duration = 10.0
 size = 160.0
 depression_effect = 1

@@ -72,6 +72,14 @@ func apply_happiness_effect(amount: int):
 	if happiness < 0:
 		happiness = 0
 
+func apply_community_effect(amount: int):
+	community += amount
+	print("community: ", community)
+	if community > 100:
+		community = 100
+	if community < 0:
+		community = 0
+
 func _on_tick_timeout() -> void:
 	move_target = get_random_move_location()
 	happy_ui_value.text = str(happiness)

@@ -42,6 +42,7 @@ func _process(_delta) -> void:
 	
 	if artificial_scarcity_pattern != null:
 		if (artificial_scarcity_pattern.position - position).length() < 20:
+			set_collision_mask_value(1, true)
 			artificial_scarcity_pattern.queue_free()
 			artificial_scarcity_pattern = null
 			
@@ -94,6 +95,7 @@ func get_random_move_location():
 	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
 
 func apply_artificial_scarcity(pattern: PlacedPattern):
+	set_collision_mask_value(1, false)
 	artificial_scarcity_pattern = pattern
 
 func apply_happiness_effect(amount: int):

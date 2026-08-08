@@ -16,12 +16,16 @@ var artificial_scarcity_pattern: PlacedPattern = null
 @export var community = 0
 @export var area_2d: Area2D
 @export var speed_scale: float = 1.0
-@export var WalkingSoundPlayer: AudioStreamPlayer2D
+
+@export var walking_sound_player: AudioStreamPlayer2D
+@export var state_sound_player: AudioStreamPlayer2D
 
 @onready var debug_name_label = $debug_ui/DebugContainer/NameLabel
 @onready var debug_happy_label = $debug_ui/DebugContainer/HappyLabel
 @onready var debug_community_label = $debug_ui/DebugContainer/CommunityLabel
 @onready var death_timer = $death_timer
+
+var character_set: CharacterSet = null
 
 var moving = false
 
@@ -41,8 +45,18 @@ func _ready():
 	debug_happy_label.text = "Happiness: " + str(happiness)
 	debug_community_label.text = "Community: " + str(community)
 
-	WalkingSoundPlayer.pitch_scale = randf_range(0.8, 1.2)
-	WalkingSoundPlayer.volume_db = randf_range(-6, 0)
+	var rand_pitch = randf_range(0.8, 1.2)
+	var rand_volume = randf_range(-6, 0)
+
+	walking_sound_player.pitch_scale = rand_pitch
+	walking_sound_player.volume_db = rand_volume
+
+	state_sound_player.pitch_scale = rand_pitch
+	state_sound_player.volume_db = rand_volume
+
+func set_character_set(new_character_set: CharacterSet) -> void:
+	character_set = new_character_set
+	$AnimatedSprite2D.frames = character_set.sprite_frames
 
 func _process(_delta) -> void:
 	if happiness > 50:
@@ -68,7 +82,13 @@ func set_state(new_state: FigureState) -> void:
 	if new_state != current_state:
 		current_state = new_state
 		emit_signal("figure_state_changed", self, new_state)
-			
+
+		if character_set != null:
+			match current_state:
+				FigureState.HAPPY: state_sound_player.stream = character_set.sound_happy
+				FigureState.SAD: state_sound_player.stream = character_set.sound_sad
+				FigureState.DIED: state_sound_player.stream = character_set.sound_dying
+			state_sound_player.play()
 
 func change_animation_state(state: String) -> void:
 	$AnimatedSprite2D.play(state)
@@ -103,9 +123,9 @@ func _physics_process(_delta: float) -> void:
 func set_moving_state(new_state: bool) -> void:
 	if moving != new_state:
 		if new_state:
-			WalkingSoundPlayer.play()
+			walking_sound_player.play()
 		else:
-			WalkingSoundPlayer.stop()
+			walking_sound_player.stop()
 
 	moving = new_state
 
@@ -164,6 +184,3 @@ func _on_death_timer_timeout() -> void:
 
 func get_figure_name() -> String:
 	return first_name + " " + last_name
-
-func set_sprite_frames(sprite_frames: SpriteFrames) -> void:
-	$AnimatedSprite2D.frames = sprite_frames

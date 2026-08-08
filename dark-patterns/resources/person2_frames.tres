@@ -1,18 +1,18 @@
-[gd_resource type="SpriteFrames" format=3 uid="uid://dvp8uuogy1voo"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://beja4i7ovr52y"]
 
-[ext_resource type="Texture2D" uid="uid://do7da64yhoodt" path="res://assets/graphics/figures/person2-0-dead.png" id="1_ywxbi"]
-[ext_resource type="Texture2D" uid="uid://yntffn7suuwx" path="res://assets/graphics/figures/person2-50-01.png" id="2_q26dg"]
-[ext_resource type="Texture2D" uid="uid://bdl64y2ds888e" path="res://assets/graphics/figures/person2-50-02.png" id="3_urhso"]
-[ext_resource type="Texture2D" uid="uid://clfhexhvcmtnw" path="res://assets/graphics/figures/person2-0-01.png" id="4_edkic"]
-[ext_resource type="Texture2D" uid="uid://cncmkpo5hk5mn" path="res://assets/graphics/figures/person2-0-02.png" id="5_kl2yx"]
-[ext_resource type="Texture2D" uid="uid://p7w4g6ebpjp6" path="res://assets/graphics/figures/person2-100-01.png" id="6_bvsyk"]
-[ext_resource type="Texture2D" uid="uid://cgf6oj4od7rrr" path="res://assets/graphics/figures/person2-100-02.png" id="7_g60gk"]
+[ext_resource type="Texture2D" uid="uid://dxdmeur5xomuy" path="res://assets/graphics/figures/person3-0-dead.png" id="1_xlj6r"]
+[ext_resource type="Texture2D" uid="uid://0661eie086hk" path="res://assets/graphics/figures/person3-50-01.png" id="2_ow8xb"]
+[ext_resource type="Texture2D" uid="uid://ynnipuv72xlt" path="res://assets/graphics/figures/person3-50-02.png" id="3_mwlst"]
+[ext_resource type="Texture2D" uid="uid://dk53xiuhu0010" path="res://assets/graphics/figures/person3-0-01.png" id="4_j6aq5"]
+[ext_resource type="Texture2D" uid="uid://drswhgdhc7ve3" path="res://assets/graphics/figures/person3-0-02.png" id="5_pxose"]
+[ext_resource type="Texture2D" uid="uid://c2sun5yg0sabw" path="res://assets/graphics/figures/person3-100-01.png" id="6_tdrga"]
+[ext_resource type="Texture2D" uid="uid://cs41rdbhj1idl" path="res://assets/graphics/figures/person3-100-02.png" id="7_bdm3r"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_ywxbi")
+"texture": ExtResource("1_xlj6r")
 }],
 "loop": 1,
 "name": &"died",
@@ -20,10 +20,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_q26dg")
+"texture": ExtResource("2_ow8xb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_urhso")
+"texture": ExtResource("3_mwlst")
 }],
 "loop": 1,
 "name": &"neutral",
@@ -31,10 +31,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_edkic")
+"texture": ExtResource("4_j6aq5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_kl2yx")
+"texture": ExtResource("5_pxose")
 }],
 "loop": 1,
 "name": &"sad",
@@ -42,10 +42,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_bvsyk")
+"texture": ExtResource("6_tdrga")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_g60gk")
+"texture": ExtResource("7_bdm3r")
 }],
 "loop": 1,
 "name": &"smile",

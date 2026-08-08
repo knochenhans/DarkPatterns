@@ -49,12 +49,13 @@ radius = 23.021729
 [sub_resource type="CircleShape2D" id="CircleShape2D_k1ki5"]
 radius = 100.005
 
-[node name="figure" type="CharacterBody2D" unique_id=333006212 node_paths=PackedStringArray("area_2d", "WalkingSoundPlayer") groups=["Person"]]
+[node name="figure" type="CharacterBody2D" unique_id=333006212 node_paths=PackedStringArray("area_2d", "walking_sound_player", "state_sound_player") groups=["Person"]]
 script = ExtResource("1_qhnav")
 community = 50
 area_2d = NodePath("Area2D")
 speed_scale = 0.01
-WalkingSoundPlayer = NodePath("WalkingSound")
+walking_sound_player = NodePath("WalkingSound")
+state_sound_player = NodePath("StateSound")
 
 [node name="tick" type="Timer" parent="." unique_id=221341262]
 autostart = true
@@ -118,6 +119,9 @@ texture = ExtResource("7_8epu0")
 
 [node name="WalkingSound" type="AudioStreamPlayer2D" parent="." unique_id=389213218]
 stream = ExtResource("9_tyten")
+panning_strength = 3.0
+
+[node name="StateSound" type="AudioStreamPlayer2D" parent="." unique_id=1400853263]
 panning_strength = 3.0
 
 [connection signal="timeout" from="tick" to="." method="_on_tick_timeout"]

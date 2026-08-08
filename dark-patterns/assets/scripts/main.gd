@@ -17,6 +17,7 @@ var mouse_error = preload("res://assets/scenes/mouse_error.tscn") as PackedScene
 @export var cannot_place_pattern_sound: AudioStream
 @export var ui_sound_player: AudioStreamPlayer2D
 @export var button_click_sound: AudioStream
+@export var character_sets: Array[CharacterSet] = []
 
 # Pattern selection
 @export var pattern_button_container: Container
@@ -223,7 +224,7 @@ func spawn_figure() -> Figure:
 	figure_instance.last_name = last_names[randi() % last_names.size()]
 
 	var random_sprite_index = randi() % figure_sprites.size()
-	figure_instance.set_sprite_frames(figure_sprites[random_sprite_index])
+	figure_instance.set_character_set(character_sets[random_sprite_index % character_sets.size()])
 	figure_instance.figure_state_changed.connect(on_figure_state_changed)
 
 	$figures.add_child(figure_instance)

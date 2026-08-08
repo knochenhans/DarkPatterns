@@ -14,11 +14,15 @@
 [ext_resource type="AudioStream" uid="uid://cu66pnp5tfxj" path="res://assets/sounds/UI/button.ogg" id="8_48cn3"]
 [ext_resource type="PackedScene" uid="uid://cs8ubwa2hn4r4" path="res://assets/scenes/preview_pattern.tscn" id="11_ahyqc"]
 [ext_resource type="Shader" uid="uid://b6v75y4yorhan" path="res://assets/scenes/vhs.gdshader" id="11_rin3v"]
+[ext_resource type="Script" uid="uid://c55sue84wsb2l" path="res://assets/scripts/character_set.gd" id="11_rk0tg"]
+[ext_resource type="Resource" uid="uid://c381jwqoxnpfp" path="res://resources/character_set1.tres" id="12_pj0si"]
 [ext_resource type="AudioStream" uid="uid://8s6iqwcwko7x" path="res://assets/sounds/ambient.ogg" id="12_ua5jh"]
 [ext_resource type="SpriteFrames" uid="uid://4vc32p5un6vp" path="res://resources/person1_frames.tres" id="12_xqcey"]
 [ext_resource type="FontFile" uid="uid://ca0dcvsj2bs1w" path="res://assets/fonts/BitcountSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf" id="12_ytb86"]
-[ext_resource type="SpriteFrames" uid="uid://dvp8uuogy1voo" path="res://resources/person2_frames.tres" id="13_uwelg"]
-[ext_resource type="SpriteFrames" uid="uid://beja4i7ovr52y" path="res://resources/person3_frames.tres" id="14_v3q3d"]
+[ext_resource type="SpriteFrames" uid="uid://dvp8uuogy1voo" path="res://resources/person3_frames.tres" id="13_uwelg"]
+[ext_resource type="Resource" uid="uid://cnp4he8ths8ax" path="res://resources/character_set2.tres" id="13_y7cho"]
+[ext_resource type="Resource" uid="uid://bqjyul6o5uspv" path="res://resources/character_set3.tres" id="14_nn48q"]
+[ext_resource type="SpriteFrames" uid="uid://beja4i7ovr52y" path="res://resources/person2_frames.tres" id="14_v3q3d"]
 [ext_resource type="Script" uid="uid://665sme57bmf1" path="res://assets/scenes/ticker_controller.gd" id="16_m64nd"]
 [ext_resource type="Texture2D" uid="uid://dfhypn51xya8p" path="res://assets/graphics/metal-background.png" id="16_q5xp6"]
 [ext_resource type="Texture2D" uid="uid://b5ip2oikqqto4" path="res://assets/graphics/button-stop-out.png" id="18_onyvt"]
@@ -118,6 +122,7 @@ buy_pattern_sound = ExtResource("6_6rsl6")
 cannot_place_pattern_sound = ExtResource("7_p5d64")
 ui_sound_player = NodePath("UISoundPlayer")
 button_click_sound = ExtResource("8_48cn3")
+character_sets = Array[ExtResource("11_rk0tg")]([ExtResource("12_pj0si"), ExtResource("13_y7cho"), ExtResource("14_nn48q")])
 pattern_button_container = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/PatternButtonContainer")
 pattern_button_scene = ExtResource("8_6rsl6")
 pattern_preview_scene = ExtResource("11_ahyqc")

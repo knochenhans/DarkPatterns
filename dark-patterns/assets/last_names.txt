@@ -6,3 +6,6 @@ Karlsson
 Bergström
 Lindberg
 Svensson
+Johansson
+Österberg
+Krohn

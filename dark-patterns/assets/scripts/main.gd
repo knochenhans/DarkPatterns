@@ -125,6 +125,11 @@ func on_apply_artificial_scarcity(pattern: PlacedPattern):
 		figure.apply_artificial_scarcity(pattern)
 
 func on_figure_entered_pattern(figure: Figure, pattern: DarkPattern) -> void:
+	if figure == null or figure.is_queued_for_deletion():
+		return
+	if pattern == null:
+		return
+
 	match pattern.effect:
 		"addictive_design", "artificial_scarcity":
 			Global.money += pattern.money_added

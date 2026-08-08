@@ -24,7 +24,7 @@ func add_ticker_message(message: String) -> void:
 
 	label_stack.append(ticker_label_instance)
 
-	ticker_label_instance.push_message("***" + message + "***", start_x)
+	ticker_label_instance.push_message("*** " + message + "***", start_x)
 
 func on_label_destroyed(label: TickerLabel) -> void:
 	label_stack.erase(label)

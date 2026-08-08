@@ -18,6 +18,7 @@ func _ready() -> void:
 		points.append(dark_pattern.size*Vector2.from_angle(angle))
 		polygon_2d.polygon = points
 		collision_polygon_2d.polygon = points
+	polygon_2d.color = dark_pattern.color
 		
 func on_tick():
 	for b in get_overlapping_bodies():

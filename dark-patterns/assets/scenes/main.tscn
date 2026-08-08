@@ -21,6 +21,8 @@
 [ext_resource type="SpriteFrames" uid="uid://dvp8uuogy1voo" path="res://resources/person2_frames.tres" id="13_uwelg"]
 [ext_resource type="Texture2D" uid="uid://58o0mlb0y5t7" path="res://assets/graphics/button-stop-in.png" id="14_t7a27"]
 [ext_resource type="SpriteFrames" uid="uid://beja4i7ovr52y" path="res://resources/person3_frames.tres" id="14_v3q3d"]
+[ext_resource type="Texture2D" uid="uid://b5ip2oikqqto4" path="res://assets/graphics/button-stop-out.png" id="18_onyvt"]
+[ext_resource type="Texture2D" uid="uid://58o0mlb0y5t7" path="res://assets/graphics/button-stop-in.png" id="19_q5xp6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
 size = Vector2(1162, 566)
@@ -145,8 +147,11 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_ahyqc")
 
 [node name="StopButton" type="TextureButton" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer" unique_id=129298260]
 layout_mode = 2
-texture_normal = ExtResource("13_ahyqc")
-texture_pressed = ExtResource("14_t7a27")
+texture_normal = ExtResource("18_onyvt")
+texture_pressed = ExtResource("19_q5xp6")
+texture_hover = ExtResource("18_onyvt")
+texture_disabled = ExtResource("18_onyvt")
+texture_focused = ExtResource("18_onyvt")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=372444106]
 material = SubResource("ShaderMaterial_vwth2")

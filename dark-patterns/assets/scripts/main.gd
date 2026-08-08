@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 	pass
 	
 func _input(event: InputEvent) -> void:
-	if current_pattern_preview_instance != null:
+	if current_pattern_preview_instance != null and event is InputEventMouseMotion:
 		print("Moving pattern preview to: ", event.position)
 		current_pattern_preview_instance.position = event.position
 	
@@ -83,14 +83,8 @@ func _input(event: InputEvent) -> void:
 				ui_sound_player.play()
 				return
 
-		var	price = CurrentPatternSelection.price
-		if Global.money < price:
-			print("Not enough money to place pattern.")
-			ui_sound_player.stream = cannot_place_pattern_sound
-			ui_sound_player.play()
+		if not check_money(CurrentPatternSelection.price):
 			return
-
-		Global.money -= price
 
 		ui_sound_player.stream = buy_pattern_sound
 		ui_sound_player.play()
@@ -109,6 +103,16 @@ func _input(event: InputEvent) -> void:
 		remove_current_pattern_preview()
 
 		input_state = InputState.NONE
+
+func check_money(price: int) -> bool:
+	if Global.money < price:
+		print("Not enough money to place pattern.")
+		ui_sound_player.stream = cannot_place_pattern_sound
+		ui_sound_player.play()
+		return false
+
+	Global.money -= price
+	return true
 
 func remove_current_pattern_preview():
 	if current_pattern_preview_instance != null:
@@ -157,6 +161,11 @@ func on_pattern_selected(pattern: DarkPattern) -> void:
 	print("Pattern selected: ", pattern.name)
 	ui_sound_player.stream = button_click_sound
 	ui_sound_player.play()
+
+	if not check_money(pattern.price):
+		CurrentPatternSelection = null
+		return
+
 	CurrentPatternSelection = pattern
 
 	create_pattern_preview()

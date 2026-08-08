@@ -1,4 +1,5 @@
 Winter
+Sommer
 Broder
 Lundt
 Leck
@@ -9,3 +10,13 @@ Svensson
 Johansson
 Österberg
 Krohn
+Meier
+Kim
+Nguyen
+Musk
+Zuckerberg
+Trump
+Langstrumpf
+Merkel
+Duck
+Scrooge

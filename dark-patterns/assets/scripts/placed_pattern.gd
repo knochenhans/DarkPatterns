@@ -24,6 +24,7 @@ func on_tick():
 		if b.is_in_group("Person"):
 			Global.money += 1
 			print("money: ", Global.money)
+			b.apply_effect("addictive_design")
 	ticks_remaining -= 1
 	if ticks_remaining < 0:
 		queue_free()

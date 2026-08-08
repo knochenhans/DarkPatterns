@@ -50,7 +50,7 @@ func _physics_process(_delta: float) -> void:
 
 		move_and_slide()
 		
-		if velocity.x > 50:
+		if abs(velocity.x) > 50:
 			if velocity.x > 0:
 				$AnimatedSprite2D.flip_h = true
 			else:

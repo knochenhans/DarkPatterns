@@ -1,5 +1,5 @@
-class_name Figure
 extends CharacterBody2D
+class_name Figure
 
 var happiness = 100
 var affected = false
@@ -16,11 +16,15 @@ var artificial_scarcity_pattern: PlacedPattern = null
 @export var community = 0
 @export var area_2d: Area2D
 @export var speed_scale: float = 1.0
+@export var WalkingSoundPlayer: AudioStreamPlayer2D
 
 @onready var debug_name_label = $debug_ui/DebugContainer/NameLabel
 @onready var debug_happy_label = $debug_ui/DebugContainer/HappyLabel
 @onready var debug_community_label = $debug_ui/DebugContainer/CommunityLabel
 @onready var death_timer = $death_timer
+
+
+var moving = false
 
 signal figure_died(figure: Figure)
 
@@ -28,6 +32,9 @@ signal figure_died(figure: Figure)
 func _ready():
 	debug_name_label.text = get_figure_name()
 	debug_happy_label.text = str(happiness)
+
+	WalkingSoundPlayer.pitch_scale = randf_range(0.8, 1.2)
+	WalkingSoundPlayer.volume_db = randf_range(-6, 0)
 
 func _process(_delta) -> void:
 	if happiness > 50:
@@ -64,8 +71,11 @@ func _physics_process(_delta: float) -> void:
 	if move_target != Vector2.ZERO:
 		var move_vector: Vector2 = move_target - position
 		velocity = move_vector.normalized() * 100
-
 		move_and_slide()
+		set_moving_state(true)
+	else:
+		velocity = Vector2.ZERO
+		set_moving_state(false)
 		
 	if abs(velocity.x) > 50:
 		if velocity.x > 0:
@@ -73,9 +83,17 @@ func _physics_process(_delta: float) -> void:
 		else:
 			$AnimatedSprite2D.flip_h = false
 
+func set_moving_state(new_state: bool) -> void:
+	if moving != new_state:
+		if new_state:
+			WalkingSoundPlayer.play()
+		else:
+			WalkingSoundPlayer.stop()
+
+	moving = new_state
+
 
 func get_random_move_location():
-	
 	var bounds = play_area.shape.size
 	var bodies = []
 	for body in area_2d.get_overlapping_bodies():

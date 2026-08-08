@@ -8,6 +8,7 @@ var mouse_error = preload("res://assets/scenes/mouse_error.tscn") as PackedScene
 @export var placed_pattern: PackedScene
 @export var AvailablePatterns : Array[DarkPattern]
 @export var number_of_figures : int = 5
+@export var tick: Timer
 
 # Sounds
 @export var money_add_sound: AudioStream
@@ -27,6 +28,10 @@ var mouse_error = preload("res://assets/scenes/mouse_error.tscn") as PackedScene
 # Ticker
 @export var ticker: TickerController
 
+# Screens
+@export var start_screen: StartScreen
+@export var game_over_screen: Control
+
 var first_names: PackedStringArray
 var last_names: PackedStringArray
 
@@ -45,11 +50,21 @@ enum InputState {
 	PLACING_PATTERN
 }
 
+enum GameState {
+	STARTSCREEN,
+	INGAME,
+	GAMEOVER
+}
+
 var input_state : InputState = InputState.NONE
+var game_state : GameState = GameState.STARTSCREEN
 
 func _ready() -> void:
-	CurrentPatternSelection = null
 	play_area = $play_area
+	first_names = get_text_file_content("res://assets/first_names.txt").split("\n")
+	last_names = get_text_file_content("res://assets/last_names.txt").split("\n")
+	
+	CurrentPatternSelection = null
 
 	for pattern in AvailablePatterns:
 		print("Adding pattern button for: ", pattern.name)
@@ -58,9 +73,30 @@ func _ready() -> void:
 		button_instance.set_pattern(pattern)
 		button_instance.connect("pattern_selected", on_pattern_selected)
 
-	first_names = get_text_file_content("res://assets/first_names.txt").split("\n")
-	last_names = get_text_file_content("res://assets/last_names.txt").split("\n")
+	start_game()
+	# show_start_screen()
 
+func show_start_screen() -> void:
+	game_state = GameState.STARTSCREEN
+
+	start_screen.visible = true
+	game_over_screen.visible = false
+
+	start_screen.connect("start_game_requested", Callable(self, "start_game"))
+
+func show_game_over_screen() -> void:
+	game_state = GameState.GAMEOVER
+
+	start_screen.visible = false
+	game_over_screen.visible = true
+
+func start_game() -> void:	
+	game_state = GameState.INGAME
+
+	start_screen.visible = false
+	game_over_screen.visible = false
+
+	tick.start()
 	ticker.add_ticker_message("Welcome!!!")
 	
 func _input(event: InputEvent) -> void:
@@ -163,7 +199,7 @@ func _on_tick_timeout() -> void:
 				ui_sound_player.stream = money_add_sound
 				ui_sound_player.play()
 
-	if ingame and SpawnedFigures.size() < number_of_figures:
+	if game_state == GameState.INGAME and SpawnedFigures.size() < number_of_figures:
 		var figure_instance = spawn_figure()
 		SpawnedFigures.append(figure_instance)
 		figure_instance.figure_died.connect(on_figure_died)
@@ -220,13 +256,16 @@ func on_figure_died(figure: Figure) -> void:
 		SpawnedFigures.erase(figure)
 
 func on_figure_state_changed(figure: Figure, new_state: Figure.FigureState) -> void:
-	var state_string = ""
+	var figure_name = figure.get_figure_name()
+	var message = ""
 	match new_state:
 		Figure.FigureState.HAPPY:
-			state_string = "happy"
+			message = "Aww, " + figure_name + " is happy!"
 		Figure.FigureState.SAD:
-			state_string = "sad"
-	ticker.add_ticker_message(figure.get_figure_name() + " is now " + state_string + "!")
+			message = "Oh no, " + figure_name + " is sad!"
+		Figure.FigureState.DIED:
+			message = "Unfortunately, " + figure_name + " has died from depression."
+	ticker.add_ticker_message(message)
 
 func get_text_file_content(filePath) -> String:
 	var file = FileAccess.open(filePath, FileAccess.READ)

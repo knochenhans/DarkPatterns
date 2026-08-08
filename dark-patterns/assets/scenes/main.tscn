@@ -24,6 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://b5ip2oikqqto4" path="res://assets/graphics/button-stop-out.png" id="18_onyvt"]
 [ext_resource type="PackedScene" uid="uid://cqqlabfh7mev4" path="res://assets/scenes/UI/ticker_label.tscn" id="18_ye0uq"]
 [ext_resource type="Texture2D" uid="uid://58o0mlb0y5t7" path="res://assets/graphics/button-stop-in.png" id="19_q5xp6"]
+[ext_resource type="Texture2D" uid="uid://2kfbrhgay71a" path="res://assets/graphics/title-screen-background.png" id="25_k0jt7"]
+[ext_resource type="Script" uid="uid://dchdmx3uhx1pn" path="res://assets/scenes/start_screen.gd" id="25_pqtk7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
 size = Vector2(1162, 477)
@@ -79,11 +81,14 @@ shader_parameter/vignette_intensity = 0.3
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahyqc"]
 
-[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("ui_sound_player", "pattern_button_container", "ticker")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ye0uq"]
+
+[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("tick", "ui_sound_player", "pattern_button_container", "ticker", "start_screen", "game_over_screen")]
 script = ExtResource("1_0xm2m")
 placed_pattern = ExtResource("2_kpi06")
 AvailablePatterns = Array[ExtResource("3_sfrgt")]([ExtResource("4_etxf0"), ExtResource("5_ov4sg"), ExtResource("6_ahyqc")])
 number_of_figures = 30
+tick = NodePath("tick")
 money_add_sound = ExtResource("5_xplbd")
 buy_pattern_sound = ExtResource("6_6rsl6")
 cannot_place_pattern_sound = ExtResource("7_p5d64")
@@ -94,9 +99,10 @@ pattern_button_scene = ExtResource("8_6rsl6")
 pattern_preview_scene = ExtResource("11_ahyqc")
 figure_sprites = Array[SpriteFrames]([ExtResource("12_xqcey"), ExtResource("13_uwelg"), ExtResource("14_v3q3d")])
 ticker = NodePath("UI/VBoxContainer/Main/MarginContainer/black/grey/HBoxContainer/Ticker/TickerController")
+start_screen = NodePath("StartScreen")
+game_over_screen = NodePath("GameOverScreen")
 
 [node name="tick" type="Timer" parent="." unique_id=765994102]
-autostart = true
 
 [node name="play_area" type="CollisionShape2D" parent="." unique_id=47767852]
 position = Vector2(640, 292.5)
@@ -258,5 +264,60 @@ texture_focused = ExtResource("18_onyvt")
 [node name="Ambient" type="AudioStreamPlayer2D" parent="." unique_id=1951672721]
 stream = ExtResource("12_ua5jh")
 autoplay = true
+
+[node name="StartScreen" type="Control" parent="." unique_id=597026135 node_paths=PackedStringArray("start_button")]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("25_pqtk7")
+start_button = NodePath("Button")
+
+[node name="TextureRect" type="TextureRect" parent="StartScreen" unique_id=430333128]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("25_k0jt7")
+
+[node name="Button" type="Button" parent="StartScreen" unique_id=1592607096]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = 312.0
+offset_right = 48.0
+offset_bottom = 343.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Start Game"
+
+[node name="GameOverScreen" type="Control" parent="." unique_id=1709794172]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="GameOverScreen" unique_id=739196327]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ye0uq")
 
 [connection signal="timeout" from="tick" to="." method="_on_tick_timeout"]

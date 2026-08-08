@@ -102,7 +102,10 @@ func change_animation_state(state: String) -> void:
 func _physics_process(_delta: float) -> void:
 	if not alive:
 		return
-
+		
+	if move_target.distance_to(global_position) < 10: #to stop jitter
+		move_target = global_position
+		
 	$AnimatedSprite2D.speed_scale = velocity.length() * speed_scale
 	
 	if artificial_scarcity_pattern != null:

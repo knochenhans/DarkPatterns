@@ -5,6 +5,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_86cna"]
 font = ExtResource("1_cecr5")
+font_size = 24
 font_color = Color(0, 0, 0, 1)
 
 [node name="TickerLabel" type="Label" unique_id=1825195958]

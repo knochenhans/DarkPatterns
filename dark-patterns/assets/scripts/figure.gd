@@ -50,6 +50,7 @@ func get_random_move_location():
 		var bias = community/100
 		return lerp(random_pos,target_pos,bias)
 	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
+	
 func apply_happiness_effect(amount: int):
 	happiness += amount
 	print("happiness: ", happiness)

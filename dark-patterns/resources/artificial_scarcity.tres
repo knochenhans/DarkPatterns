@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="DarkPattern" format=3 uid="uid://ej1e10c3ink2"]
 
+[ext_resource type="Texture2D" uid="uid://ckxpnll7plafg" path="res://assets/graphics/shape-artificial-scarcity.svg" id="1_8iioa"]
 [ext_resource type="Script" uid="uid://dhjlpyysxbnjj" path="res://assets/scripts/pattern_template.gd" id="1_cdcvj"]
 [ext_resource type="AudioStream" uid="uid://l43ave3pd6ak" path="res://assets/sounds/patterns/pattern_created.ogg" id="1_ggqvx"]
 
 [resource]
 script = ExtResource("1_cdcvj")
 name = "Artificial Scarcity"
+icon = ExtResource("1_8iioa")
 duration = 5.0
 size = 30.0
 price = 500

@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://e81vynd6d0sa" path="res://assets/scripts/figure.gd" id="1_qhnav"]
 [ext_resource type="Texture2D" uid="uid://da0kcox14gjcg" path="res://assets/died.svg" id="2_fqnpk"]
-[ext_resource type="Texture2D" uid="uid://brkhkjp5x8y7u" path="res://assets/mock_smiley.svg" id="2_key23"]
-[ext_resource type="Texture2D" uid="uid://tpg5ymbvg2yw" path="res://assets/mock_smiley_sad.svg" id="2_qhnav"]
+[ext_resource type="Texture2D" uid="uid://djpe56y5mck1" path="res://assets/graphics/figures/person1-100-01.png" id="3_f4ydd"]
+[ext_resource type="Texture2D" uid="uid://cyh7pkfqhfhyh" path="res://assets/graphics/figures/person1-100-02.png" id="4_8epu0"]
+[ext_resource type="Texture2D" uid="uid://ukfrdx1lygeu" path="res://assets/graphics/figures/person1-0-01.png" id="4_x7v12"]
+[ext_resource type="Texture2D" uid="uid://dst08gxo3kpu3" path="res://assets/graphics/figures/person1-0-02.png" id="5_f4ydd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n6tbd"]
 animations = [{
@@ -17,7 +19,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_qhnav")
+"texture": ExtResource("3_f4ydd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8epu0")
 }],
 "loop": 1,
 "name": &"sad",
@@ -25,7 +30,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_key23")
+"texture": ExtResource("4_x7v12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f4ydd")
 }],
 "loop": 1,
 "name": &"smile",
@@ -36,7 +44,7 @@ animations = [{
 radius = 23.021729
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k1ki5"]
-radius = 150.0
+radius = 100.005
 
 [node name="figure" type="CharacterBody2D" unique_id=333006212 node_paths=PackedStringArray("area_2d") groups=["Person"]]
 script = ExtResource("1_qhnav")
@@ -51,8 +59,12 @@ wait_time = 5.0
 one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=333518446]
+y_sort_enabled = true
+position = Vector2(-3, 38)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_n6tbd")
-animation = &"died"
+animation = &"smile"
+offset = Vector2(0, -162)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1204698797]
 position = Vector2(-1, -1)

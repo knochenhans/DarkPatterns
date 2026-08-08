@@ -48,7 +48,8 @@ autostart = true
 position = Vector2(640, 309)
 shape = SubResource("RectangleShape2D_n6tbd")
 
-[node name="figures" type="Node" parent="." unique_id=1491009111]
+[node name="figures" type="Node2D" parent="." unique_id=193396737]
+y_sort_enabled = true
 
 [node name="UI" type="Control" parent="." unique_id=1219324617]
 z_index = -10

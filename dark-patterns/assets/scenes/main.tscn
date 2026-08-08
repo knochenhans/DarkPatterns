@@ -100,7 +100,7 @@ shader_parameter/vignette_intensity = 0.3
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m64nd"]
 shader = ExtResource("11_rin3v")
 shader_parameter/smearing = 0.0350000016625
-shader_parameter/color_offset = 0.003000001772439996
+shader_parameter/color_offset = 0.00300000177243999
 shader_parameter/sharpening = 0.0850000040375
 shader_parameter/static_noise = 0.0350000016625
 shader_parameter/crack_center = Vector2(0.15, 0.85)

@@ -23,7 +23,9 @@ var artificial_scarcity_pattern: PlacedPattern = null
 @onready var debug_name_label = $debug_ui/DebugContainer/NameLabel
 @onready var debug_happy_label = $debug_ui/DebugContainer/HappyLabel
 @onready var debug_community_label = $debug_ui/DebugContainer/CommunityLabel
-@onready var death_timer = $death_timer
+
+@export var death_timer: Timer
+@export var idle_sound_timer: Timer
 
 var character_set: CharacterSet = null
 
@@ -53,6 +55,10 @@ func _ready():
 
 	state_sound_player.pitch_scale = rand_pitch
 	state_sound_player.volume_db = rand_volume
+
+	idle_sound_timer.connect("timeout", Callable(self, "on_idle_sound_timer_timeout"))
+
+	set_random_idle_sound_timer()
 
 func set_character_set(new_character_set: CharacterSet) -> void:
 	character_set = new_character_set
@@ -184,3 +190,15 @@ func _on_death_timer_timeout() -> void:
 
 func get_figure_name() -> String:
 	return first_name + " " + last_name
+
+func on_idle_sound_timer_timeout() -> void:
+	print("idle sound timer timeout")
+	if character_set != null and alive:
+		state_sound_player.stream = character_set.sound_idle
+		state_sound_player.play()
+
+	set_random_idle_sound_timer()
+
+func set_random_idle_sound_timer() -> void:
+	var random_timeout = randf_range(5.0, 20.0)
+	idle_sound_timer.start(random_timeout)

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c55sue84wsb2l" path="res://assets/scripts/character_set.gd" id="1_0jpqy"]
 [ext_resource type="AudioStream" uid="uid://5oghd3s3r2j2" path="res://assets/sounds/character2_dying.ogg" id="2_j84s8"]
 [ext_resource type="AudioStream" uid="uid://pvdx68unjvpj" path="res://assets/sounds/character2_happy.ogg" id="3_mj3i1"]
+[ext_resource type="AudioStream" uid="uid://dif3dli1aduoj" path="res://assets/sounds/character2_idle.ogg" id="4_mj3i1"]
 [ext_resource type="AudioStream" uid="uid://b7aa6h3jccxod" path="res://assets/sounds/character2_sad.ogg" id="4_xmkkh"]
 [ext_resource type="SpriteFrames" uid="uid://beja4i7ovr52y" path="res://resources/person2_frames.tres" id="5_j84s8"]
 
@@ -11,4 +12,5 @@ script = ExtResource("1_0jpqy")
 sound_sad = ExtResource("4_xmkkh")
 sound_happy = ExtResource("3_mj3i1")
 sound_dying = ExtResource("2_j84s8")
+sound_idle = ExtResource("4_mj3i1")
 sprite_frames = ExtResource("5_j84s8")

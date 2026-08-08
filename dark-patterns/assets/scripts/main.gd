@@ -145,6 +145,7 @@ func _input(event: InputEvent) -> void:
 			var instance : PlacedPattern = placed_pattern.instantiate()
 			instance.position = em.global_position
 			instance.dark_pattern = CurrentPatternSelection
+			instance.apply_artificial_scarcity.connect(on_apply_artificial_scarcity)
 			add_child(instance)
 			CreatedPatterns.append(instance)
 
@@ -175,6 +176,7 @@ func remove_current_pattern_preview():
 		
 func on_apply_artificial_scarcity(pattern: PlacedPattern):
 	var figure = SpawnedFigures.pick_random()
+	print("helooooooo1")
 	if figure != null && !figure.is_queued_for_deletion():
 		figure.apply_artificial_scarcity(pattern)
 

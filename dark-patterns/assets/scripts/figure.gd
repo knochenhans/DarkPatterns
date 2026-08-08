@@ -83,6 +83,7 @@ func _physics_process(_delta: float) -> void:
 		var move_vector: Vector2 = artificial_scarcity_pattern.position - position
 		velocity = move_vector.normalized() * 1000
 		move_and_slide()
+		set_moving_state(true)
 		
 	if move_target != Vector2.ZERO:
 		var move_vector: Vector2 = move_target - position
@@ -128,6 +129,7 @@ func get_random_move_location():
 	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
 
 func apply_artificial_scarcity(pattern: PlacedPattern):
+	print("helooooooo")
 	set_collision_mask_value(1, false)
 	artificial_scarcity_pattern = pattern
 

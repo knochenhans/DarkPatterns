@@ -5,7 +5,7 @@ class_name DarkPattern
 @export_multiline var description : String
 @export var duration : float
 @export var size : float
-@export var depression_effect : float
+@export var depression_effect : int
 @export_range(0,1000000,1) var price : int
 @export var effect : String
 @export var color : Color

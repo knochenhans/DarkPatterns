@@ -26,6 +26,13 @@ func _input(event: InputEvent) -> void:
 		if not play_area.shape.get_rect().has_point(event.position - play_area.global_position):
 			return
 
+		var	price = CurrentPatternSelection.price
+		if Global.money < price:
+			print("Not enough money to place pattern.")
+			return
+
+		Global.money -= price
+
 		var em := event as InputEventMouseButton
 		if em:
 			var instance : PlacedPattern = placed_pattern.instantiate()

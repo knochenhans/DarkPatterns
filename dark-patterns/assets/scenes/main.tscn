@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://dm8y8otv02ow5" path="res://assets/scripts/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dd8vhrkfouup0" path="res://assets/scenes/placed_pattern.tscn" id="2_kpi06"]
 [ext_resource type="Script" uid="uid://dhjlpyysxbnjj" path="res://assets/scripts/pattern_template.gd" id="3_sfrgt"]
-[ext_resource type="Resource" uid="uid://dghyql5mfb8u2" path="res://resources/infinite_scroll.tres" id="4_etxf0"]
+[ext_resource type="Resource" uid="uid://dghyql5mfb8u2" path="res://resources/addictive_design.tres" id="4_etxf0"]
+[ext_resource type="Script" uid="uid://bt6rcwexlowc" path="res://assets/scenes/money_container.gd" id="5_etxf0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
 size = Vector2(1162, 566)
@@ -71,9 +72,11 @@ theme_override_constants/margin_bottom = 25
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/Bottom" unique_id=1788566997]
 layout_mode = 2
 
-[node name="MoneyContainer" type="PanelContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=787425319]
+[node name="MoneyContainer" type="PanelContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=787425319 node_paths=PackedStringArray("money_label")]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_86cna")
+script = ExtResource("5_etxf0")
+money_label = NodePath("MarginContainer/MoneyCounter/Label")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=1600620162]
 custom_minimum_size = Vector2(140, 0)

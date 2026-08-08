@@ -1,4 +1,4 @@
 extends Control
 @export var tick_timer: Timer
 
-var money := 0
+var money := 100

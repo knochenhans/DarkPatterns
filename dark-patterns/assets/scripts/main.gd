@@ -9,6 +9,7 @@ var mouse_error = preload("res://assets/scenes/mouse_error.tscn") as PackedScene
 @export var AvailablePatterns : Array[DarkPattern]
 @export var number_of_figures : int = 5
 @export var tick: Timer
+@export var stop_button: TextureButton
 
 # Sounds
 @export var money_add_sound: AudioStream
@@ -31,6 +32,9 @@ var mouse_error = preload("res://assets/scenes/mouse_error.tscn") as PackedScene
 # Screens
 @export var start_screen: StartScreen
 @export var game_over_screen: Control
+
+@export var out_of_order_sticker: Control
+@export var money_font: Control
 
 var first_names: PackedStringArray
 var last_names: PackedStringArray
@@ -90,11 +94,16 @@ func show_game_over_screen() -> void:
 	start_screen.visible = false
 	game_over_screen.visible = true
 
+	out_of_order_sticker.visible = true
+	money_font.visible = false
+
 func start_game() -> void:	
 	game_state = GameState.INGAME
 
 	start_screen.visible = false
 	game_over_screen.visible = false
+
+	stop_button.connect("pressed", Callable(self, "show_game_over_screen"))
 
 	tick.start()
 	ticker.add_ticker_message("Welcome!!!")

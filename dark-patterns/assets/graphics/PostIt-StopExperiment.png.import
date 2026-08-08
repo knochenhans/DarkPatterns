@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctcxvxhnhyol7"
-path="res://.godot/imported/post-it.png-fed92b14de6f8e1cf67992466aa3d2b5.ctex"
+uid="uid://dtt8upgj5axub"
+path="res://.godot/imported/PostIt-StopExperiment.png-e752f5912056f220b318bf74ac40d5bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/post-it.png"
-dest_files=["res://.godot/imported/post-it.png-fed92b14de6f8e1cf67992466aa3d2b5.ctex"]
+source_file="res://assets/graphics/PostIt-StopExperiment.png"
+dest_files=["res://.godot/imported/PostIt-StopExperiment.png-e752f5912056f220b318bf74ac40d5bd.ctex"]
 
 [params]
 

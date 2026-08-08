@@ -24,7 +24,9 @@
 [ext_resource type="Texture2D" uid="uid://b5ip2oikqqto4" path="res://assets/graphics/button-stop-out.png" id="18_onyvt"]
 [ext_resource type="PackedScene" uid="uid://cqqlabfh7mev4" path="res://assets/scenes/UI/ticker_label.tscn" id="18_ye0uq"]
 [ext_resource type="Texture2D" uid="uid://58o0mlb0y5t7" path="res://assets/graphics/button-stop-in.png" id="19_q5xp6"]
+[ext_resource type="Texture2D" uid="uid://dtt8upgj5axub" path="res://assets/graphics/PostIt-StopExperiment.png" id="24_jbgu6"]
 [ext_resource type="Texture2D" uid="uid://2kfbrhgay71a" path="res://assets/graphics/title-screen-background.png" id="25_k0jt7"]
+[ext_resource type="Texture2D" uid="uid://dlonf7liiifdj" path="res://assets/graphics/PostIt-OutOfOrder.png" id="25_kxv8u"]
 [ext_resource type="Script" uid="uid://dchdmx3uhx1pn" path="res://assets/scenes/start_screen.gd" id="25_pqtk7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
@@ -88,12 +90,13 @@ shader_parameter/vignette_intensity = 0.3
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahyqc"]
 
-[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("tick", "ui_sound_player", "pattern_button_container", "ticker", "start_screen", "game_over_screen")]
+[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("tick", "stop_button", "ui_sound_player", "pattern_button_container", "ticker", "start_screen", "game_over_screen", "out_of_order_sticker", "money_font")]
 script = ExtResource("1_0xm2m")
 placed_pattern = ExtResource("2_kpi06")
 AvailablePatterns = Array[ExtResource("3_sfrgt")]([ExtResource("4_etxf0"), ExtResource("5_ov4sg"), ExtResource("6_ahyqc")])
 number_of_figures = 30
 tick = NodePath("tick")
+stop_button = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/StopButton")
 money_add_sound = ExtResource("5_xplbd")
 buy_pattern_sound = ExtResource("6_6rsl6")
 cannot_place_pattern_sound = ExtResource("7_p5d64")
@@ -106,6 +109,8 @@ figure_sprites = Array[SpriteFrames]([ExtResource("12_xqcey"), ExtResource("13_u
 ticker = NodePath("UI/VBoxContainer/Main/MarginContainer/black/grey/HBoxContainer/Ticker/TickerController")
 start_screen = NodePath("StartScreen")
 game_over_screen = NodePath("UI/VBoxContainer/Main/MarginContainer/black/GameOverScreen")
+out_of_order_sticker = NodePath("UI/OOOTextureRect")
+money_font = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer/money_font")
 
 [node name="tick" type="Timer" parent="." unique_id=765994102]
 
@@ -289,6 +294,23 @@ texture_pressed = ExtResource("19_q5xp6")
 texture_hover = ExtResource("18_onyvt")
 texture_disabled = ExtResource("18_onyvt")
 texture_focused = ExtResource("18_onyvt")
+
+[node name="TextureRect" type="TextureRect" parent="UI" unique_id=1307134840]
+layout_mode = 0
+offset_left = 1040.0
+offset_top = 638.0
+offset_right = 1170.0
+offset_bottom = 768.0
+texture = ExtResource("24_jbgu6")
+
+[node name="OOOTextureRect" type="TextureRect" parent="UI" unique_id=1569653794]
+visible = false
+layout_mode = 0
+offset_left = 257.0
+offset_top = 636.0
+offset_right = 387.0
+offset_bottom = 766.0
+texture = ExtResource("25_kxv8u")
 
 [node name="UISoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1428170919]
 

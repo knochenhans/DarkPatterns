@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://lxmo6i7bea3i" path="res://assets/scenes/pattern_button.tscn" id="8_6rsl6"]
 [ext_resource type="AudioStream" uid="uid://cu66pnp5tfxj" path="res://assets/sounds/UI/button.ogg" id="8_48cn3"]
 [ext_resource type="AudioStream" uid="uid://8s6iqwcwko7x" path="res://assets/sounds/ambient.ogg" id="12_ua5jh"]
+[ext_resource type="FontFile" uid="uid://ca0dcvsj2bs1w" path="res://assets/fonts/BitcountSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf" id="12_ytb86"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
 size = Vector2(1162, 566)
@@ -23,7 +24,8 @@ bg_color = Color(0.8509804, 0.8509804, 0.8509804, 1)
 bg_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_sfrgt"]
-font_size = 32
+font = ExtResource("12_ytb86")
+font_size = 36
 font_color = Color(0, 0, 0, 1)
 
 [node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("ui_sound_player", "pattern_button_container")]

@@ -9,3 +9,4 @@ class_name DarkPattern
 @export_range(0,1000000,1) var price : int
 @export var effect : String
 @export var color : Color
+@export var placement_sound : AudioStream

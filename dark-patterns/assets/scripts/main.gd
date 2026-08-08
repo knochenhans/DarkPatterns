@@ -7,6 +7,10 @@ var figure = preload("res://assets/scenes/figure.tscn") as PackedScene
 @export var placed_pattern: PackedScene
 @export var AvailablePatterns : Array[DarkPattern]
 @export var number_of_figures : int = 5
+@export var money_add_sound: AudioStream
+@export var buy_effect_sound: AudioStream
+@export var ui_sound_player: AudioStreamPlayer2D
+
 var CurrentPatternSelection : DarkPattern
 
 var SpawnedFigures : Array[CharacterBody2D] = []
@@ -32,12 +36,22 @@ func _input(event: InputEvent) -> void:
 
 		Global.money -= price
 
+		ui_sound_player.stream = buy_effect_sound
+		ui_sound_player.play()
+
 		var em := event as InputEventMouseButton
 		if em:
 			var instance : PlacedPattern = placed_pattern.instantiate()
 			instance.position = em.global_position
 			instance.dark_pattern = CurrentPatternSelection
+			instance.figure_entered.connect(on_figure_entered_pattern)
 			add_child(instance)
+
+func on_figure_entered_pattern(figure: Figure) -> void:
+	Global.money += 1
+	print("money: ", Global.money)
+	ui_sound_player.stream = money_add_sound
+	ui_sound_player.play()
 
 func _on_tick_timeout() -> void:
 	if ingame and SpawnedFigures.size() < number_of_figures:

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="DarkPattern" format=3 uid="uid://dghyql5mfb8u2"]
 
 [ext_resource type="Script" uid="uid://dhjlpyysxbnjj" path="res://assets/scripts/pattern_template.gd" id="1_3b4kp"]
+[ext_resource type="AudioStream" uid="uid://l43ave3pd6ak" path="res://assets/sounds/patterns/pattern_created.ogg" id="1_uot2n"]
 
 [resource]
 script = ExtResource("1_3b4kp")
@@ -12,4 +13,5 @@ depression_effect = 50.0
 price = 5
 effect = "addictive_design"
 color = Color(1, 0.4072455, 0.33865213, 1)
+placement_sound = ExtResource("1_uot2n")
 metadata/_custom_type_script = "uid://dhjlpyysxbnjj"

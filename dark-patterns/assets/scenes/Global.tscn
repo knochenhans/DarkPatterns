@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://do2ohb2ikqw23"]
 
 [ext_resource type="Script" uid="uid://b60xf42623xno" path="res://assets/scripts/global.gd" id="1_4mbhf"]
+[ext_resource type="AudioStream" uid="uid://drxqbv8nuhvwt" path="res://assets/sounds/cash_tick.ogg" id="2_k35xo"]
+[ext_resource type="AudioStream" uid="uid://cji81dgt2b1t2" path="res://assets/sounds/cash_buy.ogg" id="3_e636k"]
 
 [node name="Global" type="Control" unique_id=901337494 node_paths=PackedStringArray("tick_timer")]
 layout_mode = 3
@@ -11,6 +13,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4mbhf")
 tick_timer = NodePath("Tick")
+money_add_sound = ExtResource("2_k35xo")
+buy_effect_sound = ExtResource("3_e636k")
 
 [node name="Tick" type="Timer" parent="." unique_id=1075824089]
 autostart = true

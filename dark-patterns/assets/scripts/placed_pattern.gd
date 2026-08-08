@@ -3,7 +3,11 @@ class_name PlacedPattern
 var dark_pattern : DarkPattern
 @export var collision_polygon_2d: CollisionPolygon2D
 @export var polygon_2d: Polygon2D
+@export var placement_sound_player: AudioStreamPlayer2D
+@export var time_out_sound: AudioStream
 var ticks_remaining : int
+
+signal figure_entered(figure: Figure)
 
 func _ready() -> void:
 	if dark_pattern == null:
@@ -19,17 +23,22 @@ func _ready() -> void:
 		polygon_2d.polygon = points
 		collision_polygon_2d.polygon = points
 	polygon_2d.color = dark_pattern.color
+	placement_sound_player.stream = dark_pattern.placement_sound
+	placement_sound_player.play()
 		
 func on_tick():
 	for b in get_overlapping_bodies():
 		if b.is_in_group("Person"):
-			Global.money += 1
 			apply_effect(b, dark_pattern.effect)
-			print("money: ", Global.money)
-			
+			figure_entered.emit(b)
 			
 	ticks_remaining -= 1
 	if ticks_remaining < 0:
+		print("playing time out sound: ", time_out_sound)
+		visible = false
+		placement_sound_player.stream = time_out_sound
+		placement_sound_player.play()
+		await placement_sound_player.finished
 		queue_free()
 
 func apply_effect(figure: Figure, effect_type: String):

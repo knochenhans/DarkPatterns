@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://dhjlpyysxbnjj" path="res://assets/scripts/pattern_template.gd" id="3_sfrgt"]
 [ext_resource type="Resource" uid="uid://dghyql5mfb8u2" path="res://resources/addictive_design.tres" id="4_etxf0"]
 [ext_resource type="Script" uid="uid://bt6rcwexlowc" path="res://assets/scenes/money_container.gd" id="5_etxf0"]
+[ext_resource type="AudioStream" uid="uid://drxqbv8nuhvwt" path="res://assets/sounds/cash_tick.ogg" id="5_xplbd"]
+[ext_resource type="AudioStream" uid="uid://cji81dgt2b1t2" path="res://assets/sounds/cash_buy.ogg" id="6_6rsl6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
 size = Vector2(1162, 566)
@@ -19,10 +21,13 @@ bg_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
-[node name="main" type="Node" unique_id=594861777]
+[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("ui_sound_player")]
 script = ExtResource("1_0xm2m")
 placed_pattern = ExtResource("2_kpi06")
 AvailablePatterns = Array[ExtResource("3_sfrgt")]([ExtResource("4_etxf0")])
+money_add_sound = ExtResource("5_xplbd")
+buy_effect_sound = ExtResource("6_6rsl6")
+ui_sound_player = NodePath("UISoundPlayer")
 
 [node name="tick" type="Timer" parent="." unique_id=765994102]
 autostart = true
@@ -99,5 +104,7 @@ size_flags_horizontal = 10
 [node name="StopButton" type="Button" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer" unique_id=1467915752]
 layout_mode = 2
 text = "Stop"
+
+[node name="UISoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1428170919]
 
 [connection signal="timeout" from="tick" to="." method="_on_tick_timeout"]

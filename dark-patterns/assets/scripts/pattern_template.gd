@@ -10,3 +10,4 @@ class_name DarkPattern
 @export var effect : String
 @export var color : Color
 @export var placement_sound : AudioStream
+@export var money_added: int

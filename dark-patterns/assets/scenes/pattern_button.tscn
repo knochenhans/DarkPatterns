@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://lxmo6i7bea3i"]
+
+[ext_resource type="Texture2D" uid="uid://mfrml0bne8d3" path="res://assets/graphics/button-out.png" id="1_evfmy"]
+[ext_resource type="Texture2D" uid="uid://cwlhriqtjr86r" path="res://assets/graphics/button-in.png" id="2_ir76w"]
+[ext_resource type="Script" uid="uid://dc2rohuxn7n6w" path="res://assets/scenes/pattern_button.gd" id="3_ir76w"]
+
+[node name="PatternButton" type="TextureButton" unique_id=1508314829]
+texture_normal = ExtResource("1_evfmy")
+texture_pressed = ExtResource("2_ir76w")
+texture_hover = ExtResource("1_evfmy")
+texture_disabled = ExtResource("1_evfmy")
+texture_focused = ExtResource("1_evfmy")
+script = ExtResource("3_ir76w")

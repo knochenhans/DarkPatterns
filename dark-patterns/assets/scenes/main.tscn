@@ -29,8 +29,10 @@
 [ext_resource type="PackedScene" uid="uid://cqqlabfh7mev4" path="res://assets/scenes/UI/ticker_label.tscn" id="18_ye0uq"]
 [ext_resource type="Texture2D" uid="uid://58o0mlb0y5t7" path="res://assets/graphics/button-stop-in.png" id="19_q5xp6"]
 [ext_resource type="Texture2D" uid="uid://dtt8upgj5axub" path="res://assets/graphics/PostIt-StopExperiment.png" id="24_jbgu6"]
+[ext_resource type="LabelSettings" uid="uid://cugqaxl3pppsa" path="res://resources/description_heading.tres" id="24_nn48q"]
 [ext_resource type="Texture2D" uid="uid://2kfbrhgay71a" path="res://assets/graphics/title-screen-background.png" id="25_k0jt7"]
 [ext_resource type="Texture2D" uid="uid://dlonf7liiifdj" path="res://assets/graphics/PostIt-OutOfOrder.png" id="25_kxv8u"]
+[ext_resource type="LabelSettings" uid="uid://mnby1r3yy2cn" path="res://resources/description_text.tres" id="25_n2241"]
 [ext_resource type="Script" uid="uid://dchdmx3uhx1pn" path="res://assets/scenes/start_screen.gd" id="25_pqtk7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
@@ -48,25 +50,6 @@ font_size = 22
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m64nd"]
 bg_color = Color(0.84313726, 0.827451, 0.75686276, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86cna"]
-bg_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.81961906, 0.81961906, 0.81961906, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2a3n"]
-bg_color = Color(0.029506553, 0.029506562, 0.029506536, 1)
-expand_margin_right = 4.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxv8u"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_color = Color(0, 0, 0, 0.47058824)
-
 [sub_resource type="FontVariation" id="FontVariation_ye0uq"]
 base_font = ExtResource("12_ytb86")
 variation_opentype = {
@@ -79,21 +62,8 @@ variation_opentype = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_sfrgt"]
 font = SubResource("FontVariation_ye0uq")
-font_size = 90
+font_size = 10
 font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ev2s"]
-shader = ExtResource("11_rin3v")
-shader_parameter/smearing = 0.5
-shader_parameter/color_offset = 0.005
-shader_parameter/sharpening = 0.4
-shader_parameter/static_noise = 0.08
-shader_parameter/crack_center = Vector2(0.15, 0.85)
-shader_parameter/crack_intensity = 0.0
-shader_parameter/crack_size = 0.0
-shader_parameter/vertical_jitter = 0.002
-shader_parameter/scanline_opacity = 0.1
-shader_parameter/vignette_intensity = 0.3
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahyqc"]
 
@@ -131,7 +101,7 @@ ticker = NodePath("UI/VBoxContainer/Top/black/grey/HBoxContainer/Ticker/TickerCo
 start_screen = NodePath("StartScreen")
 game_over_screen = NodePath("UI/VBoxContainer/Top/black/GameOverScreen")
 out_of_order_sticker = NodePath("UI/OOOTextureRect")
-money_font = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer/money_font")
+money_font = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer/MarginContainer/money_font")
 
 [node name="tick" type="Timer" parent="." unique_id=765994102]
 
@@ -279,49 +249,88 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="MoneyContainer" type="PanelContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=787425319 node_paths=PackedStringArray("money_label")]
+[node name="DescriptionContainer" type="MarginContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=228837378]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_86cna")
-script = ExtResource("5_etxf0")
-money_label = NodePath("money_font/MoneyCounter/Label")
+size_flags_stretch_ratio = 0.4
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
 
-[node name="PanelContainer2" type="PanelContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=782521456]
+[node name="bg" type="ColorRect" parent="UI/VBoxContainer/Bottom/HBoxContainer/DescriptionContainer" unique_id=1103179045]
+propagate_maximum_size = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_v2a3n")
+color = Color(0.4392157, 0.4392157, 0.4392157, 1)
 
-[node name="bg" type="ColorRect" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=1332741080]
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/DescriptionContainer" unique_id=552591541]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="bg" type="ColorRect" parent="UI/VBoxContainer/Bottom/HBoxContainer/DescriptionContainer/MarginContainer" unique_id=1270859700]
 propagate_maximum_size = true
 layout_mode = 2
 color = Color(0.93333334, 0.91764706, 0.8392157, 1)
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=1210082125]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/DescriptionContainer/MarginContainer" unique_id=1098255899]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_kxv8u")
 
-[node name="money_font" type="MarginContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=1600620162]
-custom_minimum_size = Vector2(140, 0)
+[node name="Heading" type="MarginContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer" unique_id=1956920559]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/Bottom/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer/Heading" unique_id=973558346]
+layout_mode = 2
+text = "Heading"
+label_settings = ExtResource("24_nn48q")
+
+[node name="description_font" type="MarginContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer" unique_id=1517904759]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/Bottom/HBoxContainer/DescriptionContainer/MarginContainer/VBoxContainer/description_font" unique_id=257432903]
+layout_mode = 2
+size_flags_vertical = 1
+text = "This is an intereasdsa"
+label_settings = ExtResource("25_n2241")
+autowrap_mode = 3
+
+[node name="MoneyContainer" type="VBoxContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=1630766744 node_paths=PackedStringArray("money_label")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+script = ExtResource("5_etxf0")
+money_label = NodePath("MarginContainer/money_font/MoneyCounter/Label")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=1122351256]
+layout_mode = 2
+
+[node name="bg" type="ColorRect" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer/MarginContainer" unique_id=1332741080]
+propagate_maximum_size = true
+layout_mode = 2
+color = Color(0.93333334, 0.91764706, 0.8392157, 1)
+
+[node name="money_font" type="MarginContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer/MarginContainer" unique_id=1600620162]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="MoneyCounter" type="CenterContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer/money_font" unique_id=1559472018]
+[node name="MoneyCounter" type="CenterContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer/MarginContainer/money_font" unique_id=1559472018]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer/money_font/MoneyCounter" unique_id=1857306635]
+[node name="Label" type="Label" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer/MarginContainer/money_font/MoneyCounter" unique_id=1857306635]
 layout_mode = 2
 text = "000.00$"
 label_settings = SubResource("LabelSettings_sfrgt")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=2017911821]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer/CanvasLayer" unique_id=1063265410]
-material = SubResource("ShaderMaterial_2ev2s")
-offset_left = 24.0
-offset_top = 629.0
-offset_right = 636.0
-offset_bottom = 779.0
 
 [node name="StopContainer" type="PanelContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=290517568]
 layout_mode = 2
@@ -355,10 +364,10 @@ texture = ExtResource("25_kxv8u")
 
 [node name="vhs" type="ColorRect" parent="." unique_id=1932893916]
 material = SubResource("ShaderMaterial_m64nd")
-offset_left = 46.0
-offset_top = 21.0
-offset_right = 1234.0
-offset_bottom = 586.0
+offset_left = 48.0
+offset_top = 44.0
+offset_right = 1232.0
+offset_bottom = 623.0
 
 [node name="UISoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1428170919]
 

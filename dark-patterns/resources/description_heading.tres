@@ -1,0 +1,18 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://cugqaxl3pppsa"]
+
+[ext_resource type="FontFile" uid="uid://ca0dcvsj2bs1w" path="res://assets/fonts/BitcountSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf" id="1_ajlro"]
+
+[sub_resource type="FontVariation" id="FontVariation_nn48q"]
+base_font = ExtResource("1_ajlro")
+variation_opentype = {
+1129468758: 0,
+1162629960: 0,
+1162631248: 0,
+1936486004: 0,
+2003265652: 450
+}
+
+[resource]
+font = SubResource("FontVariation_nn48q")
+font_size = 22
+font_color = Color(0, 0, 0, 1)

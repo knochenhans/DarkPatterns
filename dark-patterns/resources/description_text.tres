@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://mnby1r3yy2cn"]
+
+[ext_resource type="FontFile" uid="uid://ca0dcvsj2bs1w" path="res://assets/fonts/BitcountSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf" id="1_hk7uu"]
+
+[sub_resource type="FontVariation" id="FontVariation_hk7uu"]
+base_font = ExtResource("1_hk7uu")
+
+[resource]
+font = SubResource("FontVariation_hk7uu")
+font_color = Color(0, 0, 0, 1)

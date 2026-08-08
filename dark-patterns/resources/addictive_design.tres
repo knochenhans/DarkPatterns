@@ -4,10 +4,11 @@
 
 [resource]
 script = ExtResource("1_3b4kp")
-name = "Infinite Scroll"
+name = "Addictive Design"
 description = "Sends your users into an everlasting doom scrolling session"
 duration = 10.0
 size = 50.0
 depression_effect = 5.0
 price = 100
+effect = "addictive_design"
 metadata/_custom_type_script = "uid://dhjlpyysxbnjj"

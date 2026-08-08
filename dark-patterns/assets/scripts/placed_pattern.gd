@@ -23,8 +23,15 @@ func on_tick():
 	for b in get_overlapping_bodies():
 		if b.is_in_group("Person"):
 			Global.money += 1
+			apply_effect(b, dark_pattern.effect)
 			print("money: ", Global.money)
-			b.apply_effect("addictive_design")
+			
+			
 	ticks_remaining -= 1
 	if ticks_remaining < 0:
 		queue_free()
+
+func apply_effect(figure: Figure, effect_type: String):
+	match effect_type:
+		"addictive_design":
+			figure.apply_happiness_effect(-2)

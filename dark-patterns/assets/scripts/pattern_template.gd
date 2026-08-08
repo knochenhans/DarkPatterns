@@ -7,3 +7,4 @@ class_name DarkPattern
 @export var size : float
 @export var depression_effect : float
 @export_range(0,1000000,10) var price : int
+@export var effect : String

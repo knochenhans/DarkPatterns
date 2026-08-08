@@ -38,10 +38,9 @@ func get_random_move_location():
 	var bounds = play_area.shape.size
 	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
 
-func apply_effect(effect_type: String):
-	match effect_type:
-		"addictive_design":
-			happiness -= 2
+func apply_happiness_effect(amount: int):
+	happiness += amount
+	print("happiness: ", happiness)
 	if happiness > 100:
 		happiness = 100
 	if happiness < 0:

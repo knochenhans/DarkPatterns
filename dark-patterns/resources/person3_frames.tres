@@ -1,16 +1,18 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://beja4i7ovr52y"]
 
-[ext_resource type="Texture2D" uid="uid://46p52f7aipd6" path="res://assets/graphics/figures/person1-0-01_dead.png" id="1_7cyqc"]
-[ext_resource type="Texture2D" uid="uid://ukfrdx1lygeu" path="res://assets/graphics/figures/person1-0-01.png" id="2_m6077"]
-[ext_resource type="Texture2D" uid="uid://dst08gxo3kpu3" path="res://assets/graphics/figures/person1-0-02.png" id="3_xlj6r"]
-[ext_resource type="Texture2D" uid="uid://djpe56y5mck1" path="res://assets/graphics/figures/person1-100-01.png" id="4_ow8xb"]
-[ext_resource type="Texture2D" uid="uid://cyh7pkfqhfhyh" path="res://assets/graphics/figures/person1-100-02.png" id="5_mwlst"]
+[ext_resource type="Texture2D" uid="uid://dxdmeur5xomuy" path="res://assets/graphics/figures/person3-0-dead.png" id="1_xlj6r"]
+[ext_resource type="Texture2D" uid="uid://0661eie086hk" path="res://assets/graphics/figures/person3-50-01.png" id="2_ow8xb"]
+[ext_resource type="Texture2D" uid="uid://ynnipuv72xlt" path="res://assets/graphics/figures/person3-50-02.png" id="3_mwlst"]
+[ext_resource type="Texture2D" uid="uid://dk53xiuhu0010" path="res://assets/graphics/figures/person3-0-01.png" id="4_j6aq5"]
+[ext_resource type="Texture2D" uid="uid://drswhgdhc7ve3" path="res://assets/graphics/figures/person3-0-02.png" id="5_pxose"]
+[ext_resource type="Texture2D" uid="uid://c2sun5yg0sabw" path="res://assets/graphics/figures/person3-100-01.png" id="6_tdrga"]
+[ext_resource type="Texture2D" uid="uid://cs41rdbhj1idl" path="res://assets/graphics/figures/person3-100-02.png" id="7_bdm3r"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_7cyqc")
+"texture": ExtResource("1_xlj6r")
 }],
 "loop": 1,
 "name": &"died",
@@ -18,10 +20,21 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_m6077")
+"texture": ExtResource("2_ow8xb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_xlj6r")
+"texture": ExtResource("3_mwlst")
+}],
+"loop": 1,
+"name": &"neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_j6aq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pxose")
 }],
 "loop": 1,
 "name": &"sad",
@@ -29,10 +42,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_ow8xb")
+"texture": ExtResource("6_tdrga")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_mwlst")
+"texture": ExtResource("7_bdm3r")
 }],
 "loop": 1,
 "name": &"smile",

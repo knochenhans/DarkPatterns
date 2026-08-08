@@ -262,7 +262,7 @@ func on_figure_state_changed(figure: Figure, new_state: Figure.FigureState) -> v
 		Figure.FigureState.HAPPY:
 			message = "Aww, " + figure_name + " is happy!"
 		Figure.FigureState.SAD:
-			message = "Oh no, " + figure_name + " is sad!"
+			message = "Oh no, " + figure_name + " is depressed!"
 		Figure.FigureState.DIED:
 			message = "Unfortunately, " + figure_name + " has died from depression."
 	ticker.add_ticker_message(message)

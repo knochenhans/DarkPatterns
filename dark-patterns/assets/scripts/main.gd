@@ -74,13 +74,14 @@ func _input(event: InputEvent) -> void:
 			ui_sound_player.play()
 			return
 
-		var number_of_figures_in_radius = get_figure_in_radius(event.position, CurrentPatternSelection.size).size()
+		if CurrentPatternSelection.use_collision:
+			var number_of_figures_in_radius = get_figure_in_radius(event.position, CurrentPatternSelection.size).size()
 
-		if number_of_figures_in_radius > 0:
-			print("Cannot place pattern, figures in radius: ", number_of_figures_in_radius)
-			ui_sound_player.stream = cannot_place_pattern_sound
-			ui_sound_player.play()
-			return
+			if number_of_figures_in_radius > 0:
+				print("Cannot place pattern, figures in radius: ", number_of_figures_in_radius)
+				ui_sound_player.stream = cannot_place_pattern_sound
+				ui_sound_player.play()
+				return
 
 		var	price = CurrentPatternSelection.price
 		if Global.money < price:

@@ -39,7 +39,7 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vwth2"]
 shader = ExtResource("11_rin3v")
 shader_parameter/smearing = 0.050000002375
-shader_parameter/color_offset = -0.0009999984175600024
+shader_parameter/color_offset = -0.00099999841756
 shader_parameter/sharpening = 0.190000009025
 shader_parameter/static_noise = 0.030000001425
 shader_parameter/crack_center = Vector2(0.15, 0.85)

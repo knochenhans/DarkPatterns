@@ -11,3 +11,4 @@ class_name DarkPattern
 @export var color : Color
 @export var placement_sound : AudioStream
 @export var money_added: int
+@export var use_collision: bool = true

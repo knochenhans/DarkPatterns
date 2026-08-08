@@ -20,6 +20,9 @@ var figure_scene = preload("res://assets/scenes/figure.tscn") as PackedScene
 @export var pattern_button_scene: PackedScene
 @export var pattern_preview_scene: PackedScene
 
+# Sprites
+@export var figure_sprites: Array[SpriteFrames] = []
+
 var first_names: PackedStringArray
 var last_names: PackedStringArray
 
@@ -132,6 +135,10 @@ func spawn_figure() -> Figure:
 	figure_instance.position = get_random_spawn_location()
 	figure_instance.first_name = first_names[randi() % first_names.size()]
 	figure_instance.last_name = last_names[randi() % last_names.size()]
+
+	var random_sprite_index = randi() % figure_sprites.size()
+	figure_instance.set_sprite_frames(figure_sprites[random_sprite_index])
+
 	$figures.add_child(figure_instance)
 	return figure_instance
 

@@ -111,3 +111,6 @@ func _on_death_timer_timeout() -> void:
 
 func get_figure_name() -> String:
 	return first_name + " " + last_name
+
+func set_sprite_frames(sprite_frames: SpriteFrames) -> void:
+	$AnimatedSprite2D.frames = sprite_frames

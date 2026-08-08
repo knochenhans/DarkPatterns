@@ -14,7 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://cs8ubwa2hn4r4" path="res://assets/scenes/preview_pattern.tscn" id="11_ahyqc"]
 [ext_resource type="Shader" uid="uid://b6v75y4yorhan" path="res://assets/scenes/vhs.gdshader" id="11_rin3v"]
 [ext_resource type="AudioStream" uid="uid://8s6iqwcwko7x" path="res://assets/sounds/ambient.ogg" id="12_ua5jh"]
+[ext_resource type="SpriteFrames" uid="uid://4vc32p5un6vp" path="res://resources/person1_frames.tres" id="12_xqcey"]
 [ext_resource type="FontFile" uid="uid://ca0dcvsj2bs1w" path="res://assets/fonts/BitcountSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf" id="12_ytb86"]
+[ext_resource type="SpriteFrames" uid="uid://dvp8uuogy1voo" path="res://resources/person2_frames.tres" id="13_uwelg"]
+[ext_resource type="SpriteFrames" uid="uid://beja4i7ovr52y" path="res://resources/person3_frames.tres" id="14_v3q3d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
 size = Vector2(1162, 566)
@@ -58,6 +61,7 @@ button_click_sound = ExtResource("8_48cn3")
 pattern_button_container = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/PatternButtonContainer")
 pattern_button_scene = ExtResource("8_6rsl6")
 pattern_preview_scene = ExtResource("11_ahyqc")
+figure_sprites = Array[SpriteFrames]([ExtResource("12_xqcey"), ExtResource("13_uwelg"), ExtResource("14_v3q3d")])
 
 [node name="tick" type="Timer" parent="." unique_id=765994102]
 autostart = true

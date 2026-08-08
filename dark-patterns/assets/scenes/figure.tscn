@@ -26,7 +26,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_n6tbd"]
 radius = 23.021729
 
-[node name="figure" type="CharacterBody2D" unique_id=333006212]
+[node name="figure" type="CharacterBody2D" unique_id=333006212 groups=["Person"]]
 script = ExtResource("1_qhnav")
 
 [node name="tick" type="Timer" parent="." unique_id=221341262]

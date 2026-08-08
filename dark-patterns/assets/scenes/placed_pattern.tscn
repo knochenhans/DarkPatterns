@@ -9,6 +9,7 @@ polygon_2d = NodePath("Polygon2D")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=962471751]
 position = Vector2(3, 1)
+color = Color(1, 1, 1, 0.18431373)
 polygon = PackedVector2Array(1, 0, 0, 1, 0, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1026437080]

@@ -1,22 +1,29 @@
 extends Area2D
-
-var pattern : DarkPattern
+class_name PlacedPattern
+var dark_pattern : DarkPattern
 @export var collision_polygon_2d: CollisionPolygon2D
 @export var polygon_2d: Polygon2D
-@export var size : int = 30
-@export var ticks_remaining : int
-@export var depression_effect : float
-@export var money_mult : int
+var ticks_remaining : int
 
 func _ready() -> void:
+	if dark_pattern == null:
+		push_warning(self," has no darkpattern")
+		queue_free()
+		return
 	Global.tick_timer.timeout.connect(on_tick)
+	ticks_remaining = dark_pattern.duration
 	var points : PackedVector2Array = []
 	for i in range(16):
 		var angle = i * PI/8
-		points.append(size*Vector2.from_angle(angle))
+		points.append(dark_pattern.size*Vector2.from_angle(angle))
 		polygon_2d.polygon = points
 		collision_polygon_2d.polygon = points
 		
 func on_tick():
-	var bodies = get_overlapping_bodies()
-	Global.money += bodies.size() * money_mult
+	for b in get_overlapping_bodies():
+		if b.is_in_group("Person"):
+			Global.money += 1
+			print("money: ", Global.money)
+	ticks_remaining -= 1
+	if ticks_remaining < 0:
+		queue_free()

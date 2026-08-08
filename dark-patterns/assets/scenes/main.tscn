@@ -68,7 +68,7 @@ figure_sprites = Array[SpriteFrames]([ExtResource("12_xqcey"), ExtResource("13_u
 autostart = true
 
 [node name="play_area" type="CollisionShape2D" parent="." unique_id=47767852]
-position = Vector2(640, 309)
+position = Vector2(640, 349)
 shape = SubResource("RectangleShape2D_n6tbd")
 
 [node name="figures" type="Node2D" parent="." unique_id=193396737]
@@ -148,9 +148,9 @@ layout_mode = 2
 material = SubResource("ShaderMaterial_vwth2")
 propagate_maximum_size = true
 offset_left = 58.0
-offset_top = 18.0
+offset_top = 67.0
 offset_right = 1218.0
-offset_bottom = 593.0
+offset_bottom = 642.0
 
 [node name="UISoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1428170919]
 

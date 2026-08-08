@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bo3jjqgw4daaf"]
+
+[ext_resource type="Script" uid="uid://c1kep6cgua2ft" path="res://assets/scripts/mouse_error.gd" id="1_yin0m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ev2s"]
+bg_color = Color(0.8235294, 0.14901961, 0.14901961, 1)
+
+[node name="MouseError" type="Control" unique_id=347408286]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_yin0m")
+
+[node name="Label" type="Label" parent="." unique_id=1750546119]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.09019608)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ev2s")
+text = "This is an error"
+
+[node name="Timer" type="Timer" parent="." unique_id=1081794429]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

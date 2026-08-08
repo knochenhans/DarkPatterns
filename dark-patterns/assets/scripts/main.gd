@@ -3,6 +3,7 @@ extends Node
 var ingame = true
 
 var figure_scene = preload("res://assets/scenes/figure.tscn") as PackedScene
+var mouse_error = preload("res://assets/scenes/mouse_error.tscn") as PackedScene
 
 @export var placed_pattern: PackedScene
 @export var AvailablePatterns : Array[DarkPattern]
@@ -56,9 +57,6 @@ func _ready() -> void:
 
 	first_names = get_text_file_content("res://assets/first_names.txt").split("\n")
 	last_names = get_text_file_content("res://assets/last_names.txt").split("\n")
-
-func _process(delta: float) -> void:
-	pass
 	
 func _input(event: InputEvent) -> void:
 	if current_pattern_preview_instance != null and event is InputEventMouseMotion:
@@ -82,9 +80,11 @@ func _input(event: InputEvent) -> void:
 				print("Cannot place pattern, figures in radius: ", number_of_figures_in_radius)
 				ui_sound_player.stream = cannot_place_pattern_sound
 				ui_sound_player.play()
+				add_mouse_error(event.position, "Cannot place pattern on figures")
 				return
 
 		if not check_money(CurrentPatternSelection.price):
+			add_mouse_error(event.position, "Not enough money to place pattern")
 			return
 
 		ui_sound_player.stream = buy_pattern_sound
@@ -111,6 +111,12 @@ func check_money(price: int) -> bool:
 
 	Global.money -= price
 	return true
+
+func add_mouse_error(position: Vector2, text: String):
+	var error: MouseError = mouse_error.instantiate()
+	error.position = position
+	error.label_text = text
+	add_child(error)
 
 func remove_current_pattern_preview():
 	if current_pattern_preview_instance != null:

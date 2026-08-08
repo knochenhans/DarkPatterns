@@ -13,6 +13,8 @@ var move_target: Vector2 = Vector2.ZERO
 
 @onready
 var happy_ui_value = $debug_ui/happy/happy_value
+@onready
+var community_ui_value = $debug_ui/community/community_value
 @onready 
 var death_timer = $death_timer
 
@@ -83,6 +85,7 @@ func apply_community_effect(amount: int):
 func _on_tick_timeout() -> void:
 	move_target = get_random_move_location()
 	happy_ui_value.text = str(happiness)
+	community_ui_value.text = str(community)
 
 
 func _on_death_timer_timeout() -> void:

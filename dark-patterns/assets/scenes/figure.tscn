@@ -97,6 +97,27 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 10
 text = "10"
 
+[node name="community" type="HBoxContainer" parent="debug_ui" unique_id=1309879534]
+layout_mode = 0
+offset_left = -25.0
+offset_top = -77.0
+offset_right = 92.0
+offset_bottom = -61.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="debug_ui/community" unique_id=665905928]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 10
+text = "community"
+
+[node name="community_value" type="RichTextLabel" parent="debug_ui/community" unique_id=113833321]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 10
+text = "10"
+
 [node name="Area2D" type="Area2D" parent="." unique_id=1877635821]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=768853094]

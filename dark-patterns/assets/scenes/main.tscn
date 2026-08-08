@@ -59,6 +59,22 @@ shader_parameter/vignette_intensity = 0.1450000068875
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86cna"]
 bg_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.81961906, 0.81961906, 0.81961906, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2a3n"]
+bg_color = Color(0.029506553, 0.029506562, 0.029506536, 1)
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxv8u"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_color = Color(0, 0, 0, 0.47058824)
 
 [sub_resource type="FontVariation" id="FontVariation_ye0uq"]
 base_font = ExtResource("12_ytb86")
@@ -251,10 +267,18 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_86cna")
 script = ExtResource("5_etxf0")
 money_label = NodePath("money_font/MoneyCounter/Label")
 
+[node name="PanelContainer2" type="PanelContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=782521456]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v2a3n")
+
 [node name="bg" type="ColorRect" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=1332741080]
 propagate_maximum_size = true
 layout_mode = 2
 color = Color(0.93333334, 0.91764706, 0.8392157, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=1210082125]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kxv8u")
 
 [node name="money_font" type="MarginContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=1600620162]
 custom_minimum_size = Vector2(140, 0)

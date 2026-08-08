@@ -80,6 +80,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="DebugContainer" type="VBoxContainer" parent="debug_ui" unique_id=1772507527]
+visible = false
 layout_mode = 0
 offset_left = -21.0
 offset_top = -95.0

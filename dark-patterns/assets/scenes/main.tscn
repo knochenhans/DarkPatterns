@@ -24,12 +24,9 @@
 [ext_resource type="Texture2D" uid="uid://58o0mlb0y5t7" path="res://assets/graphics/button-stop-in.png" id="19_q5xp6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
-size = Vector2(1162, 551)
+size = Vector2(1168, 516)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n6tbd"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etxf0"]
-bg_color = Color(0.8509804, 0.8509804, 0.8509804, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86cna"]
 bg_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
@@ -73,7 +70,7 @@ figure_sprites = Array[SpriteFrames]([ExtResource("12_xqcey"), ExtResource("13_u
 autostart = true
 
 [node name="play_area" type="CollisionShape2D" parent="." unique_id=47767852]
-position = Vector2(640, 341.5)
+position = Vector2(643, 316)
 shape = SubResource("RectangleShape2D_n6tbd")
 
 [node name="figures" type="Node2D" parent="." unique_id=193396737]
@@ -102,20 +99,47 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Main" type="MarginContainer" parent="UI/VBoxContainer" unique_id=891427383]
+[node name="Main" type="VBoxContainer" parent="UI/VBoxContainer" unique_id=1059591251]
+custom_minimum_size = Vector2(1280, 600)
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/Main" unique_id=1704118056]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
 
-[node name="CenterContainer" type="CenterContainer" parent="UI/VBoxContainer/Main" unique_id=1497197104]
+[node name="ColorRect2" type="ColorRect" parent="UI/VBoxContainer/Main/MarginContainer" unique_id=2124539786]
 layout_mode = 2
+color = Color(0, 0, 0, 1)
 
-[node name="Panel" type="PanelContainer" parent="UI/VBoxContainer/Main/CenterContainer" unique_id=1524214769]
-custom_minimum_size = Vector2(1200, 600)
+[node name="black" type="MarginContainer" parent="UI/VBoxContainer/Main/MarginContainer" unique_id=43452773]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_etxf0")
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ColorRect" type="ColorRect" parent="UI/VBoxContainer/Main/MarginContainer/black" unique_id=247916859]
+layout_mode = 2
+color = Color(0.4392157, 0.4392157, 0.4392157, 1)
+
+[node name="grey" type="MarginContainer" parent="UI/VBoxContainer/Main/MarginContainer/black" unique_id=419767033]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="ColorRect2" type="ColorRect" parent="UI/VBoxContainer/Main/MarginContainer/black/grey" unique_id=1932893916]
+layout_mode = 2
 
 [node name="Bottom" type="MarginContainer" parent="UI/VBoxContainer" unique_id=681371551]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25

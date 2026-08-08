@@ -11,15 +11,21 @@ var CurrentPatternSelection : DarkPattern
 
 var SpawnedFigures : Array[CharacterBody2D] = []
 
+var play_area : CollisionShape2D = null
+
 func _ready() -> void:
 	# zum test
 	CurrentPatternSelection = AvailablePatterns[0]
+	play_area = $play_area
 
 func _process(delta: float) -> void:
 	pass
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("place_pattern"):
+		if not play_area.shape.get_rect().has_point(event.position - play_area.global_position):
+			return
+
 		var em := event as InputEventMouseButton
 		if em:
 			var instance : PlacedPattern = placed_pattern.instantiate()
@@ -34,11 +40,11 @@ func _on_tick_timeout() -> void:
 
 func spawn_figure() -> Figure:
 	var figure_instance = figure.instantiate()
-	figure_instance.play_area = $play_area
+	figure_instance.play_area = play_area
 	figure_instance.position = get_random_spawn_location()
 	$figures.add_child(figure_instance)
 	return figure_instance
 
 func get_random_spawn_location():
-	var bounds = $play_area.shape.size
+	var bounds = play_area.shape.size
 	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))

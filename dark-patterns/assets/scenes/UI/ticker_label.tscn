@@ -1,16 +1,22 @@
 [gd_scene format=3 uid="uid://cqqlabfh7mev4"]
 
 [ext_resource type="Script" uid="uid://rtj3ka3mm7lu" path="res://assets/scenes/UI/ticker_label.gd" id="1_3lqyt"]
+[ext_resource type="FontFile" uid="uid://ca0dcvsj2bs1w" path="res://assets/fonts/BitcountSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf" id="1_cecr5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_86cna"]
+font = ExtResource("1_cecr5")
 font_color = Color(0, 0, 0, 1)
 
 [node name="TickerLabel" type="Label" unique_id=1825195958]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
+custom_minimum_size = Vector2(0, 20)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_right = 39.0
+offset_bottom = 10.0
 grow_vertical = 2
+offset_transform_enabled = true
 text = "Test"
 label_settings = SubResource("LabelSettings_86cna")
 vertical_alignment = 1

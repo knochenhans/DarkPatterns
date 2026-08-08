@@ -19,14 +19,19 @@
 [ext_resource type="FontFile" uid="uid://ca0dcvsj2bs1w" path="res://assets/fonts/BitcountSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf" id="12_ytb86"]
 [ext_resource type="SpriteFrames" uid="uid://dvp8uuogy1voo" path="res://resources/person2_frames.tres" id="13_uwelg"]
 [ext_resource type="SpriteFrames" uid="uid://beja4i7ovr52y" path="res://resources/person3_frames.tres" id="14_v3q3d"]
+[ext_resource type="Script" uid="uid://665sme57bmf1" path="res://assets/scenes/ticker_controller.gd" id="16_m64nd"]
+[ext_resource type="PackedScene" uid="uid://cqqlabfh7mev4" path="res://assets/scenes/UI/ticker_label.tscn" id="16_q5xp6"]
 [ext_resource type="Texture2D" uid="uid://dfhypn51xya8p" path="res://assets/graphics/metal-background.png" id="16_q5xp6"]
 [ext_resource type="Texture2D" uid="uid://b5ip2oikqqto4" path="res://assets/graphics/button-stop-out.png" id="18_onyvt"]
 [ext_resource type="Texture2D" uid="uid://58o0mlb0y5t7" path="res://assets/graphics/button-stop-in.png" id="19_q5xp6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
-size = Vector2(1168, 516)
+size = Vector2(1162, 526)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n6tbd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m64nd"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86cna"]
 bg_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
@@ -51,7 +56,7 @@ shader_parameter/vertical_jitter = 0.0010000000475
 shader_parameter/scanline_opacity = 0.050000002375
 shader_parameter/vignette_intensity = 0.10000000475
 
-[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("ui_sound_player", "pattern_button_container")]
+[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("ui_sound_player", "pattern_button_container", "ticker")]
 script = ExtResource("1_0xm2m")
 placed_pattern = ExtResource("2_kpi06")
 AvailablePatterns = Array[ExtResource("3_sfrgt")]([ExtResource("4_etxf0"), ExtResource("5_ov4sg"), ExtResource("6_ahyqc")])
@@ -65,12 +70,13 @@ pattern_button_container = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/Patte
 pattern_button_scene = ExtResource("8_6rsl6")
 pattern_preview_scene = ExtResource("11_ahyqc")
 figure_sprites = Array[SpriteFrames]([ExtResource("12_xqcey"), ExtResource("13_uwelg"), ExtResource("14_v3q3d")])
+ticker = NodePath("UI/VBoxContainer/Ticker/TickerController")
 
 [node name="tick" type="Timer" parent="." unique_id=765994102]
 autostart = true
 
 [node name="play_area" type="CollisionShape2D" parent="." unique_id=47767852]
-position = Vector2(643, 316)
+position = Vector2(640, 329)
 shape = SubResource("RectangleShape2D_n6tbd")
 
 [node name="figures" type="Node2D" parent="." unique_id=193396737]
@@ -136,6 +142,16 @@ theme_override_constants/margin_bottom = 12
 
 [node name="ColorRect2" type="ColorRect" parent="UI/VBoxContainer/Main/MarginContainer/black/grey" unique_id=1932893916]
 layout_mode = 2
+
+[node name="Ticker" type="MarginContainer" parent="UI/VBoxContainer" unique_id=1723856803]
+layout_mode = 2
+
+[node name="TickerController" type="Panel" parent="UI/VBoxContainer/Ticker" unique_id=1310630970]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m64nd")
+script = ExtResource("16_m64nd")
+ticker_label_scene = ExtResource("16_q5xp6")
 
 [node name="Bottom" type="MarginContainer" parent="UI/VBoxContainer" unique_id=681371551]
 layout_mode = 2

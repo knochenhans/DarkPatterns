@@ -23,15 +23,23 @@ var artificial_scarcity_pattern: PlacedPattern = null
 @onready var debug_community_label = $debug_ui/DebugContainer/CommunityLabel
 @onready var death_timer = $death_timer
 
-
 var moving = false
 
 signal figure_died(figure: Figure)
+signal figure_state_changed(figure: Figure, new_state: FigureState)
 
+enum FigureState {
+	HAPPY,
+	SAD,
+	DIED
+}
+
+var current_state: FigureState = FigureState.HAPPY
 
 func _ready():
 	debug_name_label.text = get_figure_name()
-	debug_happy_label.text = str(happiness)
+	debug_happy_label.text = "Happiness: " + str(happiness)
+	debug_community_label.text = "Community: " + str(community)
 
 	WalkingSoundPlayer.pitch_scale = randf_range(0.8, 1.2)
 	WalkingSoundPlayer.volume_db = randf_range(-6, 0)
@@ -39,10 +47,13 @@ func _ready():
 func _process(_delta) -> void:
 	if happiness > 50:
 		change_animation_state("smile")
+		set_state(FigureState.HAPPY)
 	elif happiness > 0:
 		change_animation_state("sad")
+		set_state(FigureState.SAD)
 	else:
 		change_animation_state("died")
+		set_state(FigureState.DIED)
 		alive = false
 		if death_timer.is_stopped():
 			death_timer.start()
@@ -52,6 +63,11 @@ func _process(_delta) -> void:
 			set_collision_mask_value(1, true)
 			artificial_scarcity_pattern.queue_free()
 			artificial_scarcity_pattern = null
+
+func set_state(new_state: FigureState) -> void:
+	if new_state != current_state:
+		current_state = new_state
+		emit_signal("figure_state_changed", self, new_state)
 			
 
 func change_animation_state(state: String) -> void:
@@ -92,7 +108,6 @@ func set_moving_state(new_state: bool) -> void:
 
 	moving = new_state
 
-
 func get_random_move_location():
 	var bounds = play_area.shape.size
 	var bodies = []
@@ -117,8 +132,9 @@ func apply_artificial_scarcity(pattern: PlacedPattern):
 	artificial_scarcity_pattern = pattern
 
 func apply_happiness_effect(amount: int):
+	print(first_name + " " + last_name + " applying happiness effect: ", amount)
 	happiness += amount
-	print("happiness: ", happiness)
+	print(first_name + " " + last_name + " happiness: ", happiness)
 	if happiness > 100:
 		happiness = 100
 	if happiness < 0:
@@ -126,19 +142,18 @@ func apply_happiness_effect(amount: int):
 
 func apply_community_effect(amount: int):
 	community += amount
-	print("community: ", community)
+	# print("community: ", community)
 	if community > 100:
 		community = 100
 	if community < 0:
 		community = 0
 
 func _on_tick_timeout() -> void:
-	apply_happiness_effect(len(area_2d.get_overlapping_bodies()))
-	apply_community_effect(5)
+	# apply_happiness_effect(len(area_2d.get_overlapping_bodies()) / 10)
+	# apply_community_effect(5)
 	move_target = get_random_move_location()
-	debug_happy_label.text = str(happiness)
-	debug_community_label.text = str(community)
-
+	debug_happy_label.text = "Happiness: " + str(happiness)
+	debug_community_label.text = "Community: " + str(community)
 
 func _on_death_timer_timeout() -> void:
 	print("ded")

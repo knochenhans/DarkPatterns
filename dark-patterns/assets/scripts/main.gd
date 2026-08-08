@@ -24,6 +24,9 @@ var mouse_error = preload("res://assets/scenes/mouse_error.tscn") as PackedScene
 # Sprites
 @export var figure_sprites: Array[SpriteFrames] = []
 
+# Ticker
+@export var ticker: TickerController
+
 var first_names: PackedStringArray
 var last_names: PackedStringArray
 
@@ -57,10 +60,12 @@ func _ready() -> void:
 
 	first_names = get_text_file_content("res://assets/first_names.txt").split("\n")
 	last_names = get_text_file_content("res://assets/last_names.txt").split("\n")
+
+	ticker.add_ticker_message("Welcome!!!")
 	
 func _input(event: InputEvent) -> void:
 	if current_pattern_preview_instance != null and event is InputEventMouseMotion:
-		print("Moving pattern preview to: ", event.position)
+		# print("Moving pattern preview to: ", event.position)
 		current_pattern_preview_instance.position = event.position
 	
 	if event.is_action_pressed("place_pattern"):
@@ -172,6 +177,7 @@ func spawn_figure() -> Figure:
 
 	var random_sprite_index = randi() % figure_sprites.size()
 	figure_instance.set_sprite_frames(figure_sprites[random_sprite_index])
+	figure_instance.figure_state_changed.connect(on_figure_state_changed)
 
 	$figures.add_child(figure_instance)
 	return figure_instance
@@ -212,6 +218,15 @@ func get_figure_in_radius(position: Vector2, radius: float) -> Array[Figure]:
 func on_figure_died(figure: Figure) -> void:
 	if figure in SpawnedFigures:
 		SpawnedFigures.erase(figure)
+
+func on_figure_state_changed(figure: Figure, new_state: Figure.FigureState) -> void:
+	var state_string = ""
+	match new_state:
+		Figure.FigureState.HAPPY:
+			state_string = "happy"
+		Figure.FigureState.SAD:
+			state_string = "sad"
+	ticker.add_ticker_message(figure.get_figure_name() + " is now " + state_string + "!")
 
 func get_text_file_content(filePath) -> String:
 	var file = FileAccess.open(filePath, FileAccess.READ)

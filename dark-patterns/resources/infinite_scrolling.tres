@@ -18,6 +18,6 @@ color = Color(0, 0.16862746, 0.6901961, 1)
 placement_sound = ExtResource("2_63fq3")
 money_added = 1
 use_collision = false
-depression_effect = 2
+depression_effect = 20
 community_effect = 10
 metadata/_custom_type_script = "uid://dhjlpyysxbnjj"

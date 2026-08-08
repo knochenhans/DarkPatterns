@@ -49,6 +49,15 @@ func set_polygon_2d():
 		apply_artificial_scarcity.emit(self)
 
 func on_tick():			
+	for figure in current_figures:
+		if figure == null or figure.is_queued_for_deletion():
+			continue
+		
+		print("applying effects to figure: ", figure.get_figure_name())
+
+		figure.apply_happiness_effect(-dark_pattern.depression_effect)
+		figure.apply_community_effect(-dark_pattern.community_effect)
+
 	ticks_remaining -= 1
 	if ticks_remaining < 0:
 		print("playing time out sound: ", time_out_sound)

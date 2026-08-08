@@ -40,6 +40,7 @@ radius = 150.0
 
 [node name="figure" type="CharacterBody2D" unique_id=333006212 node_paths=PackedStringArray("area_2d") groups=["Person"]]
 script = ExtResource("1_qhnav")
+community = 50
 area_2d = NodePath("Area2D")
 
 [node name="tick" type="Timer" parent="." unique_id=221341262]

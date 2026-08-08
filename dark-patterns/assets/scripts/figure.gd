@@ -2,7 +2,7 @@ class_name Figure
 extends CharacterBody2D
 
 var happiness = 100
-var community = 80
+@export var community = 0
 var affected = false
 
 var play_area = null
@@ -44,10 +44,11 @@ func get_random_move_location():
 			continue
 		bodies.append(body)
 	if !bodies.is_empty():
-		var target = bodies.pick_random()
+		var target = bodies.pick_random() as Figure
+		var target_pos = target.move_target if target.move_target != Vector2.ZERO else target.position
 		var random_pos := Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
 		var bias = community/100
-		return lerp(random_pos,target.position,bias)
+		return lerp(random_pos,target_pos,bias)
 	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
 func apply_happiness_effect(amount: int):
 	happiness += amount

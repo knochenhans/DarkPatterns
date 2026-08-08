@@ -29,6 +29,7 @@ font_color = Color(0, 0, 0, 1)
 script = ExtResource("1_0xm2m")
 placed_pattern = ExtResource("2_kpi06")
 AvailablePatterns = Array[ExtResource("3_sfrgt")]([ExtResource("4_etxf0"), ExtResource("5_ov4sg")])
+number_of_figures = 30
 money_add_sound = ExtResource("5_xplbd")
 buy_pattern_sound = ExtResource("6_6rsl6")
 cannot_place_pattern_sound = ExtResource("7_p5d64")

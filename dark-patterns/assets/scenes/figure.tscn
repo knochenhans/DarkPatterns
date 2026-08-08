@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cyh7pkfqhfhyh" path="res://assets/graphics/figures/person1-100-02.png" id="4_8epu0"]
 [ext_resource type="Texture2D" uid="uid://ukfrdx1lygeu" path="res://assets/graphics/figures/person1-0-01.png" id="4_x7v12"]
 [ext_resource type="Texture2D" uid="uid://dst08gxo3kpu3" path="res://assets/graphics/figures/person1-0-02.png" id="5_f4ydd"]
+[ext_resource type="Texture2D" uid="uid://cystbhwopr0nx" path="res://assets/graphics/shadow.png" id="7_8epu0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n6tbd"]
 animations = [{
@@ -19,10 +20,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_f4ydd")
+"texture": ExtResource("4_x7v12")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_8epu0")
+"texture": ExtResource("5_f4ydd")
 }],
 "loop": 1,
 "name": &"sad",
@@ -30,10 +31,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_x7v12")
+"texture": ExtResource("3_f4ydd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_f4ydd")
+"texture": ExtResource("4_8epu0")
 }],
 "loop": 1,
 "name": &"smile",
@@ -76,10 +77,10 @@ anchors_preset = 0
 
 [node name="happy" type="HBoxContainer" parent="debug_ui" unique_id=1290056530]
 layout_mode = 0
-offset_left = -33.0
-offset_top = -51.0
-offset_right = 32.0
-offset_bottom = -31.0
+offset_left = -28.0
+offset_top = -155.0
+offset_right = 37.0
+offset_bottom = -135.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="debug_ui/happy" unique_id=1893019946]
 layout_mode = 2
@@ -99,6 +100,14 @@ text = "10"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=768853094]
 shape = SubResource("CircleShape2D_k1ki5")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1756203114]
+modulate = Color(1, 1, 1, 0.42352942)
+z_index = -1
+y_sort_enabled = true
+position = Vector2(4.9999995, 53)
+scale = Vector2(0.4874518, 0.12620153)
+texture = ExtResource("7_8epu0")
 
 [connection signal="timeout" from="tick" to="." method="_on_tick_timeout"]
 [connection signal="timeout" from="death_timer" to="." method="_on_death_timer_timeout"]

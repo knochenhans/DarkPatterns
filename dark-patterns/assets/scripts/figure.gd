@@ -22,19 +22,32 @@ func _ready():
 
 func _process(_delta) -> void:
 	if happiness > 50:
-		$AnimatedSprite2D.animation = "smile"
+		change_animation_state("smile")
 	elif happiness > 0:
-		$AnimatedSprite2D.animation = "sad"
+		change_animation_state("sad")
 	else:
-		$AnimatedSprite2D.animation = "died"
+		change_animation_state("died")
 		if death_timer.is_stopped():
 			death_timer.start()
+
+func change_animation_state(state: String) -> void:
+	$AnimatedSprite2D.play(state)
 
 func _physics_process(_delta: float) -> void:
 	if move_target != Vector2.ZERO:
 		var move_vector: Vector2 = move_target - position
 		velocity = move_vector.normalized() * 100
+
+		$AnimatedSprite2D.speed_scale = velocity.length() / 100.0
+
 		move_and_slide()
+		
+		if velocity.x > 50:
+			if velocity.x > 0:
+				$AnimatedSprite2D.flip_h = true
+			else:
+				$AnimatedSprite2D.flip_h = false
+
 
 func get_random_move_location():
 	var bounds = play_area.shape.size
@@ -50,7 +63,7 @@ func get_random_move_location():
 		var bias = community/100
 		return lerp(random_pos,target_pos,bias)
 	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
-	
+
 func apply_happiness_effect(amount: int):
 	happiness += amount
 	print("happiness: ", happiness)

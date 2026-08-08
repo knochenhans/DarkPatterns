@@ -29,7 +29,7 @@ func _ready() -> void:
 func on_tick():
 	for b in get_overlapping_bodies():
 		if b.is_in_group("Person"):
-			apply_effect(b, dark_pattern.effect)
+			apply_depression_effect(b, dark_pattern.depression_effect)
 			figure_entered.emit(b)
 			
 	ticks_remaining -= 1
@@ -41,7 +41,5 @@ func on_tick():
 		await placement_sound_player.finished
 		queue_free()
 
-func apply_effect(figure: Figure, effect_type: String):
-	match effect_type:
-		"addictive_design":
-			figure.apply_happiness_effect(-2)
+func apply_depression_effect(figure: Figure, depression_effect: int):
+	figure.apply_happiness_effect(-depression_effect)

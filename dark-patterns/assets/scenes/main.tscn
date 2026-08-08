@@ -271,6 +271,7 @@ text = "000.00$"
 label_settings = SubResource("LabelSettings_sfrgt")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=2017911821]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer/CanvasLayer" unique_id=1063265410]
 material = SubResource("ShaderMaterial_2ev2s")

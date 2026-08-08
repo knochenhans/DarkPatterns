@@ -64,6 +64,30 @@ enum GameState {
 var input_state : InputState = InputState.NONE
 var game_state : GameState = GameState.STARTSCREEN
 
+var happiness_messages = [
+	"Yay, %s is feeling happy.",
+	"Fortunately, %s is experiencing happiness.",
+	"Gladly, %s is enjoying a moment of happiness.",
+	"Excitedly, %s is going through a period of happiness.",
+	"Joyfully, %s is embracing the challenges of happiness."
+]
+
+var death_messages = [
+	"Unfortunately, %s has died from depression.",
+	"Sadly, %s has passed away due to depression.",
+	"Tragically, %s has succumbed to depression.",
+	"Regrettably, %s has lost their battle with depression.",
+	"Heartbreakingly, %s has died as a result of depression."
+]
+
+var depression_messages = [
+	"Oh no, %s is feeling depressed.",
+	"Unfortunately, %s is in a state of depression.",
+	"Sadly, %s is having a tough time.",
+	"Tragically, %s is feeling down.",
+	"Regrettably, %s is facing a bout of depression."
+]
+
 func _ready() -> void:
 	play_area = $play_area
 	first_names = get_text_file_content("res://assets/first_names.txt").split("\n")
@@ -272,11 +296,12 @@ func on_figure_state_changed(figure: Figure, new_state: Figure.FigureState) -> v
 	var message = ""
 	match new_state:
 		Figure.FigureState.HAPPY:
-			message = "Aww, " + figure_name + " is happy!"
+			message = happiness_messages[randi() % happiness_messages.size()] % figure_name
 		Figure.FigureState.SAD:
-			message = "Oh no, " + figure_name + " is depressed!"
+			message = depression_messages[randi() % depression_messages.size()] % figure_name
 		Figure.FigureState.DIED:
-			message = "Unfortunately, " + figure_name + " has died from depression."
+			message = death_messages[randi() % death_messages.size()] % figure_name
+
 	ticker.add_ticker_message(message)
 
 func get_text_file_content(filePath) -> String:

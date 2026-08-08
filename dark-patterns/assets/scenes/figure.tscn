@@ -67,12 +67,14 @@ offset_bottom = -31.0
 [node name="RichTextLabel" type="RichTextLabel" parent="debug_ui/happy" unique_id=1893019946]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 10
 text = "happy"
 
 [node name="happy_value" type="RichTextLabel" parent="debug_ui/happy" unique_id=317868140]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 10
 text = "10"
 

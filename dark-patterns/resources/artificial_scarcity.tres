@@ -10,6 +10,7 @@ duration = 5.0
 size = 30.0
 price = 500
 effect = "artificial_scarcity"
+color = Color(1, 0, 0.28627452, 1)
 placement_sound = ExtResource("1_ggqvx")
 money_added = 1000
 metadata/_custom_type_script = "uid://dhjlpyysxbnjj"

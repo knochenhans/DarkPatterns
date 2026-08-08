@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8vkakuq6a2pr"]
 
 [ext_resource type="Script" uid="uid://e81vynd6d0sa" path="res://assets/scripts/figure.gd" id="1_qhnav"]
-[ext_resource type="Texture2D" uid="uid://da0kcox14gjcg" path="res://assets/died.svg" id="2_fqnpk"]
+[ext_resource type="Texture2D" uid="uid://46p52f7aipd6" path="res://assets/graphics/figures/person1-0-01_dead.png" id="2_8epu0"]
 [ext_resource type="Texture2D" uid="uid://djpe56y5mck1" path="res://assets/graphics/figures/person1-100-01.png" id="3_f4ydd"]
 [ext_resource type="Texture2D" uid="uid://cyh7pkfqhfhyh" path="res://assets/graphics/figures/person1-100-02.png" id="4_8epu0"]
 [ext_resource type="Texture2D" uid="uid://ukfrdx1lygeu" path="res://assets/graphics/figures/person1-0-01.png" id="4_x7v12"]
@@ -12,7 +12,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_fqnpk")
+"texture": ExtResource("2_8epu0")
 }],
 "loop": 1,
 "name": &"died",
@@ -65,7 +65,7 @@ y_sort_enabled = true
 position = Vector2(-3, 38)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_n6tbd")
-animation = &"smile"
+animation = &"died"
 offset = Vector2(0, -162)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1204698797]

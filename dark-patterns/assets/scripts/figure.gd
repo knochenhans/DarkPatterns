@@ -2,12 +2,14 @@ class_name Figure
 extends CharacterBody2D
 
 var happiness = 100
-@export var community = 0
 var affected = false
 
 var play_area = null
 
 var move_target: Vector2 = Vector2.ZERO
+var alive = true
+
+@export var community = 0
 @export var area_2d: Area2D
 @export var speed_scale: float = 1.0
 
@@ -29,6 +31,7 @@ func _process(_delta) -> void:
 		change_animation_state("sad")
 	else:
 		change_animation_state("died")
+		alive = false
 		if death_timer.is_stopped():
 			death_timer.start()
 
@@ -36,6 +39,9 @@ func change_animation_state(state: String) -> void:
 	$AnimatedSprite2D.play(state)
 
 func _physics_process(_delta: float) -> void:
+	if not alive:
+		return
+
 	$AnimatedSprite2D.speed_scale = velocity.length() * speed_scale
 
 	if move_target != Vector2.ZERO:

@@ -2,7 +2,7 @@ extends Node
 
 var ingame = true
 
-var figure = preload("res://assets/scenes/figure.tscn") as PackedScene
+var figure_scene = preload("res://assets/scenes/figure.tscn") as PackedScene
 
 @export var placed_pattern: PackedScene
 @export var AvailablePatterns : Array[DarkPattern]
@@ -91,7 +91,7 @@ func _on_tick_timeout() -> void:
 		SpawnedFigures.append(figure_instance)
 
 func spawn_figure() -> Figure:
-	var figure_instance = figure.instantiate()
+	var figure_instance = figure_scene.instantiate()
 	figure_instance.play_area = play_area
 	figure_instance.position = get_random_spawn_location()
 	$figures.add_child(figure_instance)
@@ -106,3 +106,10 @@ func on_pattern_selected(pattern: DarkPattern) -> void:
 	ui_sound_player.stream = button_click_sound
 	ui_sound_player.play()
 	CurrentPatternSelection = pattern
+
+func get_figure_in_radius(position: Vector2, radius: float) -> Array[Figure]:
+	var figures_in_radius : Array[Figure] = []
+	for figure in SpawnedFigures:
+		if figure.position.distance_to(position) <= radius:
+			figures_in_radius.append(figure)
+	return figures_in_radius

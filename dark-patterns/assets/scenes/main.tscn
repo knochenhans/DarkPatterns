@@ -30,6 +30,9 @@ size = Vector2(1162, 477)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n6tbd"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m64nd"]
+bg_color = Color(0.84313726, 0.827451, 0.75686276, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m64nd"]
 shader = ExtResource("11_rin3v")
 shader_parameter/smearing = 0.1450000068875
@@ -42,22 +45,6 @@ shader_parameter/crack_size = 0.0
 shader_parameter/vertical_jitter = 0.002
 shader_parameter/scanline_opacity = 0.1
 shader_parameter/vignette_intensity = 0.1450000068875
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ye0uq"]
-shader = ExtResource("11_rin3v")
-shader_parameter/smearing = 0.5
-shader_parameter/color_offset = 0.005
-shader_parameter/sharpening = 0.4
-shader_parameter/static_noise = 0.08
-shader_parameter/crack_center = Vector2(0.15, 0.85)
-shader_parameter/crack_intensity = 0.0
-shader_parameter/crack_size = 0.0
-shader_parameter/vertical_jitter = 0.002
-shader_parameter/scanline_opacity = 0.1
-shader_parameter/vignette_intensity = 0.3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m64nd"]
-bg_color = Color(0.84313726, 0.827451, 0.75686276, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86cna"]
 bg_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
@@ -77,15 +64,15 @@ font = SubResource("FontVariation_ye0uq")
 font_size = 90
 font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6tbd"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ev2s"]
 shader = ExtResource("11_rin3v")
 shader_parameter/smearing = 0.5
 shader_parameter/color_offset = 0.005
 shader_parameter/sharpening = 0.4
 shader_parameter/static_noise = 0.08
 shader_parameter/crack_center = Vector2(0.15, 0.85)
-shader_parameter/crack_intensity = 0.4
-shader_parameter/crack_size = 0.35
+shader_parameter/crack_intensity = 0.0
+shader_parameter/crack_size = 0.0
 shader_parameter/vertical_jitter = 0.002
 shader_parameter/scanline_opacity = 0.1
 shader_parameter/vignette_intensity = 0.3
@@ -176,15 +163,10 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="vhs" type="ColorRect" parent="UI/VBoxContainer/Main/MarginContainer/black/grey" unique_id=1932893916]
-material = SubResource("ShaderMaterial_m64nd")
-layout_mode = 2
-
 [node name="HBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/Main/MarginContainer/black/grey" unique_id=87634220]
 layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="UI/VBoxContainer/Main/MarginContainer/black/grey/HBoxContainer" unique_id=372444106]
-material = SubResource("ShaderMaterial_ye0uq")
 propagate_maximum_size = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -195,7 +177,7 @@ propagate_maximum_size = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.05
+size_flags_stretch_ratio = 0.0
 
 [node name="TickerController" type="Panel" parent="UI/VBoxContainer/Main/MarginContainer/black/grey/HBoxContainer/Ticker" unique_id=1310630970]
 custom_minimum_size = Vector2(0, 40)
@@ -204,6 +186,10 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_m64nd")
 script = ExtResource("16_m64nd")
 ticker_label_scene = ExtResource("18_ye0uq")
+
+[node name="vhs" type="ColorRect" parent="UI/VBoxContainer/Main/MarginContainer/black/grey" unique_id=1932893916]
+material = SubResource("ShaderMaterial_m64nd")
+layout_mode = 2
 
 [node name="Bottom" type="MarginContainer" parent="UI/VBoxContainer" unique_id=681371551]
 layout_mode = 2
@@ -224,6 +210,7 @@ script = ExtResource("5_etxf0")
 money_label = NodePath("money_font/MoneyCounter/Label")
 
 [node name="bg" type="ColorRect" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=1332741080]
+propagate_maximum_size = true
 layout_mode = 2
 color = Color(0.93333334, 0.91764706, 0.8392157, 1)
 
@@ -241,11 +228,14 @@ layout_mode = 2
 text = "000.00$"
 label_settings = SubResource("LabelSettings_sfrgt")
 
-[node name="vhs2" type="ColorRect" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=277388306]
-visible = false
-material = SubResource("ShaderMaterial_n6tbd")
-layout_mode = 2
-color = Color(1, 1, 1, 0)
+[node name="CanvasLayer" type="CanvasLayer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=2017911821]
+
+[node name="ColorRect" type="ColorRect" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer/CanvasLayer" unique_id=1063265410]
+material = SubResource("ShaderMaterial_2ev2s")
+offset_left = 24.0
+offset_top = 629.0
+offset_right = 636.0
+offset_bottom = 779.0
 
 [node name="PatternButtonContainer" type="HBoxContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=322301336]
 layout_mode = 2

@@ -8,6 +8,7 @@ var dark_pattern : DarkPattern
 var ticks_remaining : int
 
 signal figure_entered(figure: Figure)
+signal apply_artificial_scarcity(pattern: PlacedPattern)
 
 func _ready() -> void:
 	if dark_pattern == null:
@@ -30,7 +31,11 @@ func set_polygon_2d():
 	polygon_2d.polygon = points
 	collision_polygon_2d.polygon = points
 	polygon_2d.color = dark_pattern.color
-		
+	placement_sound_player.stream = dark_pattern.placement_sound
+	placement_sound_player.play()
+	if dark_pattern.effect == "artificial_scarcity":
+		apply_artificial_scarcity.emit(self)
+
 func on_tick():
 	for b in get_overlapping_bodies():
 		if b.is_in_group("Person"):

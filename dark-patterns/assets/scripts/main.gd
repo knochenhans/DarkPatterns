@@ -102,6 +102,7 @@ func _input(event: InputEvent) -> void:
 			instance.figure_entered.connect(func(figure: Figure) -> void:
 				on_figure_entered_pattern(figure, CurrentPatternSelection)
 			)
+			instance.apply_artificial_scarcity.connect(on_apply_artificial_scarcity)
 			add_child(instance)
 
 		remove_current_pattern_preview()
@@ -112,10 +113,15 @@ func remove_current_pattern_preview():
 	if current_pattern_preview_instance != null:
 		current_pattern_preview_instance.queue_free()
 		current_pattern_preview_instance = null
+		
+func on_apply_artificial_scarcity(pattern: PlacedPattern):
+	var figure = SpawnedFigures.pick_random()
+	if figure != null && !figure.is_queued_for_deletion():
+		figure.apply_artificial_scarcity(pattern)
 
 func on_figure_entered_pattern(figure: Figure, pattern: DarkPattern) -> void:
 	match pattern.effect:
-		"addictive_design":
+		"addictive_design", "artificial_scarcity":
 			Global.money += pattern.money_added
 		"lootboxes":
 			Global.money += pattern.money_added * ((100 - figure.community) / 2)

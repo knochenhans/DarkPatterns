@@ -11,6 +11,7 @@ var alive = true
 
 var first_name = ""
 var last_name = ""
+var artificial_scarcity_pattern: PlacedPattern = null
 
 @export var community = 0
 @export var area_2d: Area2D
@@ -38,6 +39,12 @@ func _process(_delta) -> void:
 		alive = false
 		if death_timer.is_stopped():
 			death_timer.start()
+	
+	if artificial_scarcity_pattern != null:
+		if (artificial_scarcity_pattern.position - position).length() < 20:
+			artificial_scarcity_pattern.queue_free()
+			artificial_scarcity_pattern = null
+			
 
 func change_animation_state(state: String) -> void:
 	$AnimatedSprite2D.play(state)
@@ -47,21 +54,27 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	$AnimatedSprite2D.speed_scale = velocity.length() * speed_scale
-
+	
+	if artificial_scarcity_pattern != null:
+		var move_vector: Vector2 = artificial_scarcity_pattern.position - position
+		velocity = move_vector.normalized() * 1000
+		move_and_slide()
+		
 	if move_target != Vector2.ZERO:
 		var move_vector: Vector2 = move_target - position
 		velocity = move_vector.normalized() * 100
 
 		move_and_slide()
 		
-		if abs(velocity.x) > 50:
-			if velocity.x > 0:
-				$AnimatedSprite2D.flip_h = true
-			else:
-				$AnimatedSprite2D.flip_h = false
+	if abs(velocity.x) > 50:
+		if velocity.x > 0:
+			$AnimatedSprite2D.flip_h = true
+		else:
+			$AnimatedSprite2D.flip_h = false
 
 
 func get_random_move_location():
+	
 	var bounds = play_area.shape.size
 	var bodies = []
 	for body in area_2d.get_overlapping_bodies():
@@ -79,6 +92,9 @@ func get_random_move_location():
 		else:
 			return lerp(target_pos * -1, random_pos,bias)
 	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
+
+func apply_artificial_scarcity(pattern: PlacedPattern):
+	artificial_scarcity_pattern = pattern
 
 func apply_happiness_effect(amount: int):
 	happiness += amount

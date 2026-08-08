@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DarkPattern" format=3 uid="uid://ej1e10c3ink2"]
+
+[ext_resource type="Script" uid="uid://dhjlpyysxbnjj" path="res://assets/scripts/pattern_template.gd" id="1_cdcvj"]
+
+[resource]
+script = ExtResource("1_cdcvj")
+name = "Artificial Scarcity"
+duration = 5.0
+size = 30.0
+price = 500
+effect = "artificial_scarcity"
+money_added = 1000
+metadata/_custom_type_script = "uid://dhjlpyysxbnjj"

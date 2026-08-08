@@ -49,6 +49,7 @@ radius = 23.021729
 radius = 100.005
 
 [node name="figure" type="CharacterBody2D" unique_id=333006212 node_paths=PackedStringArray("area_2d") groups=["Person"]]
+collision_mask = 0
 script = ExtResource("1_qhnav")
 community = 50
 area_2d = NodePath("Area2D")

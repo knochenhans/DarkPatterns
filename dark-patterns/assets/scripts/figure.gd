@@ -69,7 +69,11 @@ func get_random_move_location():
 		var target_pos = target.move_target if target.move_target != Vector2.ZERO else target.position
 		var random_pos := Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
 		var bias = community/100
-		return lerp(random_pos,target_pos,bias)
+		bias = bias * bias * bias # cubic bias
+		if community > 50:	
+			return lerp(random_pos,target_pos,bias)
+		else:
+			return lerp(target_pos * -1, random_pos,bias)
 	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
 
 func apply_happiness_effect(amount: int):
@@ -89,6 +93,8 @@ func apply_community_effect(amount: int):
 		community = 0
 
 func _on_tick_timeout() -> void:
+	apply_happiness_effect(len(area_2d.get_overlapping_bodies()))
+	apply_community_effect(5)
 	move_target = get_random_move_location()
 	happy_ui_value.text = str(happiness)
 	community_ui_value.text = str(community)

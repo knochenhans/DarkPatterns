@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://osxdv2siup1a" path="res://assets/sounds/patterns/cannot_place.ogg" id="7_p5d64"]
 [ext_resource type="PackedScene" uid="uid://lxmo6i7bea3i" path="res://assets/scenes/pattern_button.tscn" id="8_6rsl6"]
 [ext_resource type="AudioStream" uid="uid://cu66pnp5tfxj" path="res://assets/sounds/UI/button.ogg" id="8_48cn3"]
+[ext_resource type="Shader" uid="uid://b6v75y4yorhan" path="res://assets/scenes/vhs.gdshader" id="11_rin3v"]
 [ext_resource type="AudioStream" uid="uid://8s6iqwcwko7x" path="res://assets/sounds/ambient.ogg" id="12_ua5jh"]
 [ext_resource type="FontFile" uid="uid://ca0dcvsj2bs1w" path="res://assets/fonts/BitcountSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf" id="12_ytb86"]
 
@@ -27,6 +28,19 @@ bg_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
 font = ExtResource("12_ytb86")
 font_size = 36
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vwth2"]
+shader = ExtResource("11_rin3v")
+shader_parameter/smearing = 0.5
+shader_parameter/color_offset = 0.005
+shader_parameter/sharpening = 0.4
+shader_parameter/static_noise = 0.08
+shader_parameter/crack_center = Vector2(0.15, 0.85)
+shader_parameter/crack_intensity = 0.0
+shader_parameter/crack_size = 0.0
+shader_parameter/vertical_jitter = 0.002
+shader_parameter/scanline_opacity = 0.1
+shader_parameter/vignette_intensity = 0.3
 
 [node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("ui_sound_player", "pattern_button_container")]
 script = ExtResource("1_0xm2m")
@@ -120,6 +134,14 @@ size_flags_horizontal = 10
 [node name="StopButton" type="Button" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer" unique_id=1467915752]
 layout_mode = 2
 text = "Stop"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=372444106]
+material = SubResource("ShaderMaterial_vwth2")
+propagate_maximum_size = true
+offset_left = 58.0
+offset_top = 18.0
+offset_right = 1218.0
+offset_bottom = 593.0
 
 [node name="UISoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1428170919]
 

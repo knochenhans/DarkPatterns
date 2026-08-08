@@ -32,6 +32,7 @@ var current_pattern_preview_instance : PatternPreview
 var CurrentPatternSelection : DarkPattern
 
 var SpawnedFigures : Array[CharacterBody2D] = []
+var CreatedPatterns : Array[PlacedPattern] = []
 
 var play_area : CollisionShape2D = null
 
@@ -94,11 +95,8 @@ func _input(event: InputEvent) -> void:
 			var instance : PlacedPattern = placed_pattern.instantiate()
 			instance.position = em.global_position
 			instance.dark_pattern = CurrentPatternSelection
-			instance.figure_entered.connect(func(figure: Figure) -> void:
-				on_figure_entered_pattern(figure, CurrentPatternSelection)
-			)
-			instance.apply_artificial_scarcity.connect(on_apply_artificial_scarcity)
 			add_child(instance)
+			CreatedPatterns.append(instance)
 
 		remove_current_pattern_preview()
 
@@ -124,22 +122,36 @@ func on_apply_artificial_scarcity(pattern: PlacedPattern):
 	if figure != null && !figure.is_queued_for_deletion():
 		figure.apply_artificial_scarcity(pattern)
 
-func on_figure_entered_pattern(figure: Figure, pattern: DarkPattern) -> void:
+func on_figure_entered_pattern(figure: Figure, pattern_template: DarkPattern) -> void:
 	if figure == null or figure.is_queued_for_deletion():
 		return
-	if pattern == null:
+
+	if pattern_template == null:
 		return
 
-	match pattern.effect:
-		"addictive_design", "artificial_scarcity":
-			Global.money += pattern.money_added
-		"lootboxes":
-			Global.money += pattern.money_added * ((100 - figure.community) / 2)
-	print("money: ", Global.money)
-	ui_sound_player.stream = money_add_sound
-	ui_sound_player.play()
-
 func _on_tick_timeout() -> void:
+	for pattern in CreatedPatterns:
+		if pattern == null or pattern.is_queued_for_deletion():
+			continue
+
+		for figure in pattern.current_figures:
+			if figure == null or figure.is_queued_for_deletion():
+				continue
+
+			var money_added = 0
+			
+			match pattern.dark_pattern.effect:
+				"lootboxes":
+					money_added += pattern.dark_pattern.money_added * ((100 - figure.community) / 2)
+				_:
+					money_added += pattern.dark_pattern.money_added
+
+			Global.money += money_added
+
+			if money_added > 0:
+				ui_sound_player.stream = money_add_sound
+				ui_sound_player.play()
+
 	if ingame and SpawnedFigures.size() < number_of_figures:
 		var figure_instance = spawn_figure()
 		SpawnedFigures.append(figure_instance)
@@ -200,3 +212,8 @@ func get_text_file_content(filePath) -> String:
 	var content = file.get_as_text()
 	file.close()
 	return content
+
+func on_pattern_timeout(pattern: PlacedPattern) -> void:
+	if pattern in CreatedPatterns:
+		print("Pattern timed out: ", pattern.dark_pattern.name)
+		CreatedPatterns.erase(pattern)

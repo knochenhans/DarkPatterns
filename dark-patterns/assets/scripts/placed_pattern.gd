@@ -1,14 +1,17 @@
 extends Area2D
 class_name PlacedPattern
 var dark_pattern : DarkPattern
+var ticks_remaining : int
+
+var current_figures : Array = []
+
 @export var collision_polygon_2d: CollisionPolygon2D
 @export var polygon_2d: Polygon2D
 @export var placement_sound_player: AudioStreamPlayer2D
 @export var time_out_sound: AudioStream
-var ticks_remaining : int
 
-signal figure_entered(figure: Figure)
 signal apply_artificial_scarcity(pattern: PlacedPattern)
+signal time_out(pattern: PlacedPattern)
 
 func _ready() -> void:
 	if dark_pattern == null:
@@ -23,6 +26,15 @@ func _ready() -> void:
 	placement_sound_player.stream = dark_pattern.placement_sound
 	placement_sound_player.play()
 
+	body_entered.connect(func(body: Node) -> void:
+		if body is Figure:
+			on_figure_entered(body)
+	)
+	body_exited.connect(func(body: Node) -> void:
+		if body is Figure:
+			on_figure_exited(body)
+	)
+
 func set_polygon_2d():
 	var points : PackedVector2Array = []
 	for i in range(16):
@@ -36,12 +48,7 @@ func set_polygon_2d():
 	if dark_pattern.effect == "artificial_scarcity":
 		apply_artificial_scarcity.emit(self)
 
-func on_tick():
-	for b in get_overlapping_bodies():
-		if b.is_in_group("Person"):
-			apply_effect(b, dark_pattern.effect)
-			figure_entered.emit(b)
-			
+func on_tick():			
 	ticks_remaining -= 1
 	if ticks_remaining < 0:
 		print("playing time out sound: ", time_out_sound)
@@ -49,13 +56,21 @@ func on_tick():
 		placement_sound_player.stream = time_out_sound
 		placement_sound_player.play()
 		await placement_sound_player.finished
+		emit_signal("time_out", self)
 		queue_free()
 
-func apply_effect(figure: Figure, effect: String):
-	match effect:
-		"addictive_design":
-			figure.apply_happiness_effect(-2)
-			figure.apply_community_effect(-10)
-		"lootboxes":
-			figure.apply_happiness_effect(-10)
-			figure.apply_community_effect(-2)
+func on_figure_entered(figure: Figure) -> void:
+	if figure == null or figure.is_queued_for_deletion():
+		return
+	if dark_pattern == null:
+		return
+
+	current_figures.append(figure)
+
+func on_figure_exited(figure: Figure) -> void:
+	if figure == null or figure.is_queued_for_deletion():
+		return
+	if dark_pattern == null:
+		return
+
+	current_figures.erase(figure)

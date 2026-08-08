@@ -12,11 +12,12 @@ description = "Sends your users into an everlasting doom scrolling session.
 Removes mostly community and a bit of happiness"
 duration = 10.0
 size = 160.0
-depression_effect = 1
 price = 5
 effect = "infinite_scrolling"
 color = Color(0, 0.16862746, 0.6901961, 1)
 placement_sound = ExtResource("2_63fq3")
 money_added = 1
 use_collision = false
+depression_effect = 2
+community_effect = 10
 metadata/_custom_type_script = "uid://dhjlpyysxbnjj"

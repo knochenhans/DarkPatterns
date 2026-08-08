@@ -19,11 +19,14 @@
 [ext_resource type="FontFile" uid="uid://ca0dcvsj2bs1w" path="res://assets/fonts/BitcountSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf" id="12_ytb86"]
 [ext_resource type="SpriteFrames" uid="uid://dvp8uuogy1voo" path="res://resources/person2_frames.tres" id="13_uwelg"]
 [ext_resource type="SpriteFrames" uid="uid://beja4i7ovr52y" path="res://resources/person3_frames.tres" id="14_v3q3d"]
+[ext_resource type="Texture2D" uid="uid://dfhypn51xya8p" path="res://assets/graphics/metal-background.png" id="16_q5xp6"]
 [ext_resource type="Texture2D" uid="uid://b5ip2oikqqto4" path="res://assets/graphics/button-stop-out.png" id="18_onyvt"]
 [ext_resource type="Texture2D" uid="uid://58o0mlb0y5t7" path="res://assets/graphics/button-stop-in.png" id="19_q5xp6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
-size = Vector2(1162, 566)
+size = Vector2(1162, 551)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n6tbd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etxf0"]
 bg_color = Color(0.8509804, 0.8509804, 0.8509804, 1)
@@ -70,7 +73,7 @@ figure_sprites = Array[SpriteFrames]([ExtResource("12_xqcey"), ExtResource("13_u
 autostart = true
 
 [node name="play_area" type="CollisionShape2D" parent="." unique_id=47767852]
-position = Vector2(640, 349)
+position = Vector2(640, 341.5)
 shape = SubResource("RectangleShape2D_n6tbd")
 
 [node name="figures" type="Node2D" parent="." unique_id=193396737]
@@ -78,12 +81,18 @@ y_sort_enabled = true
 
 [node name="UI" type="Control" parent="." unique_id=1219324617]
 z_index = -10
+material = SubResource("CanvasItemMaterial_n6tbd")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MetalBackground" type="Sprite2D" parent="UI" unique_id=77400346]
+position = Vector2(673, 404)
+scale = Vector2(0.7513889, 0.7513889)
+texture = ExtResource("16_q5xp6")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=338827617]
 layout_mode = 1
@@ -154,10 +163,10 @@ texture_focused = ExtResource("18_onyvt")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=372444106]
 material = SubResource("ShaderMaterial_vwth2")
 propagate_maximum_size = true
-offset_left = 58.0
-offset_top = 67.0
-offset_right = 1218.0
-offset_bottom = 642.0
+offset_left = 37.0
+offset_top = 36.0
+offset_right = 1240.0
+offset_bottom = 633.0
 
 [node name="UISoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1428170919]
 

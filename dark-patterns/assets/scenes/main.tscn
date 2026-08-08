@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://osxdv2siup1a" path="res://assets/sounds/patterns/cannot_place.ogg" id="7_p5d64"]
 [ext_resource type="PackedScene" uid="uid://lxmo6i7bea3i" path="res://assets/scenes/pattern_button.tscn" id="8_6rsl6"]
 [ext_resource type="AudioStream" uid="uid://cu66pnp5tfxj" path="res://assets/sounds/UI/button.ogg" id="8_48cn3"]
+[ext_resource type="AudioStream" uid="uid://8s6iqwcwko7x" path="res://assets/sounds/ambient.ogg" id="12_ua5jh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
 size = Vector2(1162, 566)
@@ -118,5 +119,9 @@ layout_mode = 2
 text = "Stop"
 
 [node name="UISoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1428170919]
+
+[node name="Ambient" type="AudioStreamPlayer2D" parent="." unique_id=1951672721]
+stream = ExtResource("12_ua5jh")
+autoplay = true
 
 [connection signal="timeout" from="tick" to="." method="_on_tick_timeout"]

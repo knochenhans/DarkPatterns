@@ -18,17 +18,26 @@ var figure_scene = preload("res://assets/scenes/figure.tscn") as PackedScene
 # Pattern selection
 @export var pattern_button_container: Container
 @export var pattern_button_scene: PackedScene
+@export var pattern_preview_scene: PackedScene
 
 var first_names: PackedStringArray
 var last_names: PackedStringArray
 
 var current_pattern_selection : DarkPattern
+var current_pattern_preview_instance : PatternPreview
 
 var CurrentPatternSelection : DarkPattern
 
 var SpawnedFigures : Array[CharacterBody2D] = []
 
 var play_area : CollisionShape2D = null
+
+enum InputState {
+	NONE,
+	PLACING_PATTERN
+}
+
+var input_state : InputState = InputState.NONE
 
 func _ready() -> void:
 	CurrentPatternSelection = null
@@ -48,12 +57,24 @@ func _process(delta: float) -> void:
 	pass
 	
 func _input(event: InputEvent) -> void:
+	if current_pattern_preview_instance != null:
+		print("Moving pattern preview to: ", event.position)
+		current_pattern_preview_instance.position = event.position
+	
 	if event.is_action_pressed("place_pattern"):
 		if not play_area.shape.get_rect().has_point(event.position - play_area.global_position):
 			return
 
 		if CurrentPatternSelection == null:
 			print("No pattern selected.")
+			ui_sound_player.stream = cannot_place_pattern_sound
+			ui_sound_player.play()
+			return
+
+		var number_of_figures_in_radius = get_figure_in_radius(event.position, CurrentPatternSelection.size).size()
+
+		if number_of_figures_in_radius > 0:
+			print("Cannot place pattern, figures in radius: ", number_of_figures_in_radius)
 			ui_sound_player.stream = cannot_place_pattern_sound
 			ui_sound_player.play()
 			return
@@ -79,6 +100,15 @@ func _input(event: InputEvent) -> void:
 				on_figure_entered_pattern(figure, CurrentPatternSelection)
 			)
 			add_child(instance)
+
+		remove_current_pattern_preview()
+
+		input_state = InputState.NONE
+
+func remove_current_pattern_preview():
+	if current_pattern_preview_instance != null:
+		current_pattern_preview_instance.queue_free()
+		current_pattern_preview_instance = null
 
 func on_figure_entered_pattern(figure: Figure, pattern: DarkPattern) -> void:
 	match pattern.effect:
@@ -114,6 +144,17 @@ func on_pattern_selected(pattern: DarkPattern) -> void:
 	ui_sound_player.stream = button_click_sound
 	ui_sound_player.play()
 	CurrentPatternSelection = pattern
+
+	create_pattern_preview()
+
+	input_state = InputState.PLACING_PATTERN
+
+func create_pattern_preview():
+	if current_pattern_preview_instance != null:
+		current_pattern_preview_instance.queue_free()
+	current_pattern_preview_instance = pattern_preview_scene.instantiate()
+	current_pattern_preview_instance.dark_pattern = CurrentPatternSelection
+	add_child(current_pattern_preview_instance)
 
 func get_figure_in_radius(position: Vector2, radius: float) -> Array[Figure]:
 	var figures_in_radius : Array[Figure] = []

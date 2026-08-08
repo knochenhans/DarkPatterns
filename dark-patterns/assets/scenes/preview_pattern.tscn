@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cs8ubwa2hn4r4"]
+
+[ext_resource type="Script" uid="uid://bsm4g6t7domx3" path="res://assets/scenes/preview_pattern.gd" id="1_m3c6b"]
+
+[node name="PreviewPattern" type="Node2D" unique_id=207505790 node_paths=PackedStringArray("polygon_2d")]
+modulate = Color(1, 1, 1, 0.44313726)
+script = ExtResource("1_m3c6b")
+polygon_2d = NodePath("Polygon2D")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=516442244]
+position = Vector2(3, 1)
+color = Color(1, 1, 1, 0.18431373)
+polygon = PackedVector2Array(1, 0, 0, 1, 0, 0)
+uv = PackedVector2Array(1, 0, 0, 1, 0, 0)

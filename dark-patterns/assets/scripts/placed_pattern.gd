@@ -16,6 +16,13 @@ func _ready() -> void:
 		return
 	Global.tick_timer.timeout.connect(on_tick)
 	ticks_remaining = dark_pattern.duration
+	
+	set_polygon_2d()
+	
+	placement_sound_player.stream = dark_pattern.placement_sound
+	placement_sound_player.play()
+
+func set_polygon_2d():
 	var points : PackedVector2Array = []
 	for i in range(16):
 		var angle = i * PI/8
@@ -23,8 +30,6 @@ func _ready() -> void:
 	polygon_2d.polygon = points
 	collision_polygon_2d.polygon = points
 	polygon_2d.color = dark_pattern.color
-	placement_sound_player.stream = dark_pattern.placement_sound
-	placement_sound_player.play()
 		
 func on_tick():
 	for b in get_overlapping_bodies():

@@ -7,9 +7,9 @@ var affected = false
 
 var play_area = null
 
-var move_counter = 0
 var move_target: Vector2 = Vector2.ZERO
 @export var area_2d: Area2D
+@export var speed_scale: float = 1.0
 
 @onready
 var happy_ui_value = $debug_ui/happy/happy_value
@@ -34,11 +34,11 @@ func change_animation_state(state: String) -> void:
 	$AnimatedSprite2D.play(state)
 
 func _physics_process(_delta: float) -> void:
+	$AnimatedSprite2D.speed_scale = velocity.length() * speed_scale
+
 	if move_target != Vector2.ZERO:
 		var move_vector: Vector2 = move_target - position
 		velocity = move_vector.normalized() * 100
-
-		$AnimatedSprite2D.speed_scale = velocity.length() / 100.0
 
 		move_and_slide()
 		
@@ -73,11 +73,7 @@ func apply_happiness_effect(amount: int):
 		happiness = 0
 
 func _on_tick_timeout() -> void:
-	if move_counter == 5:
-		move_target = get_random_move_location()
-		move_counter = 0
-	else:
-		move_counter += 1
+	move_target = get_random_move_location()
 	happy_ui_value.text = str(happiness)
 
 

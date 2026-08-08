@@ -51,6 +51,7 @@ radius = 100.005
 script = ExtResource("1_qhnav")
 community = 50
 area_2d = NodePath("Area2D")
+speed_scale = 0.01
 
 [node name="tick" type="Timer" parent="." unique_id=221341262]
 autostart = true
@@ -62,7 +63,7 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=333518446]
 y_sort_enabled = true
 position = Vector2(-3, 38)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_n6tbd")
 animation = &"smile"
 offset = Vector2(0, -162)
@@ -77,10 +78,10 @@ anchors_preset = 0
 
 [node name="happy" type="HBoxContainer" parent="debug_ui" unique_id=1290056530]
 layout_mode = 0
-offset_left = -28.0
-offset_top = -155.0
-offset_right = 37.0
-offset_bottom = -135.0
+offset_left = -24.0
+offset_top = -92.0
+offset_right = 41.0
+offset_bottom = -72.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="debug_ui/happy" unique_id=1893019946]
 layout_mode = 2

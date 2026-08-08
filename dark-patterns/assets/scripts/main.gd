@@ -5,6 +5,7 @@ var ingame = true
 var figure = preload("res://assets/scenes/figure.tscn")
 @export var placed_pattern: PackedScene
 @export var AvailablePatterns : Array[DarkPattern]
+@export var number_of_figures : int = 5
 var CurrentPatternSelection : DarkPattern
 
 func _ready() -> void:
@@ -25,11 +26,10 @@ func _input(event: InputEvent) -> void:
 
 func _on_tick_timeout() -> void:
 	if ingame:
-		spawn_figure()
-		pass
+		for i in range(number_of_figures):
+			spawn_figure()
 
 func spawn_figure():
-	
 	var figure_instance = figure.instantiate()
 	figure_instance.play_area = $play_area
 	figure_instance.position = get_random_spawn_location()

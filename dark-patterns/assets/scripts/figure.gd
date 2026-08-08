@@ -1,3 +1,4 @@
+class_name Figure
 extends CharacterBody2D
 
 var happiness = 100

@@ -2,11 +2,14 @@ extends Node
 
 var ingame = true
 
-var figure = preload("res://assets/scenes/figure.tscn")
+var figure = preload("res://assets/scenes/figure.tscn") as PackedScene
+
 @export var placed_pattern: PackedScene
 @export var AvailablePatterns : Array[DarkPattern]
 @export var number_of_figures : int = 5
 var CurrentPatternSelection : DarkPattern
+
+var SpawnedFigures : Array[CharacterBody2D] = []
 
 func _ready() -> void:
 	# zum test
@@ -25,16 +28,16 @@ func _input(event: InputEvent) -> void:
 			add_child(instance)
 
 func _on_tick_timeout() -> void:
-	if ingame:
-		for i in range(number_of_figures):
-			spawn_figure()
+	if ingame and SpawnedFigures.size() < number_of_figures:
+		var figure_instance = spawn_figure()
+		SpawnedFigures.append(figure_instance)
 
-func spawn_figure():
+func spawn_figure() -> Figure:
 	var figure_instance = figure.instantiate()
 	figure_instance.play_area = $play_area
 	figure_instance.position = get_random_spawn_location()
 	$figures.add_child(figure_instance)
-	pass
+	return figure_instance
 
 func get_random_spawn_location():
 	var bounds = $play_area.shape.size

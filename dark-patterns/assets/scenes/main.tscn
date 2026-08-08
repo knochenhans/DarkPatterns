@@ -6,7 +6,17 @@
 [ext_resource type="Resource" uid="uid://dghyql5mfb8u2" path="res://resources/infinite_scroll.tres" id="4_etxf0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
-size = Vector2(1280, 500)
+size = Vector2(1162, 566)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etxf0"]
+bg_color = Color(0.8509804, 0.8509804, 0.8509804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86cna"]
+bg_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sfrgt"]
+font_size = 32
+font_color = Color(0, 0, 0, 1)
 
 [node name="main" type="Node" unique_id=594861777]
 script = ExtResource("1_0xm2m")
@@ -17,9 +27,74 @@ AvailablePatterns = Array[ExtResource("3_sfrgt")]([ExtResource("4_etxf0")])
 autostart = true
 
 [node name="play_area" type="CollisionShape2D" parent="." unique_id=47767852]
-position = Vector2(640, 250)
+position = Vector2(640, 309)
 shape = SubResource("RectangleShape2D_n6tbd")
 
 [node name="figures" type="Node" parent="." unique_id=1491009111]
+
+[node name="UI" type="Control" parent="." unique_id=1219324617]
+z_index = -10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=338827617]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="MarginContainer" parent="UI/VBoxContainer" unique_id=891427383]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/VBoxContainer/Main" unique_id=1497197104]
+layout_mode = 2
+
+[node name="Panel" type="PanelContainer" parent="UI/VBoxContainer/Main/CenterContainer" unique_id=1524214769]
+custom_minimum_size = Vector2(1200, 600)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_etxf0")
+
+[node name="Bottom" type="MarginContainer" parent="UI/VBoxContainer" unique_id=681371551]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer/Bottom" unique_id=1788566997]
+layout_mode = 2
+
+[node name="MoneyContainer" type="PanelContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=787425319]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_86cna")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer" unique_id=1600620162]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="MoneyCounter" type="CenterContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer/MarginContainer" unique_id=1559472018]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyContainer/MarginContainer/MoneyCounter" unique_id=1857306635]
+layout_mode = 2
+text = "000.00"
+label_settings = SubResource("LabelSettings_sfrgt")
+
+[node name="StopContainer" type="PanelContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=290517568]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="StopButton" type="Button" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer" unique_id=1467915752]
+layout_mode = 2
+text = "Stop"
 
 [connection signal="timeout" from="tick" to="." method="_on_tick_timeout"]

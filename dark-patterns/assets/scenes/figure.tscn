@@ -35,8 +35,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_n6tbd"]
 radius = 23.021729
 
-[node name="figure" type="CharacterBody2D" unique_id=333006212 groups=["Person"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_k1ki5"]
+radius = 150.0
+
+[node name="figure" type="CharacterBody2D" unique_id=333006212 node_paths=PackedStringArray("area_2d") groups=["Person"]]
 script = ExtResource("1_qhnav")
+area_2d = NodePath("Area2D")
 
 [node name="tick" type="Timer" parent="." unique_id=221341262]
 autostart = true
@@ -77,6 +81,11 @@ size_flags_horizontal = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 10
 text = "10"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1877635821]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=768853094]
+shape = SubResource("CircleShape2D_k1ki5")
 
 [connection signal="timeout" from="tick" to="." method="_on_tick_timeout"]
 [connection signal="timeout" from="death_timer" to="." method="_on_death_timer_timeout"]

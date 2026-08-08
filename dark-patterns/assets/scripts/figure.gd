@@ -2,12 +2,14 @@ class_name Figure
 extends CharacterBody2D
 
 var happiness = 100
+var community = 80
 var affected = false
 
 var play_area = null
 
 var move_counter = 0
 var move_target: Vector2 = Vector2.ZERO
+@export var area_2d: Area2D
 
 @onready
 var happy_ui_value = $debug_ui/happy/happy_value
@@ -36,8 +38,17 @@ func _physics_process(_delta: float) -> void:
 
 func get_random_move_location():
 	var bounds = play_area.shape.size
+	var bodies = []
+	for body in area_2d.get_overlapping_bodies():
+		if body == self:
+			continue
+		bodies.append(body)
+	if !bodies.is_empty():
+		var target = bodies.pick_random()
+		var random_pos := Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
+		var bias = community/100
+		return lerp(random_pos,target.position,bias)
 	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
-
 func apply_happiness_effect(amount: int):
 	happiness += amount
 	print("happiness: ", happiness)

@@ -1,23 +1,7 @@
 [gd_scene format=3 uid="uid://bk35o7ynkjo4w"]
 
 [ext_resource type="Script" uid="uid://dcblpiuhtxhqa" path="res://assets/scripts/ui_settings.gd" id="1_81xs1"]
-[ext_resource type="Texture2D" uid="uid://mfrml0bne8d3" path="res://assets/graphics/button-out.png" id="2_oncxu"]
-[ext_resource type="Texture2D" uid="uid://cwlhriqtjr86r" path="res://assets/graphics/button-in.png" id="3_v8hvo"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k1ki5"]
-texture = ExtResource("2_oncxu")
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lsnpq"]
-texture = ExtResource("3_v8hvo")
-
-[sub_resource type="Theme" id="Theme_81xs1"]
-Button/colors/font_color = Color(0.20080826, 0.20080876, 0.2008084, 1)
-Button/styles/normal = SubResource("StyleBoxTexture_k1ki5")
-Button/styles/pressed = SubResource("StyleBoxTexture_lsnpq")
+[ext_resource type="Theme" uid="uid://ds225b0nhp7hn" path="res://resources/btn_theme.tres" id="2_xl82c"]
 
 [node name="UiSettings" type="Control" unique_id=2039307974 node_paths=PackedStringArray("fullscreen_btn", "volume")]
 layout_mode = 3
@@ -54,6 +38,6 @@ tick_count = 10
 
 [node name="fullscreen_btn" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1835309158]
 layout_mode = 2
-theme = SubResource("Theme_81xs1")
+theme = ExtResource("2_xl82c")
 toggle_mode = true
 text = "Fullscreen"

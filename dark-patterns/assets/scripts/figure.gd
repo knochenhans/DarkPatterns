@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var happyness = 100
+var happiness = 100
 var affected = true
 var play_area = null
 
@@ -12,7 +12,7 @@ func _ready():
 	pass
 
 func _process(_delta) -> void:
-	if happyness > 50:
+	if happiness > 50:
 		$AnimatedSprite2D.animation = "smile"
 	else:
 		$AnimatedSprite2D.animation = "sad"
@@ -35,9 +35,9 @@ func _on_tick_timeout() -> void:
 	else:
 		move_counter += 1
 	if affected:
-		happyness -= 2
-		if happyness > 100:
-			happyness = 100
-		if happyness < 0:
-			happyness = 0
-	print(happyness)
+		happiness -= 2
+		if happiness > 100:
+			happiness = 100
+		if happiness < 0:
+			happiness = 0
+	print(happiness)

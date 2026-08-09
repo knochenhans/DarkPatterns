@@ -164,7 +164,7 @@ func get_random_move_location():
 		var target = bodies.pick_random() as Figure
 		var target_pos = target.move_target if target.move_target != Vector2.ZERO else target.position
 		var random_pos := Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
-		var bias = community/100
+		var bias = clampf(community / 100.0, 0.0, 1.0)
 		bias = bias * bias * bias # cubic bias
 		if community > 50:	
 			return lerp(random_pos,target_pos,bias)

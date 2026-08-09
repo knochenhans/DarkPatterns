@@ -325,10 +325,10 @@ func on_pattern_selected(pattern: DarkPattern) -> void:
 		if button is PatternButton:
 			button.button_pressed = button.get_pattern() == pattern
 
-	if not check_price(pattern.price):
-		CurrentPatternSelection = null
-		hide_current_pattern_preview()
-		return
+	#if not check_price(pattern.price):
+	#	CurrentPatternSelection = null
+	#	hide_current_pattern_preview()
+	#	return
 
 	CurrentPatternSelection = pattern
 

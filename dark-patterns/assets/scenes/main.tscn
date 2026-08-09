@@ -63,7 +63,7 @@ variation_opentype = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_sfrgt"]
 font = SubResource("FontVariation_ye0uq")
-font_size = 70
+font_size = 64
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahyqc"]
@@ -99,7 +99,7 @@ pattern_button_scene = ExtResource("8_6rsl6")
 pattern_preview_scene = ExtResource("11_ahyqc")
 figure_sprites = Array[SpriteFrames]([ExtResource("12_xqcey"), ExtResource("13_uwelg"), ExtResource("14_v3q3d")])
 start_screen = NodePath("StartScreen")
-game_over_screen = NodePath("UI/VBoxContainer/Top/black/GameOverScreen")
+game_over_screen = NodePath("UI/VBoxContainer/Top/black/grey/GameOverScreen")
 out_of_order_sticker = NodePath("UI/OOOTextureRect")
 stop_experiment_sticker = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer/VBoxContainer/Note-StopBtn")
 money_font = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/MoneyVbox/moneyContainer/money_font")
@@ -177,37 +177,6 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="GameOverScreen" type="Control" parent="UI/VBoxContainer/Top/black" unique_id=1709794172 node_paths=PackedStringArray("game_over_sound_player")]
-visible = false
-z_index = 10
-layout_mode = 2
-size_flags_vertical = 3
-script = ExtResource("21_n2241")
-game_over_sound = ExtResource("22_s2dc7")
-game_over_sound_player = NodePath("AudioStreamPlayer")
-
-[node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer/Top/black/GameOverScreen" unique_id=739196327]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ye0uq")
-
-[node name="Label" type="Label" parent="UI/VBoxContainer/Top/black/GameOverScreen/PanelContainer" unique_id=1461444449]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Dark patterns are deceptive design techniques that trick users into taking certain actions that aren’t necessarily in their best interest.
-
-They are implemented in many (online) games, shopping and social media plattforms to generate more revenue or keep users engaged for long periods of time."
-label_settings = SubResource("LabelSettings_pqtk7")
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/VBoxContainer/Top/black/GameOverScreen" unique_id=1866232374]
-
 [node name="ColorRect" type="ColorRect" parent="UI/VBoxContainer/Top/black" unique_id=247916859]
 layout_mode = 2
 color = Color(0.4392157, 0.4392157, 0.4392157, 1)
@@ -218,6 +187,37 @@ theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
+
+[node name="GameOverScreen" type="Control" parent="UI/VBoxContainer/Top/black/grey" unique_id=1709794172 node_paths=PackedStringArray("game_over_sound_player")]
+visible = false
+z_index = 10
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("21_n2241")
+game_over_sound = ExtResource("22_s2dc7")
+game_over_sound_player = NodePath("AudioStreamPlayer")
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer/Top/black/grey/GameOverScreen" unique_id=739196327]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ye0uq")
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/Top/black/grey/GameOverScreen/PanelContainer" unique_id=1461444449]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Dark patterns are deceptive design techniques that trick users into taking certain actions that aren’t necessarily in their best interest.
+
+They are implemented in many (online) games, shopping and social media plattforms to generate more revenue or keep users engaged for long periods of time."
+label_settings = SubResource("LabelSettings_pqtk7")
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/VBoxContainer/Top/black/grey/GameOverScreen" unique_id=1866232374]
 
 [node name="HBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/Top/black/grey" unique_id=87634220]
 layout_mode = 2
@@ -273,7 +273,7 @@ alignment = 1
 
 [node name="DescriptionContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=1220357250 instance=ExtResource("24_y7cho")]
 layout_mode = 2
-size_flags_stretch_ratio = 0.95
+size_flags_stretch_ratio = 1.0
 
 [node name="MoneyVbox" type="VBoxContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=1630766744]
 layout_mode = 2

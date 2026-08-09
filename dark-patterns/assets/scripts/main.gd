@@ -218,6 +218,9 @@ func _on_tick_timeout() -> void:
 			if figure == null or figure.is_queued_for_deletion():
 				continue
 
+			if figure.current_state == Figure.FigureState.DIED:
+				continue
+
 			var money_added = 0
 			
 			match pattern.dark_pattern.effect:

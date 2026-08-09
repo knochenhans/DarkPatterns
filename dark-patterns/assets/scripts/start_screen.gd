@@ -1,7 +1,7 @@
 extends Control
 class_name StartScreen
 
-@export var start_button: Button
+@export var start_button: TextureButton
 
 signal start_game_requested()
 

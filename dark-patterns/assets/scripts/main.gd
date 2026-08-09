@@ -254,6 +254,7 @@ func on_pattern_selected(pattern: DarkPattern) -> void:
 
 	if not check_money(pattern.price):
 		CurrentPatternSelection = null
+		remove_current_pattern_preview()
 		return
 
 	CurrentPatternSelection = pattern

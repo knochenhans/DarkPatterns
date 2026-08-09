@@ -259,6 +259,9 @@ func _on_tick_timeout() -> void:
 func _process(delta: float) -> void:
 	var show_preview = true
 	if input_state == InputState.PLACING_PATTERN and current_pattern_preview_instance != null:
+		if CurrentPatternSelection == null:
+			return
+		
 		if not check_money(CurrentPatternSelection.price, false):
 			show_preview = false
 		if not check_can_be_placed(current_pattern_preview_instance.global_position, CurrentPatternSelection.size):

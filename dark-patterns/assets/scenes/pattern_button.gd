@@ -18,6 +18,9 @@ func set_pattern(p: DarkPattern) -> void:
     self.modulate = pattern.color
     self.pattern_icon.texture = pattern.icon
 
+func get_pattern() -> DarkPattern:
+    return pattern
+
 func _on_pressed() -> void:
     emit_signal("pattern_selected", pattern)
 

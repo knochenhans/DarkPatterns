@@ -256,11 +256,14 @@ func get_random_spawn_location():
 	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
 
 func on_pattern_selected(pattern: DarkPattern) -> void:
-	print("Pattern selected: ", pattern.name)
 	ui_sound_player.stream = button_click_sound
 	ui_sound_player.play()
 
 	description_container.set_labels_from_pattern(pattern)
+
+	for button in pattern_button_container.get_children():
+		if button is PatternButton:
+			button.button_pressed = button.get_pattern() == pattern
 
 	if not check_money(pattern.price):
 		CurrentPatternSelection = null
@@ -277,6 +280,7 @@ func create_pattern_preview():
 	if current_pattern_preview_instance != null:
 		current_pattern_preview_instance.queue_free()
 	current_pattern_preview_instance = pattern_preview_scene.instantiate()
+	current_pattern_preview_instance.global_position = get_viewport().get_mouse_position()
 	current_pattern_preview_instance.dark_pattern = CurrentPatternSelection
 	%patterns.add_child(current_pattern_preview_instance)
 

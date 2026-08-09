@@ -17,4 +17,5 @@ effect = "artificial_scarcity"
 color = Color(0.99215686, 0.5764706, 0.7372549, 1)
 placement_sound = ExtResource("1_ggqvx")
 money_added = 1000
+depression_effect = -2
 metadata/_custom_type_script = "uid://dhjlpyysxbnjj"

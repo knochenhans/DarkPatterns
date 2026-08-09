@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dxnm8bslmi7he"]
+
+[ext_resource type="Texture2D" uid="uid://do7da64yhoodt" path="res://assets/graphics/figures/person2-0-dead.png" id="1_8vjur"]
+[ext_resource type="Texture2D" uid="uid://yntffn7suuwx" path="res://assets/graphics/figures/person2-50-01.png" id="2_63kas"]
+[ext_resource type="Texture2D" uid="uid://bdl64y2ds888e" path="res://assets/graphics/figures/person2-50-02.png" id="3_65p25"]
+[ext_resource type="Texture2D" uid="uid://ck5dksvuvkjjd" path="res://assets/graphics/figures/person2-device-0-01.png" id="4_8vjur"]
+[ext_resource type="Texture2D" uid="uid://b7g4phw7t4wgm" path="res://assets/graphics/figures/person2-device-0-02.png" id="5_63kas"]
+[ext_resource type="Texture2D" uid="uid://cs6macpu0vlq1" path="res://assets/graphics/figures/person2-device-100-01.png" id="6_65p25"]
+[ext_resource type="Texture2D" uid="uid://cg72tgtyksvdd" path="res://assets/graphics/figures/person2-device-100-02.png" id="7_7xys0"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8vjur")
+}],
+"loop": 1,
+"name": &"died",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_63kas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_65p25")
+}],
+"loop": 1,
+"name": &"neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_8vjur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_63kas")
+}],
+"loop": 1,
+"name": &"sad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_65p25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7xys0")
+}],
+"loop": 1,
+"name": &"smile",
+"speed": 5.0
+}]

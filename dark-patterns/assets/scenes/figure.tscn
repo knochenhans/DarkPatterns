@@ -53,11 +53,19 @@ radius = 100.005
 script = ExtResource("1_qhnav")
 community = 50
 area_2d = NodePath("Area2D")
-speed_scale = 0.01
+anim_speed_scale = 0.01
+speed_target_close = 5
 walking_sound_player = NodePath("WalkingSound")
 state_sound_player = NodePath("StateSound")
 death_timer = NodePath("death_timer")
 idle_sound_timer = NodePath("idle_sound_timer")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1756203114]
+modulate = Color(1, 1, 1, 0.42352942)
+y_sort_enabled = true
+position = Vector2(4.9999995, 53)
+scale = Vector2(0.4874518, 0.12620153)
+texture = ExtResource("7_8epu0")
 
 [node name="tick" type="Timer" parent="." unique_id=221341262]
 autostart = true
@@ -113,14 +121,6 @@ label_settings = ExtResource("7_p1hqm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=768853094]
 shape = SubResource("CircleShape2D_k1ki5")
-
-[node name="Shadow" type="Sprite2D" parent="." unique_id=1756203114]
-modulate = Color(1, 1, 1, 0.42352942)
-z_index = -1
-y_sort_enabled = true
-position = Vector2(4.9999995, 53)
-scale = Vector2(0.4874518, 0.12620153)
-texture = ExtResource("7_8epu0")
 
 [node name="WalkingSound" type="AudioStreamPlayer2D" parent="." unique_id=389213218]
 stream = ExtResource("9_tyten")

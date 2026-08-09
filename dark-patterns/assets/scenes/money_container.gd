@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Control
 
 @export var money_label: Label
 

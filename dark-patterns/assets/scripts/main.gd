@@ -136,7 +136,7 @@ func start_game() -> void:
 func _input(event: InputEvent) -> void:
 	if current_pattern_preview_instance != null and event is InputEventMouseMotion:
 		# print("Moving pattern preview to: ", event.position)
-		current_pattern_preview_instance.position = event.position
+		current_pattern_preview_instance.global_position = event.position
 	
 	if event.is_action_pressed("place_pattern"):
 		if not play_area.shape.get_rect().has_point(event.position - play_area.global_position):
@@ -168,10 +168,10 @@ func _input(event: InputEvent) -> void:
 		var em := event as InputEventMouseButton
 		if em:
 			var instance : PlacedPattern = placed_pattern.instantiate()
-			instance.position = em.global_position
+			instance.global_position = em.global_position - %cliprect.global_position
 			instance.dark_pattern = CurrentPatternSelection
 			instance.apply_artificial_scarcity.connect(on_apply_artificial_scarcity)
-			add_child(instance)
+			%patterns.add_child(instance)
 			CreatedPatterns.append(instance)
 
 		remove_current_pattern_preview()
@@ -251,7 +251,7 @@ func spawn_figure() -> Figure:
 	figure_instance.set_character_set(character_sets[random_sprite_index % character_sets.size()])
 	figure_instance.figure_state_changed.connect(on_figure_state_changed)
 
-	$figures.add_child(figure_instance)
+	%figures.add_child(figure_instance)
 	return figure_instance
 
 func get_random_spawn_location():
@@ -278,7 +278,7 @@ func create_pattern_preview():
 		current_pattern_preview_instance.queue_free()
 	current_pattern_preview_instance = pattern_preview_scene.instantiate()
 	current_pattern_preview_instance.dark_pattern = CurrentPatternSelection
-	add_child(current_pattern_preview_instance)
+	%patterns.add_child(current_pattern_preview_instance)
 
 func get_figure_in_radius(position: Vector2, radius: float) -> Array[Figure]:
 	var figures_in_radius : Array[Figure] = []

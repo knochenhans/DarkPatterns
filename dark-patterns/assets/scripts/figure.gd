@@ -15,7 +15,10 @@ var artificial_scarcity_pattern: PlacedPattern = null
 
 @export var community = 0
 @export var area_2d: Area2D
-@export var speed_scale: float = 1.0
+@export var anim_speed_scale: float = 1.0
+
+@export var speed_normal := 100
+@export var speed_target_close := 10
 
 @export var walking_sound_player: AudioStreamPlayer2D
 @export var state_sound_player: AudioStreamPlayer2D
@@ -102,11 +105,12 @@ func change_animation_state(state: String) -> void:
 func _physics_process(_delta: float) -> void:
 	if not alive:
 		return
+	
+	$AnimatedSprite2D.speed_scale = velocity.length() * anim_speed_scale
 		
-	if move_target.distance_to(global_position) < 10: #to stop jitter
+	var target_distance := move_target.distance_to(global_position)
+	if target_distance < 100: #to stop jitter
 		move_target = global_position
-		
-	$AnimatedSprite2D.speed_scale = velocity.length() * speed_scale
 	
 	if artificial_scarcity_pattern != null:
 		var move_vector: Vector2 = artificial_scarcity_pattern.position - position
@@ -116,12 +120,14 @@ func _physics_process(_delta: float) -> void:
 		
 	if move_target != Vector2.ZERO:
 		var move_vector: Vector2 = move_target - position
+		var speed := speed_normal if target_distance < 200 else speed_target_close 
 		velocity = move_vector.normalized() * 100
 		move_and_slide()
 		set_moving_state(true)
 	else:
 		velocity = Vector2.ZERO
 		set_moving_state(false)
+	
 		
 	if abs(velocity.x) > 50:
 		if velocity.x > 0:

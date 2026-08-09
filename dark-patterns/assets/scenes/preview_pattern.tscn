@@ -1,14 +1,24 @@
 [gd_scene format=3 uid="uid://cs8ubwa2hn4r4"]
 
 [ext_resource type="Script" uid="uid://bsm4g6t7domx3" path="res://assets/scenes/preview_pattern.gd" id="1_m3c6b"]
+[ext_resource type="Shader" uid="uid://k7sb33bs5tqw" path="res://assets/scenes/invert_color.gdshader" id="2_ey0gp"]
+[ext_resource type="Texture2D" uid="uid://d3gmy8kb38xmn" path="res://assets/graphics/shape-doomscrolling.svg" id="3_6waly"]
 
-[node name="PreviewPattern" type="Node2D" unique_id=207505790 node_paths=PackedStringArray("polygon_2d")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gnmur"]
+shader = ExtResource("2_ey0gp")
+
+[node name="PreviewPattern" type="Node2D" unique_id=207505790 node_paths=PackedStringArray("polygon_2d", "icon_sprite")]
 modulate = Color(1, 1, 1, 0.44313726)
 script = ExtResource("1_m3c6b")
 polygon_2d = NodePath("Polygon2D")
+icon_sprite = NodePath("IconSprite2D")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=516442244]
 position = Vector2(3, 1)
 color = Color(1, 1, 1, 0.18431373)
 polygon = PackedVector2Array(1, 0, 0, 1, 0, 0)
 uv = PackedVector2Array(1, 0, 0, 1, 0, 0)
+
+[node name="IconSprite2D" type="Sprite2D" parent="." unique_id=1160969980]
+material = SubResource("ShaderMaterial_gnmur")
+texture = ExtResource("3_6waly")

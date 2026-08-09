@@ -7,8 +7,8 @@
 
 [node name="DescriptionContainer" type="PanelContainer" unique_id=1137155172 node_paths=PackedStringArray("head_label", "desc_label")]
 texture_filter = 1
-offset_right = 150.0
-offset_bottom = 99.0
+offset_right = 326.0
+offset_bottom = 142.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
 theme = ExtResource("1_auuxg")
@@ -21,12 +21,12 @@ layout_mode = 2
 
 [node name="Heading" type="MarginContainer" parent="VBoxContainer" unique_id=2105085316]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 0
 size_flags_stretch_ratio = 0.2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_bottom = 5
 
 [node name="Label" type="Label" parent="VBoxContainer/Heading" unique_id=1582215252]
 layout_mode = 2
@@ -36,9 +36,7 @@ label_settings = ExtResource("1_280ee")
 
 [node name="description_font" type="MarginContainer" parent="VBoxContainer" unique_id=1550402146]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 

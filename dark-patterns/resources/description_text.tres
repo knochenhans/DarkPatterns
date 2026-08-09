@@ -6,5 +6,6 @@
 base_font = ExtResource("1_hk7uu")
 
 [resource]
+line_spacing = 1.0
 font = SubResource("FontVariation_hk7uu")
 font_color = Color(0, 0, 0, 1)

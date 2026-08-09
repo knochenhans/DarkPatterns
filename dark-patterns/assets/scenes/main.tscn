@@ -63,7 +63,7 @@ variation_opentype = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_sfrgt"]
 font = SubResource("FontVariation_ye0uq")
-font_size = 50
+font_size = 70
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahyqc"]
@@ -87,7 +87,7 @@ placed_pattern = ExtResource("2_kpi06")
 AvailablePatterns = Array[ExtResource("3_sfrgt")]([ExtResource("4_etxf0"), ExtResource("5_ov4sg"), ExtResource("6_ahyqc")])
 number_of_figures = 30
 tick = NodePath("tick")
-stop_button = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/VBoxContainer/StopButton")
+stop_button = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer/VBoxContainer/StopButton")
 money_add_sound = ExtResource("5_xplbd")
 buy_pattern_sound = ExtResource("6_6rsl6")
 cannot_place_pattern_sound = ExtResource("7_p5d64")
@@ -270,17 +270,19 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="DescriptionContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=1220357250 instance=ExtResource("24_y7cho")]
-custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
+size_flags_stretch_ratio = 0.94
 
 [node name="MoneyVbox" type="VBoxContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=1630766744]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.4
 offset_transform_enabled = true
 
 [node name="moneyContainer" type="PanelContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyVbox" unique_id=213406827 node_paths=PackedStringArray("money_label")]
 texture_filter = 1
 layout_mode = 2
+size_flags_vertical = 3
 offset_transform_enabled = true
 theme = ExtResource("25_nn48q")
 script = ExtResource("5_etxf0")
@@ -293,11 +295,17 @@ theme_override_constants/margin_right = 10
 
 [node name="Label" type="Label" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyVbox/moneyContainer/money_font" unique_id=1857306635]
 layout_mode = 2
-text = "000.00$"
+text = "1.000.000.000$"
 label_settings = SubResource("LabelSettings_sfrgt")
 horizontal_alignment = 1
 
+[node name="Control" type="Control" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyVbox" unique_id=572475966]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+
 [node name="seperator" type="Control" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=1105551714]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.08
@@ -308,10 +316,15 @@ size_flags_horizontal = 10
 size_flags_stretch_ratio = 0.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ahyqc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer" unique_id=1846556007]
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer" unique_id=1849085004]
+layout_mode = 2
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer" unique_id=1846556007]
 layout_mode = 2
 
-[node name="StopButton" type="TextureButton" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/VBoxContainer" unique_id=129298260]
+[node name="StopButton" type="TextureButton" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer/VBoxContainer" unique_id=129298260]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -321,7 +334,7 @@ texture_hover = ExtResource("18_onyvt")
 texture_disabled = ExtResource("18_onyvt")
 texture_focused = ExtResource("18_onyvt")
 
-[node name="Note-StopBtn" type="TextureRect" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/VBoxContainer" unique_id=1307134840]
+[node name="Note-StopBtn" type="TextureRect" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer/VBoxContainer" unique_id=1307134840]
 layout_mode = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(-20, -18)

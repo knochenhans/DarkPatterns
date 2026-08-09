@@ -311,7 +311,16 @@ func spawn_figure() -> Figure:
 
 func get_random_spawn_location():
 	var bounds = play_area.shape.size
-	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
+	#print(bounds)
+	var middle = play_area.position
+	var xHalfed = bounds.x / 2
+	var yHalfed = bounds.y / 2
+	
+	var result = Vector2(randf_range(-xHalfed, xHalfed), randf_range(-yHalfed, yHalfed))
+	var ret = middle + result
+	if result.y > 600:
+		print("main: middle %s, xHalfed %s, yHalfed %s" % [str(middle), str(xHalfed), str(yHalfed)])
+	return ret
 
 func on_pattern_selected(pattern: DarkPattern) -> void:
 	ui_sound_player.stream = button_click_sound

@@ -119,9 +119,9 @@ func _physics_process(_delta: float) -> void:
 	
 	$AnimatedSprite2D.speed_scale = velocity.length() * anim_speed_scale
 		
-	var target_distance := move_target.distance_to(global_position)
-	if target_distance < 100: #to stop jitter
-		move_target = global_position
+	var target_distance := move_target.distance_to(position)
+	if target_distance < 100:# Stop jitter
+		move_target = position
 	
 	if artificial_scarcity_pattern != null:
 		var move_vector: Vector2 = artificial_scarcity_pattern.position - position
@@ -155,6 +155,19 @@ func set_moving_state(new_state: bool) -> void:
 
 	moving = new_state
 
+func get_random_play_area_location():
+	var bounds = play_area.shape.size
+	#print(bounds)
+	var middle = play_area.position
+	var xHalfed = bounds.x / 2
+	var yHalfed = bounds.y / 2
+	
+	var result = Vector2(randf_range(-xHalfed, xHalfed), randf_range(-yHalfed, yHalfed))
+	var ret = middle + result
+	if result.y > 600:
+		print("figure.gd: middle %s, xHalfed %s, yHalfed %s" % [str(middle), str(xHalfed), str(yHalfed)])
+	return ret
+
 func get_random_move_location():
 	var bounds = play_area.shape.size
 	var bodies = []
@@ -162,17 +175,29 @@ func get_random_move_location():
 		if body == self:
 			continue
 		bodies.append(body)
+		
+	var random_pos: Vector2 =  get_random_play_area_location()
+	var ret: Vector2 = Vector2.ZERO
+	var context = ""
 	if !bodies.is_empty():
 		var target = bodies.pick_random() as Figure
 		var target_pos = target.move_target if target.move_target != Vector2.ZERO else target.position
-		var random_pos := Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
 		var bias = clampf(community / 100.0, 0.0, 1.0)
 		bias = bias * bias * bias # cubic bias
 		if community > 50:	
-			return lerp(random_pos,target_pos,bias)
+			context = "1: random_pos: %s, target_pos: %s, bias: %s target.move_target: %s, target.position %s, " % [str(random_pos), str(target_pos), str(bias), str(target.move_target), str(target.position)]
+			ret = lerp(random_pos,target_pos,bias)
 		else:
-			return random_pos # lerp(target_pos * -1, random_pos,bias)
-	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
+			context = "2: random_pos: %s, " % [str(random_pos)]
+			ret = random_pos # lerp(target_pos * -1, random_pos,bias)
+	else:
+		context = "3, "
+		ret = random_pos
+	
+	if ret.x > bounds.x || ret.y > bounds.y:
+		print(context + str(ret))
+	
+	return ret
 
 func apply_artificial_scarcity(pattern: PlacedPattern):
 	set_collision_mask_value(1, false)

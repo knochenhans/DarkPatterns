@@ -27,7 +27,6 @@ Global="*uid://do2ohb2ikqw23"
 
 window/size/viewport_width=1280
 window/size/viewport_height=900
-window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [dotnet]

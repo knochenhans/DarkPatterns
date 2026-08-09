@@ -100,6 +100,10 @@ func set_state(new_state: FigureState) -> void:
 			state_sound_player.play()
 
 func change_animation_state(state: String) -> void:
+	if affected:
+		$AnimatedSprite2D.frames = character_set.sprite_frames_affected
+	else:
+		$AnimatedSprite2D.frames = character_set.sprite_frames
 	$AnimatedSprite2D.play(state)
 
 func _physics_process(_delta: float) -> void:
@@ -138,6 +142,7 @@ func _physics_process(_delta: float) -> void:
 func set_moving_state(new_state: bool) -> void:
 	if moving != new_state:
 		if new_state:
+			print("playing walking sound for figure: ", get_figure_name())
 			walking_sound_player.play()
 		else:
 			walking_sound_player.stop()
@@ -211,3 +216,12 @@ func on_idle_sound_timer_timeout() -> void:
 func set_random_idle_sound_timer() -> void:
 	var random_timeout = randf_range(5.0, 20.0)
 	idle_sound_timer.start(random_timeout)
+
+func stop() -> void:
+	walking_sound_player.stop()
+	state_sound_player.stop()
+
+	idle_sound_timer.stop()
+	death_timer.stop()
+
+	set_process(false)

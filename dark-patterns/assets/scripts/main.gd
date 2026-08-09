@@ -32,7 +32,7 @@ var mouse_error = preload("res://assets/scenes/mouse_error.tscn") as PackedScene
 
 # Screens
 @export var start_screen: StartScreen
-@export var game_over_screen: Control
+@export var game_over_screen: GameOverScreen
 
 @export var out_of_order_sticker: Control
 @export var money_font: Control
@@ -105,9 +105,12 @@ func show_game_over_screen() -> void:
 
 	start_screen.visible = false
 	game_over_screen.visible = true
+	game_over_screen.run_game_over()
 
 	out_of_order_sticker.visible = true
 	money_font.visible = false
+
+	stop_game()
 
 func start_game() -> void:	
 	game_state = GameState.INGAME
@@ -119,6 +122,13 @@ func start_game() -> void:
 
 	tick.start()
 	ticker.add_ticker_message("Welcome!!!")
+
+func stop_game() -> void:
+	tick.stop()
+
+	for figure in SpawnedFigures:
+		if figure != null and not figure.is_queued_for_deletion():
+			figure.stop()
 	
 func _input(event: InputEvent) -> void:
 	if current_pattern_preview_instance != null and event is InputEventMouseMotion:

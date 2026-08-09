@@ -75,6 +75,7 @@ func on_figure_entered(figure: Figure) -> void:
 		return
 
 	current_figures.append(figure)
+	figure.affected = true
 
 func on_figure_exited(figure: Figure) -> void:
 	if figure == null or figure.is_queued_for_deletion():
@@ -82,4 +83,5 @@ func on_figure_exited(figure: Figure) -> void:
 	if dark_pattern == null:
 		return
 
+	figure.affected = false
 	current_figures.erase(figure)

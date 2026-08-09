@@ -28,6 +28,8 @@
 [ext_resource type="Texture2D" uid="uid://b5ip2oikqqto4" path="res://assets/graphics/button-stop-out.png" id="18_onyvt"]
 [ext_resource type="PackedScene" uid="uid://cqqlabfh7mev4" path="res://assets/scenes/UI/ticker_label.tscn" id="18_ye0uq"]
 [ext_resource type="Texture2D" uid="uid://58o0mlb0y5t7" path="res://assets/graphics/button-stop-in.png" id="19_q5xp6"]
+[ext_resource type="Script" uid="uid://cncxdaw4onn6j" path="res://assets/scenes/game_over_screen.gd" id="21_n2241"]
+[ext_resource type="AudioStream" uid="uid://c8nyaajcnx777" path="res://assets/sounds/machine_winddown.ogg" id="22_s2dc7"]
 [ext_resource type="Texture2D" uid="uid://dtt8upgj5axub" path="res://assets/graphics/PostIt-StopExperiment.png" id="24_jbgu6"]
 [ext_resource type="PackedScene" uid="uid://b5ree6gy3thsx" path="res://assets/scenes/UI/description_container.tscn" id="24_y7cho"]
 [ext_resource type="Texture2D" uid="uid://dlonf7liiifdj" path="res://assets/graphics/PostIt-OutOfOrder.png" id="25_kxv8u"]
@@ -173,11 +175,14 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="GameOverScreen" type="Control" parent="UI/VBoxContainer/Top/black" unique_id=1709794172]
+[node name="GameOverScreen" type="Control" parent="UI/VBoxContainer/Top/black" unique_id=1709794172 node_paths=PackedStringArray("game_over_sound_player")]
 visible = false
 z_index = 10
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("21_n2241")
+game_over_sound = ExtResource("22_s2dc7")
+game_over_sound_player = NodePath("AudioStreamPlayer")
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer/Top/black/GameOverScreen" unique_id=739196327]
 layout_mode = 1
@@ -198,6 +203,8 @@ They are implemented in many (online) games, shopping and social media plattform
 label_settings = SubResource("LabelSettings_pqtk7")
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/VBoxContainer/Top/black/GameOverScreen" unique_id=1866232374]
 
 [node name="ColorRect" type="ColorRect" parent="UI/VBoxContainer/Top/black" unique_id=247916859]
 layout_mode = 2

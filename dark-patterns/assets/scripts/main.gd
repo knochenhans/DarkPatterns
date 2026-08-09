@@ -146,11 +146,11 @@ func _input(event: InputEvent) -> void:
 			ui_sound_player.play()
 			return
 
-		if not check_can_be_placed(event.position, CurrentPatternSelection.size):
-			return
 
 		if CurrentPatternSelection.use_collision:
 			var number_of_figures_in_radius = get_figure_in_radius(event.position, CurrentPatternSelection.size).size()
+			if not check_can_be_placed(event.position, CurrentPatternSelection.size):
+				return
 
 			if number_of_figures_in_radius > 0:
 				print("Cannot place pattern, figures in radius: ", number_of_figures_in_radius)
@@ -262,17 +262,25 @@ func _on_tick_timeout() -> void:
 		figure_instance.figure_died.connect(on_figure_died)
 
 func _process(delta: float) -> void:
-	var show_preview = true
-	if input_state == InputState.PLACING_PATTERN and current_pattern_preview_instance != null:
-		if CurrentPatternSelection == null:
-			return
+	var show_preview : int= 0
+	if input_state == InputState.PLACING_PATTERN and current_pattern_preview_instance != null and CurrentPatternSelection != null:
 		
-		if not check_price(CurrentPatternSelection.price, false):
-			show_preview = false
-		if not check_can_be_placed(current_pattern_preview_instance.global_position, CurrentPatternSelection.size):
-			show_preview = false
-			
-	if show_preview:
+		show_preview += 1
+		if check_price(CurrentPatternSelection.price, false):
+			show_preview += 1
+			if CurrentPatternSelection.use_collision:
+				if check_can_be_placed(current_pattern_preview_instance.global_position, CurrentPatternSelection.size):
+					show_preview += 1
+			else:
+				show_preview += 1
+	if show_preview == 1:
+		Global.change_mouse_cursor(Global.cursors.no_money)
+	elif show_preview == 2:
+		Global.change_mouse_cursor(Global.cursors.bad_placement)
+	else:
+		Global.change_mouse_cursor(Global.cursors.normal)
+	
+	if show_preview >= 3:
 		show_current_pattern_preview()
 	else:
 		hide_current_pattern_preview()

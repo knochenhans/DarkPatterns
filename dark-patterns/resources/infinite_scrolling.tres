@@ -6,10 +6,11 @@
 
 [resource]
 script = ExtResource("3_0cvmi")
-name = "Infinite Scrolling"
+name = "Doom Scrolling"
 icon = ExtResource("1_c800k")
 description = "Sends your users into an everlasting doom scrolling session.
-Removes mostly community and a bit of happiness"
+Removes mostly community and a bit of happiness.
+"
 duration = 10.0
 size = 160.0
 price = 5

@@ -8,6 +8,8 @@
 script = ExtResource("1_cdcvj")
 name = "Artificial Scarcity"
 icon = ExtResource("1_8iioa")
+description = "Artificial scarcity often goes hand in hand with an unnecessary sense of urgency on the buyer's part. 
+The user rushes to buy the product."
 duration = 5.0
 size = 30.0
 price = 500

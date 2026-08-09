@@ -8,8 +8,8 @@
 script = ExtResource("3_pecnb")
 name = "Loot Boxes"
 icon = ExtResource("1_5ec5p")
-description = "Lootboxes.
-Mostly remove happiness but also a bit of community."
+description = "Loot boxes can be purchased with real money. When users open a box, they have a random chance of getting an item. 
+This diminishes their happiness and need for community."
 duration = 5.0
 size = 75.0
 price = 10

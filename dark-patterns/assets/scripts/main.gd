@@ -301,6 +301,7 @@ func on_figure_died(figure: Figure) -> void:
 func on_figure_state_changed(figure: Figure, new_state: Figure.FigureState) -> void:
 	var figure_name = figure.get_figure_name()
 	var message = ""
+	print(figure_name)
 	match new_state:
 		Figure.FigureState.HAPPY:
 			message = happiness_messages[randi() % happiness_messages.size()] % figure_name

@@ -159,7 +159,7 @@ func _input(event: InputEvent) -> void:
 				#add_mouse_error(event.position, "Cannot place pattern on figures")
 				return
 
-		if not check_money(CurrentPatternSelection.price):
+		if not check_price(CurrentPatternSelection.price):
 			#add_mouse_error(event.position, "Not enough money to place pattern")
 			return
 
@@ -177,7 +177,7 @@ func _input(event: InputEvent) -> void:
 			%patterns.add_child(instance)
 			CreatedPatterns.append(instance)
 
-		if not check_money(CurrentPatternSelection.price, false):
+		if not check_price(CurrentPatternSelection.price, false):
 			hide_current_pattern_preview()
 
 		# input_state = InputState.NONE
@@ -186,7 +186,7 @@ func _input(event: InputEvent) -> void:
 	if ik and ik.pressed and ik.keycode == Key.KEY_0:
 		Global.money = 0
 
-func check_money(price: int, play_sound: bool = true) -> bool:
+func check_price(price: int, play_sound: bool = true) -> bool:
 	if Global.money < price:
 		print("Not enough money to place pattern.")
 		if play_sound:
@@ -267,7 +267,7 @@ func _process(delta: float) -> void:
 		if CurrentPatternSelection == null:
 			return
 		
-		if not check_money(CurrentPatternSelection.price, false):
+		if not check_price(CurrentPatternSelection.price, false):
 			show_preview = false
 		if not check_can_be_placed(current_pattern_preview_instance.global_position, CurrentPatternSelection.size):
 			show_preview = false
@@ -276,6 +276,9 @@ func _process(delta: float) -> void:
 		show_current_pattern_preview()
 	else:
 		hide_current_pattern_preview()
+
+	if Global.money <= 5 and game_state == GameState.INGAME and CreatedPatterns.size() == 0:
+		ticker_controller.add_ticker_message("You were unable to keep users on your platform and you can’t afford to place any more patterns.", true)
 
 func spawn_figure() -> Figure:
 	var figure_instance = figure_scene.instantiate()
@@ -305,7 +308,7 @@ func on_pattern_selected(pattern: DarkPattern) -> void:
 		if button is PatternButton:
 			button.button_pressed = button.get_pattern() == pattern
 
-	if not check_money(pattern.price):
+	if not check_price(pattern.price):
 		CurrentPatternSelection = null
 		hide_current_pattern_preview()
 		return

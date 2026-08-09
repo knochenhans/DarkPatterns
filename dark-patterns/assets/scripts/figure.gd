@@ -30,6 +30,8 @@ var artificial_scarcity_pattern: PlacedPattern = null
 @export var death_timer: Timer
 @export var idle_sound_timer: Timer
 
+var random_speed_factor: float = 1.0
+
 var character_set: CharacterSet = null
 
 var moving = false
@@ -52,6 +54,8 @@ func _ready():
 
 	var rand_pitch = randf_range(0.8, 1.2)
 	var rand_volume = randf_range(-6, 0)
+
+	random_speed_factor = randf_range(0.8, 1.2)
 
 	walking_sound_player.pitch_scale = rand_pitch
 	walking_sound_player.volume_db = rand_volume
@@ -125,7 +129,7 @@ func _physics_process(_delta: float) -> void:
 	if move_target != Vector2.ZERO:
 		var move_vector: Vector2 = move_target - position
 		var speed := speed_normal if target_distance < 200 else speed_target_close 
-		velocity = move_vector.normalized() * 100
+		velocity = move_vector.normalized() * 100 * random_speed_factor
 		move_and_slide()
 		set_moving_state(true)
 	else:

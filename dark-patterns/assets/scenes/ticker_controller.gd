@@ -7,7 +7,7 @@ class_name TickerController
 
 var label_stack: Array[TickerLabel] = []
 
-func add_ticker_message(message: String) -> void:
+func add_ticker_message(message: String, warning: bool = false) -> void:
 	if not ticker_label_scene:
 		push_error("TickerController: ticker_label_scene is not assigned.")
 		return
@@ -24,7 +24,7 @@ func add_ticker_message(message: String) -> void:
 
 	label_stack.append(ticker_label_instance)
 
-	ticker_label_instance.push_message("*** " + message + "***", start_x)
+	ticker_label_instance.push_message("*** " + message + "***", start_x, warning)
 
 func on_label_destroyed(label: TickerLabel) -> void:
 	label_stack.erase(label)

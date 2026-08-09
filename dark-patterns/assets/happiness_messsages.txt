@@ -3,3 +3,7 @@ Fortunately, %s is experiencing happiness.
 Gladly, %s is enjoying a moment of happiness.
 Excitedly, %s is going through a period of happiness.
 Joyfully, %s is embracing the challenges of happiness.
+For the first time in a while, %s is feeling a sense of happiness.
+A wave of joy is washing over %s.
+Finally life has a meaning again for %s.
+%s has managed to free themselves from the clutches of sadness and dark patterns.

@@ -8,3 +8,5 @@ Death by depression has come for %s.
 %s finally succumbed to the darkness of doom scrolling.
 Dark patterns have led to the untimely death of %s.
 %s got sucked into a vortex of dark patterns and has left this world.
+Depression due to dark patterns has taken their toll on %s, leading to their untimely death.
+Tangled in a web of dark patterns, %s has tragically passed away.

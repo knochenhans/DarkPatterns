@@ -149,7 +149,6 @@ func _physics_process(_delta: float) -> void:
 func set_moving_state(new_state: bool) -> void:
 	if moving != new_state:
 		if new_state:
-			print("playing walking sound for figure: ", get_figure_name())
 			walking_sound_player.play()
 		else:
 			walking_sound_player.stop()
@@ -176,7 +175,6 @@ func get_random_move_location():
 	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
 
 func apply_artificial_scarcity(pattern: PlacedPattern):
-	print("helooooooo")
 	set_collision_mask_value(1, false)
 	artificial_scarcity_pattern = pattern
 
@@ -225,7 +223,6 @@ func get_figure_name() -> String:
 	return first_name + " " + last_name
 
 func on_idle_sound_timer_timeout() -> void:
-	print("idle sound timer timeout")
 	if character_set != null and alive:
 		state_sound_player.stream = character_set.sound_idle
 		state_sound_player.play()

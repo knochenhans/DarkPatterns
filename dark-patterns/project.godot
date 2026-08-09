@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="DarkPatterns"
+config/name="Patterns of Darknesss"
 run/main_scene="uid://bstbty6mq2ya2"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://bsroqqghba7w4"
 
 [audio]
 

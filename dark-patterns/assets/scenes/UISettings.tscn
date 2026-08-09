@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bk35o7ynkjo4w"]
 
 [ext_resource type="Script" uid="uid://dcblpiuhtxhqa" path="res://assets/scripts/ui_settings.gd" id="1_81xs1"]
-[ext_resource type="Theme" uid="uid://ds225b0nhp7hn" path="res://resources/btn_theme.tres" id="2_xl82c"]
+[ext_resource type="Theme" uid="uid://ds225b0nhp7hn" path="res://resources/theme.tres" id="2_xl82c"]
 
 [node name="UiSettings" type="Control" unique_id=2039307974 node_paths=PackedStringArray("fullscreen_btn", "volume")]
 layout_mode = 3

@@ -49,19 +49,6 @@ font_size = 22
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m64nd"]
 bg_color = Color(0.84313726, 0.827451, 0.75686276, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m64nd"]
-shader = ExtResource("11_rin3v")
-shader_parameter/smearing = 0.0350000016625
-shader_parameter/color_offset = 0.00300000177243999
-shader_parameter/sharpening = 0.0850000040375
-shader_parameter/static_noise = 0.0350000016625
-shader_parameter/crack_center = Vector2(0.15, 0.85)
-shader_parameter/crack_intensity = 0.0
-shader_parameter/crack_size = 0.0
-shader_parameter/vertical_jitter = 0.0
-shader_parameter/scanline_opacity = 0.1
-shader_parameter/vignette_intensity = 0.0850000040375
-
 [sub_resource type="FontVariation" id="FontVariation_ye0uq"]
 base_font = ExtResource("12_ytb86")
 variation_opentype = {
@@ -78,6 +65,19 @@ font_size = 50
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahyqc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m64nd"]
+shader = ExtResource("11_rin3v")
+shader_parameter/smearing = 0.0350000016625
+shader_parameter/color_offset = 0.00300000177243999
+shader_parameter/sharpening = 0.0850000040375
+shader_parameter/static_noise = 0.0350000016625
+shader_parameter/crack_center = Vector2(0.15, 0.85)
+shader_parameter/crack_intensity = 0.0
+shader_parameter/crack_size = 0.0
+shader_parameter/vertical_jitter = 0.0
+shader_parameter/scanline_opacity = 0.1
+shader_parameter/vignette_intensity = 0.0850000040375
 
 [node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("tick", "stop_button", "ui_sound_player", "pattern_button_container", "ticker", "start_screen", "game_over_screen", "out_of_order_sticker", "money_font", "description_container")]
 script = ExtResource("1_0xm2m")
@@ -235,10 +235,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_m64nd")
 script = ExtResource("16_m64nd")
 ticker_label_scene = ExtResource("18_ye0uq")
 
-[node name="vhs" type="ColorRect" parent="UI/VBoxContainer/Top/black/grey" unique_id=1932893916]
-material = SubResource("ShaderMaterial_m64nd")
-layout_mode = 2
-
 [node name="Bottom" type="MarginContainer" parent="UI/VBoxContainer" unique_id=2053234182]
 layout_mode = 2
 size_flags_vertical = 3
@@ -333,6 +329,13 @@ offset_top = 636.0
 offset_right = 387.0
 offset_bottom = 766.0
 texture = ExtResource("25_kxv8u")
+
+[node name="vhs" type="ColorRect" parent="." unique_id=1932893916]
+material = SubResource("ShaderMaterial_m64nd")
+offset_left = 46.0
+offset_top = 46.0
+offset_right = 1234.0
+offset_bottom = 624.0
 
 [node name="UISoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1428170919]
 

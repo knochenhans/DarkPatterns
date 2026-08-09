@@ -81,7 +81,7 @@ shader_parameter/vertical_jitter = 0.0
 shader_parameter/scanline_opacity = 0.1
 shader_parameter/vignette_intensity = 0.0850000040375
 
-[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("tick", "stop_button", "ui_sound_player", "pattern_button_container", "ticker", "start_screen", "game_over_screen", "out_of_order_sticker", "money_font", "description_container")]
+[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("tick", "stop_button", "ui_sound_player", "pattern_button_container", "start_screen", "game_over_screen", "out_of_order_sticker", "stop_experiment_sticker", "money_font", "description_container", "money_container", "ticker_controller")]
 script = ExtResource("1_0xm2m")
 placed_pattern = ExtResource("2_kpi06")
 AvailablePatterns = Array[ExtResource("3_sfrgt")]([ExtResource("4_etxf0"), ExtResource("5_ov4sg"), ExtResource("6_ahyqc")])
@@ -98,12 +98,14 @@ pattern_button_container = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/Margi
 pattern_button_scene = ExtResource("8_6rsl6")
 pattern_preview_scene = ExtResource("11_ahyqc")
 figure_sprites = Array[SpriteFrames]([ExtResource("12_xqcey"), ExtResource("13_uwelg"), ExtResource("14_v3q3d")])
-ticker = NodePath("UI/VBoxContainer/Top/black/grey/HBoxContainer/Ticker/TickerController")
 start_screen = NodePath("StartScreen")
 game_over_screen = NodePath("UI/VBoxContainer/Top/black/GameOverScreen")
 out_of_order_sticker = NodePath("UI/OOOTextureRect")
+stop_experiment_sticker = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer/VBoxContainer/Note-StopBtn")
 money_font = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/MoneyVbox/moneyContainer/money_font")
 description_container = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/DescriptionContainer")
+money_container = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/MoneyVbox/moneyContainer")
+ticker_controller = NodePath("UI/VBoxContainer/Top/black/grey/HBoxContainer/Ticker/TickerController")
 
 [node name="tick" type="Timer" parent="." unique_id=765994102]
 

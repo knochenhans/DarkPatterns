@@ -1,10 +1,10 @@
 extends Control
+class_name MoneyContainer
 
 @export var money_label: Label
 
 func _process(_delta: float) -> void:
 	money_label.text = humanize_number(str(Global.money, "")) + "$"
-
 
 # gratefully taken from
 # https://forum.godotengine.org/t/humanize-numbers/88273/3
@@ -24,3 +24,6 @@ func humanize_number(number : String) -> String:
 			to_return = item + to_return
 			i += 1
 		return to_return + decimals
+
+func clear() -> void:
+	money_label.text = ""

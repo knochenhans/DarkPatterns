@@ -39,3 +39,8 @@ func get_next_spawn_position_x() -> float:
 	var last_label_right_edge: float = last_label.position.x + last_label.size.x + message_spacing
 	
 	return maxf(container_width, last_label_right_edge)
+
+func clear() -> void:
+	for label in label_stack:
+		label.queue_free()
+	label_stack.clear()

@@ -27,18 +27,18 @@ var mouse_error = preload("res://assets/scenes/mouse_error.tscn") as PackedScene
 # Sprites
 @export var figure_sprites: Array[SpriteFrames] = []
 
-# Ticker
-@export var ticker: TickerController
-
 # Screens
 @export var start_screen: StartScreen
 @export var game_over_screen: GameOverScreen
 
 @export var out_of_order_sticker: Control
+@export var stop_experiment_sticker: Control
 @export var money_font: Control
 
-# Description
+# Display containters
 @export var description_container: DescriptionContainer
+@export var money_container: MoneyContainer
+@export var ticker_controller: TickerController
 
 var first_names: PackedStringArray
 var last_names: PackedStringArray
@@ -108,7 +108,12 @@ func show_game_over_screen() -> void:
 	game_over_screen.run_game_over()
 
 	out_of_order_sticker.visible = true
+	stop_experiment_sticker.visible = false
 	money_font.visible = false
+
+	money_container.clear()
+	description_container.clear()
+	ticker_controller.clear()
 
 	stop_game()
 
@@ -121,7 +126,7 @@ func start_game() -> void:
 	stop_button.connect("pressed", Callable(self, "show_game_over_screen"))
 
 	tick.start()
-	ticker.add_ticker_message("Welcome!!!")
+	ticker_controller.add_ticker_message("Welcome!!!")
 
 func stop_game() -> void:
 	tick.stop()
@@ -343,7 +348,7 @@ func on_figure_state_changed(figure: Figure, new_state: Figure.FigureState) -> v
 		Figure.FigureState.DIED:
 			message = death_messages[randi() % death_messages.size()] % figure_name
 
-	ticker.add_ticker_message(message)
+	ticker_controller.add_ticker_message(message)
 
 func get_text_file_lines(filePath) -> PackedStringArray:
 	var file = FileAccess.open(filePath, FileAccess.READ)

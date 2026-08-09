@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://b5ree6gy3thsx"]
+
+[ext_resource type="LabelSettings" uid="uid://cugqaxl3pppsa" path="res://resources/description_heading.tres" id="1_280ee"]
+[ext_resource type="Theme" uid="uid://ds225b0nhp7hn" path="res://resources/theme.tres" id="1_auuxg"]
+[ext_resource type="Script" uid="uid://dlglasgage60c" path="res://assets/scripts/description_container.gd" id="1_iicpg"]
+[ext_resource type="LabelSettings" uid="uid://mnby1r3yy2cn" path="res://resources/description_text.tres" id="2_iicpg"]
+
+[node name="DescriptionContainer" type="PanelContainer" unique_id=1137155172 node_paths=PackedStringArray("head_label", "desc_label")]
+texture_filter = 1
+custom_minimum_size = Vector2(150, 0)
+offset_right = 150.0
+offset_bottom = 99.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+theme = ExtResource("1_auuxg")
+script = ExtResource("1_iicpg")
+head_label = NodePath("VBoxContainer/Heading/Label")
+desc_label = NodePath("VBoxContainer/description_font/Label")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=23234513]
+layout_mode = 2
+
+[node name="Heading" type="MarginContainer" parent="VBoxContainer" unique_id=2105085316]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/Heading" unique_id=1582215252]
+layout_mode = 2
+text = "Heading"
+label_settings = ExtResource("1_280ee")
+
+[node name="description_font" type="MarginContainer" parent="VBoxContainer" unique_id=1550402146]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/description_font" unique_id=2094200357]
+layout_mode = 2
+size_flags_vertical = 1
+text = "This is an intereasdsa"
+label_settings = ExtResource("2_iicpg")
+autowrap_mode = 3

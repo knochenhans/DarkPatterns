@@ -181,6 +181,9 @@ func apply_artificial_scarcity(pattern: PlacedPattern):
 	artificial_scarcity_pattern = pattern
 
 func apply_happiness_effect(amount: int):
+	if current_state == FigureState.DIED:
+		return
+
 	print(first_name + " " + last_name + " applying happiness effect: ", amount)
 	happiness += amount
 	print(first_name + " " + last_name + " happiness: ", happiness)

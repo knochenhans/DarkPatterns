@@ -180,6 +180,7 @@ func _input(event: InputEvent) -> void:
 			instance.dark_pattern = CurrentPatternSelection
 			instance.apply_artificial_scarcity.connect(on_apply_artificial_scarcity)
 			%patterns.add_child(instance)
+			instance.time_out.connect(on_pattern_timeout)
 			CreatedPatterns.append(instance)
 
 		if not check_price(CurrentPatternSelection.price, false):
@@ -290,7 +291,10 @@ func _process(delta: float) -> void:
 	else:
 		hide_current_pattern_preview()
 
+	print("CreatedPatterns size: ", CreatedPatterns.size())
+
 	if Global.money <= 5 and game_state == GameState.INGAME and CreatedPatterns.size() == 0:
+		# print("Game over: not enough money and no patterns left.")
 		ticker_controller.add_ticker_message("You were unable to keep users on your platform and you can’t afford to place any more patterns.", true)
 
 func spawn_figure() -> Figure:

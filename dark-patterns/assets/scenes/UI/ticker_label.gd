@@ -3,7 +3,7 @@ class_name TickerLabel
 
 signal label_destroyed(label: TickerLabel)
 
-@export var scroll_speed: float = 100.0 # Pixels per second
+@export var scroll_speed: float = 100.0
 
 var is_moving: bool = false
 
@@ -24,14 +24,6 @@ func push_message(msg: String, start_x: float, warning: bool = false) -> void:
 			label_settings.font_color = Color.WHITE
 		else:
 			add_theme_color_override("font_color", Color.WHITE)
-	else:
-		style_box.bg_color = Color.WHITE
-		add_theme_stylebox_override("normal", style_box)
-		
-		if label_settings:
-			label_settings.font_color = Color.BLACK
-		else:
-			add_theme_color_override("font_color", Color.BLACK)
 
 func _process(delta: float) -> void:
 	if not is_moving:

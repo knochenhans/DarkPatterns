@@ -2,13 +2,19 @@
 
 [ext_resource type="Script" uid="uid://c3b7i7n0gumfp" path="res://assets/scripts/placed_pattern.gd" id="1_6fr4k"]
 [ext_resource type="AudioStream" uid="uid://gfacjowhln81" path="res://assets/sounds/patterns/pattern_timed_out.ogg" id="2_1jast"]
+[ext_resource type="Shader" uid="uid://k7sb33bs5tqw" path="res://assets/scenes/invert_color.gdshader" id="3_yf2wn"]
+[ext_resource type="Texture2D" uid="uid://d3gmy8kb38xmn" path="res://assets/graphics/shape-doomscrolling.svg" id="4_014ds"]
 
-[node name="PlacedPattern" type="Area2D" unique_id=2032930721 node_paths=PackedStringArray("collision_polygon_2d", "polygon_2d", "placement_sound_player") groups=["Pattern"]]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1jast"]
+shader = ExtResource("3_yf2wn")
+
+[node name="PlacedPattern" type="Area2D" unique_id=2032930721 node_paths=PackedStringArray("collision_polygon_2d", "polygon_2d", "placement_sound_player", "icon_sprite") groups=["Pattern"]]
 script = ExtResource("1_6fr4k")
 collision_polygon_2d = NodePath("CollisionPolygon2D")
 polygon_2d = NodePath("Polygon2D")
 placement_sound_player = NodePath("AudioStreamPlayer2D")
 time_out_sound = ExtResource("2_1jast")
+icon_sprite = NodePath("IconSprite2D")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=962471751]
 position = Vector2(3, 1)
@@ -20,3 +26,7 @@ uv = PackedVector2Array(1, 0, 0, 1, 0, 0)
 polygon = PackedVector2Array(1, 0, 0, 1, 0, 0)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=263955946]
+
+[node name="IconSprite2D" type="Sprite2D" parent="." unique_id=570088652]
+material = SubResource("ShaderMaterial_1jast")
+texture = ExtResource("4_014ds")

@@ -9,6 +9,7 @@ var current_figures : Array = []
 @export var polygon_2d: Polygon2D
 @export var placement_sound_player: AudioStreamPlayer2D
 @export var time_out_sound: AudioStream
+@export var icon_sprite: Sprite2D
 
 signal apply_artificial_scarcity(pattern: PlacedPattern)
 signal time_out(pattern: PlacedPattern)
@@ -34,15 +35,13 @@ func _ready() -> void:
 		if body is Figure:
 			on_figure_exited(body)
 	)
+	icon_sprite.texture = dark_pattern.icon
+	icon_sprite.scale = Vector2(dark_pattern.size/75, dark_pattern.size/75)
 
 func set_polygon_2d():
-	var points : PackedVector2Array = []
-	for i in range(16):
-		var angle = i * PI/8
-		points.append(dark_pattern.size*Vector2.from_angle(angle))
-	polygon_2d.polygon = points
+	var points = PatternHelper.set_polygon_2d(polygon_2d, dark_pattern)
+
 	collision_polygon_2d.polygon = points
-	polygon_2d.color = dark_pattern.color
 	placement_sound_player.stream = dark_pattern.placement_sound
 	placement_sound_player.play()
 	if dark_pattern.effect == "artificial_scarcity":

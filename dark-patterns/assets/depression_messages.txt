@@ -1,0 +1,5 @@
+Oh no, %s is feeling depressed.
+Unfortunately, %s is in a state of depression.
+Sadly, %s is having a tough time.
+Tragically, %s is feeling down.
+Regrettably, %s is facing a bout of depression.

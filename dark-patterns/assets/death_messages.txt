@@ -1,0 +1,5 @@
+Unfortunately, %s has died from depression.
+Sadly, %s has passed away due to depression.
+Tragically, %s has succumbed to depression.
+Regrettably, %s has lost their battle with depression.
+Heartbreakingly, %s has died as a result of depression.

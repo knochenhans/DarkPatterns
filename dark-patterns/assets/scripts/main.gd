@@ -64,34 +64,17 @@ enum GameState {
 var input_state : InputState = InputState.NONE
 var game_state : GameState = GameState.STARTSCREEN
 
-var happiness_messages = [
-	"Yay, %s is feeling happy.",
-	"Fortunately, %s is experiencing happiness.",
-	"Gladly, %s is enjoying a moment of happiness.",
-	"Excitedly, %s is going through a period of happiness.",
-	"Joyfully, %s is embracing the challenges of happiness."
-]
-
-var death_messages = [
-	"Unfortunately, %s has died from depression.",
-	"Sadly, %s has passed away due to depression.",
-	"Tragically, %s has succumbed to depression.",
-	"Regrettably, %s has lost their battle with depression.",
-	"Heartbreakingly, %s has died as a result of depression."
-]
-
-var depression_messages = [
-	"Oh no, %s is feeling depressed.",
-	"Unfortunately, %s is in a state of depression.",
-	"Sadly, %s is having a tough time.",
-	"Tragically, %s is feeling down.",
-	"Regrettably, %s is facing a bout of depression."
-]
+var happiness_messages = []
+var death_messages = []
+var depression_messages = []
 
 func _ready() -> void:
 	play_area = $play_area
-	first_names = get_text_file_content("res://assets/first_names.txt").split("\n")
-	last_names = get_text_file_content("res://assets/last_names.txt").split("\n")
+	first_names = get_text_file_lines("res://assets/first_names.txt")
+	last_names = get_text_file_lines("res://assets/last_names.txt")
+	happiness_messages = get_text_file_lines("res://assets/happiness_messsages.txt")
+	death_messages = get_text_file_lines("res://assets/death_messages.txt")
+	depression_messages = get_text_file_lines("res://assets/depression_messages.txt")
 	
 	CurrentPatternSelection = null
 
@@ -304,11 +287,11 @@ func on_figure_state_changed(figure: Figure, new_state: Figure.FigureState) -> v
 
 	ticker.add_ticker_message(message)
 
-func get_text_file_content(filePath) -> String:
+func get_text_file_lines(filePath) -> PackedStringArray:
 	var file = FileAccess.open(filePath, FileAccess.READ)
 	var content = file.get_as_text()
 	file.close()
-	return content
+	return content.split("\n")
 
 func on_pattern_timeout(pattern: PlacedPattern) -> void:
 	if pattern in CreatedPatterns:

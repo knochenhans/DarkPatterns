@@ -1,0 +1,5 @@
+Yay, %s is feeling happy.
+Fortunately, %s is experiencing happiness.
+Gladly, %s is enjoying a moment of happiness.
+Excitedly, %s is going through a period of happiness.
+Joyfully, %s is embracing the challenges of happiness.

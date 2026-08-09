@@ -219,12 +219,11 @@ func hide_current_pattern_preview():
 
 func show_current_pattern_preview():
 	if current_pattern_preview_instance != null:
-		print("Showing current pattern preview for: ", current_pattern_preview_instance.dark_pattern.name)
+		# print("Showing current pattern preview for: ", current_pattern_preview_instance.dark_pattern.name)
 		current_pattern_preview_instance.visible = true
 		
 func on_apply_artificial_scarcity(pattern: PlacedPattern):
 	var figure = SpawnedFigures.pick_random()
-	print("helooooooo1")
 	if figure != null && !figure.is_queued_for_deletion():
 		figure.apply_artificial_scarcity(pattern)
 
@@ -290,7 +289,7 @@ func _process(delta: float) -> void:
 	else:
 		hide_current_pattern_preview()
 
-	print("CreatedPatterns size: ", CreatedPatterns.size())
+	# print("CreatedPatterns size: ", CreatedPatterns.size())
 
 	if Global.money <= 5 and game_state == GameState.INGAME and CreatedPatterns.size() == 0:
 		# print("Game over: not enough money and no patterns left.")

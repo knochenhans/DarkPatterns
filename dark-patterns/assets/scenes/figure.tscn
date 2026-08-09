@@ -49,10 +49,10 @@ radius = 23.021729
 [sub_resource type="CircleShape2D" id="CircleShape2D_k1ki5"]
 radius = 100.005
 
-[node name="figure" type="CharacterBody2D" unique_id=333006212 node_paths=PackedStringArray("area_2d", "walking_sound_player", "state_sound_player", "death_timer", "idle_sound_timer") groups=["Person"]]
+[node name="figure" type="CharacterBody2D" unique_id=333006212 node_paths=PackedStringArray("scan_area_2d", "walking_sound_player", "state_sound_player", "death_timer", "idle_sound_timer") groups=["Person"]]
 script = ExtResource("1_qhnav")
 community = 50
-area_2d = NodePath("Area2D")
+scan_area_2d = NodePath("Area2D")
 anim_speed_scale = 0.01
 speed_target_close = 5
 walking_sound_player = NodePath("WalkingSound")
@@ -94,7 +94,6 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="DebugContainer" type="VBoxContainer" parent="debug_ui" unique_id=1772507527]
-visible = false
 layout_mode = 0
 offset_left = -21.0
 offset_top = -95.0

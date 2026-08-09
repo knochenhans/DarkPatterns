@@ -14,7 +14,7 @@ var last_name = ""
 var artificial_scarcity_pattern: PlacedPattern = null
 
 @export var community = 0
-@export var area_2d: Area2D
+@export var scan_area_2d: Area2D
 @export var anim_speed_scale: float = 1.0
 
 @export var speed_normal := 100
@@ -66,6 +66,7 @@ func _ready():
 	idle_sound_timer.connect("timeout", Callable(self, "on_idle_sound_timer_timeout"))
 
 	set_random_idle_sound_timer()
+	change_animation_state("smile")
 
 func set_character_set(new_character_set: CharacterSet) -> void:
 	character_set = new_character_set
@@ -73,13 +74,10 @@ func set_character_set(new_character_set: CharacterSet) -> void:
 
 func _process(_delta) -> void:
 	if happiness > 50:
-		change_animation_state("smile")
 		set_state(FigureState.HAPPY)
 	elif happiness > 0:
-		change_animation_state("sad")
 		set_state(FigureState.SAD)
 	else:
-		change_animation_state("died")
 		set_state(FigureState.DIED)
 		alive = false
 		if death_timer.is_stopped():
@@ -103,12 +101,17 @@ func set_state(new_state: FigureState) -> void:
 				FigureState.DIED: state_sound_player.stream = character_set.sound_dying
 			state_sound_player.play()
 
-func change_animation_state(state: String) -> void:
+		match current_state:
+			FigureState.HAPPY: change_animation_state("smile")
+			FigureState.SAD: change_animation_state("sad")
+			FigureState.DIED: change_animation_state("died")
+
+func change_animation_state(new_state: String) -> void:
 	if affected and character_set.sprite_frames_affected != null:
 		$AnimatedSprite2D.frames = character_set.sprite_frames_affected
 	else:
 		$AnimatedSprite2D.frames = character_set.sprite_frames
-	$AnimatedSprite2D.play(state)
+	$AnimatedSprite2D.play(new_state)
 
 func _physics_process(_delta: float) -> void:
 	if not alive:
@@ -156,7 +159,7 @@ func set_moving_state(new_state: bool) -> void:
 func get_random_move_location():
 	var bounds = play_area.shape.size
 	var bodies = []
-	for body in area_2d.get_overlapping_bodies():
+	for body in scan_area_2d.get_overlapping_bodies():
 		if body == self:
 			continue
 		bodies.append(body)
@@ -194,9 +197,17 @@ func apply_community_effect(amount: int):
 	if community < 0:
 		community = 0
 
+func get_figures_in_area() -> Array[Figure]:
+	var figures_in_area: Array[Figure] = []
+	for body in scan_area_2d.get_overlapping_bodies():
+		if body is Figure:
+			figures_in_area.append(body)
+	return figures_in_area
+
 func _on_tick_timeout() -> void:
-	# apply_happiness_effect(len(area_2d.get_overlapping_bodies()) / 10)
-	# apply_community_effect(5)
+	var happiness_effect = get_figures_in_area().size()
+	# print("applying happiness effect: ", happiness_effect)
+	apply_happiness_effect(happiness_effect)
 	move_target = get_random_move_location()
 	debug_happy_label.text = "Happiness: " + str(happiness)
 	debug_community_label.text = "Community: " + str(community)

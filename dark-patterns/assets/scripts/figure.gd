@@ -100,7 +100,7 @@ func set_state(new_state: FigureState) -> void:
 			state_sound_player.play()
 
 func change_animation_state(state: String) -> void:
-	if affected:
+	if affected and character_set.sprite_frames_affected != null:
 		$AnimatedSprite2D.frames = character_set.sprite_frames_affected
 	else:
 		$AnimatedSprite2D.frames = character_set.sprite_frames

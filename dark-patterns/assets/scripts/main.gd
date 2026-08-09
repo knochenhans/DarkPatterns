@@ -89,8 +89,7 @@ func _ready() -> void:
 		button_instance.set_pattern(pattern)
 		button_instance.connect("pattern_selected", on_pattern_selected)
 
-	start_game()
-	# show_start_screen()
+	show_start_screen()
 
 func show_start_screen() -> void:
 	game_state = GameState.STARTSCREEN

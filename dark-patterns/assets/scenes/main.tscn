@@ -31,6 +31,7 @@
 [ext_resource type="Script" uid="uid://cncxdaw4onn6j" path="res://assets/scenes/game_over_screen.gd" id="21_n2241"]
 [ext_resource type="AudioStream" uid="uid://c8nyaajcnx777" path="res://assets/sounds/machine_winddown.ogg" id="22_s2dc7"]
 [ext_resource type="Texture2D" uid="uid://dtt8upgj5axub" path="res://assets/graphics/PostIt-StopExperiment.png" id="24_jbgu6"]
+[ext_resource type="Script" uid="uid://vv0rjvf0fqoc" path="res://assets/scripts/connect_cursor_change_area.gd" id="24_ke4cb"]
 [ext_resource type="PackedScene" uid="uid://b5ree6gy3thsx" path="res://assets/scenes/UI/description_container.tscn" id="24_y7cho"]
 [ext_resource type="Texture2D" uid="uid://dlonf7liiifdj" path="res://assets/graphics/PostIt-OutOfOrder.png" id="25_kxv8u"]
 [ext_resource type="Theme" uid="uid://ds225b0nhp7hn" path="res://resources/theme.tres" id="25_nn48q"]
@@ -112,6 +113,7 @@ ticker_controller = NodePath("UI/VBoxContainer/Top/black/grey/HBoxContainer/Tick
 [node name="play_area" type="CollisionShape2D" parent="." unique_id=47767852]
 position = Vector2(639.5, 310.5)
 shape = SubResource("RectangleShape2D_n6tbd")
+script = ExtResource("24_ke4cb")
 
 [node name="cliprect" type="ColorRect" parent="." unique_id=19143621]
 unique_name_in_owner = true

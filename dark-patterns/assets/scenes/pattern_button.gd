@@ -2,6 +2,8 @@ extends TextureButton
 class_name PatternButton
 
 signal pattern_selected(pattern: DarkPattern)
+signal pattern_mouse_entered(pattern: DarkPattern)
+signal pattern_mouse_exited(pattern: DarkPattern)
 
 @export var pattern_icon: TextureRect
 
@@ -18,3 +20,9 @@ func set_pattern(p: DarkPattern) -> void:
 
 func _on_pressed() -> void:
     emit_signal("pattern_selected", pattern)
+
+func _on_mouse_entered() -> void:   
+    emit_signal("pattern_mouse_entered", pattern)
+
+func _on_mouse_exited() -> void:
+    emit_signal("pattern_mouse_exited", pattern)

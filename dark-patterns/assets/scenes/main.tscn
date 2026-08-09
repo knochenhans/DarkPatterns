@@ -79,7 +79,7 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahyqc"]
 
-[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("tick", "stop_button", "ui_sound_player", "pattern_button_container", "ticker", "start_screen", "game_over_screen", "out_of_order_sticker", "money_font")]
+[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("tick", "stop_button", "ui_sound_player", "pattern_button_container", "ticker", "start_screen", "game_over_screen", "out_of_order_sticker", "money_font", "description_container")]
 script = ExtResource("1_0xm2m")
 placed_pattern = ExtResource("2_kpi06")
 AvailablePatterns = Array[ExtResource("3_sfrgt")]([ExtResource("4_etxf0"), ExtResource("5_ov4sg"), ExtResource("6_ahyqc")])
@@ -101,6 +101,7 @@ start_screen = NodePath("StartScreen")
 game_over_screen = NodePath("UI/VBoxContainer/Top/black/GameOverScreen")
 out_of_order_sticker = NodePath("UI/OOOTextureRect")
 money_font = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/MoneyVbox/moneyContainer/money_font")
+description_container = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/DescriptionContainer")
 
 [node name="tick" type="Timer" parent="." unique_id=765994102]
 
@@ -266,6 +267,7 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="DescriptionContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=1220357250 instance=ExtResource("24_y7cho")]
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 
 [node name="MoneyVbox" type="VBoxContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=1630766744]

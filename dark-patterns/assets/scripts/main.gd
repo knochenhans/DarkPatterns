@@ -37,6 +37,9 @@ var mouse_error = preload("res://assets/scenes/mouse_error.tscn") as PackedScene
 @export var out_of_order_sticker: Control
 @export var money_font: Control
 
+# Description
+@export var description_container: DescriptionContainer
+
 var first_names: PackedStringArray
 var last_names: PackedStringArray
 
@@ -44,6 +47,7 @@ var current_pattern_selection : DarkPattern
 var current_pattern_preview_instance : PatternPreview
 
 var CurrentPatternSelection : DarkPattern
+var CurrentPatternHovered : DarkPattern
 
 var SpawnedFigures : Array[CharacterBody2D] = []
 var CreatedPatterns : Array[PlacedPattern] = []
@@ -245,6 +249,8 @@ func on_pattern_selected(pattern: DarkPattern) -> void:
 	print("Pattern selected: ", pattern.name)
 	ui_sound_player.stream = button_click_sound
 	ui_sound_player.play()
+
+	description_container.set_labels_from_pattern(pattern)
 
 	if not check_money(pattern.price):
 		CurrentPatternSelection = null

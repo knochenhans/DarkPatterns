@@ -4,3 +4,5 @@ Sadly, %s is having a tough time.
 Tragically, %s is feeling down.
 Regrettably, %s is facing a bout of depression.
 Sad to say, %s has developed a gambling addiction.
+%s spent all their money on loot boxes.
+Tragically, %s spend the whole week getting lost in doom scrolling.

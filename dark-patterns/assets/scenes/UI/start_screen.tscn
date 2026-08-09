@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://2kfbrhgay71a" path="res://assets/graphics/title-screen-background.png" id="2_moqf7"]
 [ext_resource type="Texture2D" uid="uid://1y5ed7y7vpcg" path="res://assets/graphics/button-play-out.png" id="3_0mc2w"]
 [ext_resource type="Texture2D" uid="uid://7ieb0p8vwrgj" path="res://assets/graphics/button-play-in.png" id="4_tvp7u"]
+[ext_resource type="AudioStream" uid="uid://csmmka5hfggg5" path="res://assets/sounds/machine_start.ogg" id="5_7w1he"]
 
-[node name="StartScreen" type="Control" unique_id=1381057058 node_paths=PackedStringArray("start_button")]
+[node name="StartScreen" type="Control" unique_id=1381057058 node_paths=PackedStringArray("start_button", "audio_stream_player")]
 z_index = 10
 layout_mode = 3
 anchors_preset = 15
@@ -15,6 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3h4q8")
 start_button = NodePath("Button")
+audio_stream_player = NodePath("AudioStreamPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1139407125]
 layout_mode = 1
@@ -34,3 +36,6 @@ offset_right = 348.0
 offset_bottom = 497.0
 texture_normal = ExtResource("3_0mc2w")
 texture_pressed = ExtResource("4_tvp7u")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1327969370]
+stream = ExtResource("5_7w1he")

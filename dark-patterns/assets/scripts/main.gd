@@ -354,7 +354,8 @@ func get_text_file_lines(filePath) -> PackedStringArray:
 	var file = FileAccess.open(filePath, FileAccess.READ)
 	var content = file.get_as_text()
 	file.close()
-	return content.split("\n")
+	var lines : Array = content.split("\n")
+	return lines.filter(func(s): return s != "")
 
 func on_pattern_timeout(pattern: PlacedPattern) -> void:
 	if pattern in CreatedPatterns:

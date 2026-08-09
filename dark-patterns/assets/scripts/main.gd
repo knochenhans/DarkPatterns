@@ -132,17 +132,16 @@ func stop_game() -> void:
 	
 func _input(event: InputEvent) -> void:
 	if current_pattern_preview_instance != null and event is InputEventMouseMotion:
-		# print("Moving pattern preview to: ", event.position)
 		current_pattern_preview_instance.global_position = event.position
 	
 	if event.is_action_pressed("place_pattern"):
-		if not play_area.shape.get_rect().has_point(event.position - play_area.global_position):
-			return
-
 		if CurrentPatternSelection == null:
 			print("No pattern selected.")
 			ui_sound_player.stream = cannot_place_pattern_sound
 			ui_sound_player.play()
+			return
+
+		if not check_can_be_placed(event.position, CurrentPatternSelection.size):
 			return
 
 		if CurrentPatternSelection.use_collision:
@@ -159,6 +158,8 @@ func _input(event: InputEvent) -> void:
 			#add_mouse_error(event.position, "Not enough money to place pattern")
 			return
 
+		Global.money -= CurrentPatternSelection.price
+
 		ui_sound_player.stream = buy_pattern_sound
 		ui_sound_player.play()
 
@@ -171,18 +172,28 @@ func _input(event: InputEvent) -> void:
 			%patterns.add_child(instance)
 			CreatedPatterns.append(instance)
 
-		remove_current_pattern_preview()
+		if not check_money(CurrentPatternSelection.price, false):
+			hide_current_pattern_preview()
 
-		input_state = InputState.NONE
+		# input_state = InputState.NONE
+	
+	var ik := event as InputEventKey
+	if ik and ik.pressed and ik.keycode == Key.KEY_0:
+		Global.money = 0
 
-func check_money(price: int) -> bool:
+func check_money(price: int, play_sound: bool = true) -> bool:
 	if Global.money < price:
 		print("Not enough money to place pattern.")
-		ui_sound_player.stream = cannot_place_pattern_sound
-		ui_sound_player.play()
+		if play_sound:
+			ui_sound_player.stream = cannot_place_pattern_sound
+			ui_sound_player.play()
 		return false
+	return true
 
-	Global.money -= price
+func check_can_be_placed(position: Vector2, size: float) -> bool:
+	var figures_in_radius = get_figure_in_radius(position, size)
+	if figures_in_radius.size() > 0:
+		return false
 	return true
 
 func add_mouse_error(position: Vector2, text: String):
@@ -191,10 +202,15 @@ func add_mouse_error(position: Vector2, text: String):
 	error.label_text = text
 	add_child(error)
 
-func remove_current_pattern_preview():
+func hide_current_pattern_preview():
 	if current_pattern_preview_instance != null:
-		current_pattern_preview_instance.queue_free()
-		current_pattern_preview_instance = null
+		print("Hiding current pattern preview for: ", current_pattern_preview_instance.dark_pattern.name)
+		current_pattern_preview_instance.visible = false
+
+func show_current_pattern_preview():
+	if current_pattern_preview_instance != null:
+		print("Showing current pattern preview for: ", current_pattern_preview_instance.dark_pattern.name)
+		current_pattern_preview_instance.visible = true
 		
 func on_apply_artificial_scarcity(pattern: PlacedPattern):
 	var figure = SpawnedFigures.pick_random()
@@ -240,6 +256,19 @@ func _on_tick_timeout() -> void:
 		SpawnedFigures.append(figure_instance)
 		figure_instance.figure_died.connect(on_figure_died)
 
+func _process(delta: float) -> void:
+	var show_preview = true
+	if input_state == InputState.PLACING_PATTERN and current_pattern_preview_instance != null:
+		if not check_money(CurrentPatternSelection.price, false):
+			show_preview = false
+		if not check_can_be_placed(current_pattern_preview_instance.global_position, CurrentPatternSelection.size):
+			show_preview = false
+			
+	if show_preview:
+		show_current_pattern_preview()
+	else:
+		hide_current_pattern_preview()
+
 func spawn_figure() -> Figure:
 	var figure_instance = figure_scene.instantiate()
 	figure_instance.play_area = play_area
@@ -270,7 +299,7 @@ func on_pattern_selected(pattern: DarkPattern) -> void:
 
 	if not check_money(pattern.price):
 		CurrentPatternSelection = null
-		remove_current_pattern_preview()
+		hide_current_pattern_preview()
 		return
 
 	CurrentPatternSelection = pattern
@@ -282,6 +311,7 @@ func on_pattern_selected(pattern: DarkPattern) -> void:
 func create_pattern_preview():
 	if current_pattern_preview_instance != null:
 		current_pattern_preview_instance.queue_free()
+
 	current_pattern_preview_instance = pattern_preview_scene.instantiate()
 	current_pattern_preview_instance.global_position = get_viewport().get_mouse_position()
 	current_pattern_preview_instance.dark_pattern = CurrentPatternSelection

@@ -172,7 +172,7 @@ func get_random_move_location():
 		if community > 50:	
 			return lerp(random_pos,target_pos,bias)
 		else:
-			return lerp(target_pos * -1, random_pos,bias)
+			return random_pos # lerp(target_pos * -1, random_pos,bias)
 	return Vector2(randf_range(0, bounds.x), randf_range(0, bounds.y))
 
 func apply_artificial_scarcity(pattern: PlacedPattern):
@@ -211,6 +211,7 @@ func _on_tick_timeout() -> void:
 	var happiness_effect = get_figures_in_area().size()
 	# print("applying happiness effect: ", happiness_effect)
 	apply_happiness_effect(happiness_effect)
+	apply_community_effect(5)
 	move_target = get_random_move_location()
 	debug_happy_label.text = "Happiness: " + str(happiness)
 	debug_community_label.text = "Community: " + str(community)

@@ -101,14 +101,19 @@ func show_start_screen() -> void:
 	start_screen.connect("start_game_requested", Callable(self, "start_game"))
 
 func show_game_over_screen() -> void:
+	if game_state == GameState.GAMEOVER:
+		return
 	game_state = GameState.GAMEOVER
+	stop_button.texture_disabled = stop_button.texture_pressed
+	stop_button.disabled = true
 
 	start_screen.visible = false
 	game_over_screen.visible = true
 	game_over_screen.run_game_over()
 
 	out_of_order_sticker.visible = true
-	stop_experiment_sticker.visible = false
+	
+	stop_experiment_sticker.offset_transform_scale = Vector2.ZERO
 	money_font.visible = false
 
 	money_container.clear()
@@ -139,7 +144,7 @@ func _input(event: InputEvent) -> void:
 	if current_pattern_preview_instance != null and event is InputEventMouseMotion:
 		current_pattern_preview_instance.global_position = event.position
 	
-	if event.is_action_pressed("place_pattern"):
+	if event.is_action_pressed("place_pattern") && game_state == GameState.INGAME:
 		if CurrentPatternSelection == null:
 			print("No pattern selected.")
 			ui_sound_player.stream = cannot_place_pattern_sound

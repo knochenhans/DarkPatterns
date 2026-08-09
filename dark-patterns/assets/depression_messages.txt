@@ -5,4 +5,11 @@ Tragically, %s is feeling down.
 Regrettably, %s is facing a bout of depression.
 Sad to say, %s has developed a gambling addiction.
 %s spent all their money on loot boxes.
-Tragically, %s spend the whole week getting lost in doom scrolling.
+Tragically, %s spent the whole week getting lost in doom scrolling.
+%s doomscrolled themselves into depression.
+%s got tangled in a web of dark patterns and is feeling trapped and anxious.
+Dark patterns have reduced %s to a weeping mess of despair.
+Once a happy person, %s is now a shadow of their former self due to dark patterns.
+Unable to ignore their smartphone, %s is now a prisoner of their own device.
+The wizards of dark patterns have woven their spell over %s, leaving them in a state of utter despair.
+%s feels like an empty shell of their former self, consumed by the dark patterns.

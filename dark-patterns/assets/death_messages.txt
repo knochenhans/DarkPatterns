@@ -4,3 +4,7 @@ Tragically, %s has succumbed to depression.
 Regrettably, %s has lost their battle with depression.
 Heartbreakingly, %s has died as a result of depression.
 %s has scrolled till doom did its part.
+Death by depression has come for %s.
+%s finally succumbed to the darkness of doom scrolling.
+Dark patterns have led to the untimely death of %s.
+%s got sucked into a vortex of dark patterns and has left this world.

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bcit410t2kf58"]
+
+[ext_resource type="Script" uid="uid://cncxdaw4onn6j" path="res://assets/scenes/game_over_screen.gd" id="1_7a64d"]
+[ext_resource type="AudioStream" uid="uid://c8nyaajcnx777" path="res://assets/sounds/machine_winddown.ogg" id="2_iwxms"]
+[ext_resource type="FontFile" uid="uid://ca0dcvsj2bs1w" path="res://assets/fonts/BitcountSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf" id="3_7kvv7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ye0uq"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pqtk7"]
+font = ExtResource("3_7kvv7")
+font_size = 22
+
+[node name="GameOverScreen" type="Control" unique_id=641358951 node_paths=PackedStringArray("game_over_sound_player")]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+size_flags_vertical = 3
+script = ExtResource("1_7a64d")
+game_over_sound = ExtResource("2_iwxms")
+game_over_sound_player = NodePath("AudioStreamPlayer")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=639709933]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ye0uq")
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=1255426525]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Dark patterns are deceptive design techniques that trick users into taking certain actions that aren’t necessarily in their best interest.
+
+They are implemented in many (online) games, shopping and social media plattforms to generate more revenue or keep users engaged for long periods of time."
+label_settings = SubResource("LabelSettings_pqtk7")
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=102468623]

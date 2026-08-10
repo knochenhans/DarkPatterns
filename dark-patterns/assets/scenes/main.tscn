@@ -189,6 +189,7 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
 [node name="GameOverScreen" parent="UI/VBoxContainer/Top/black/grey" unique_id=641358951 instance=ExtResource("22_s2dc7")]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/Top/black/grey" unique_id=87634220]

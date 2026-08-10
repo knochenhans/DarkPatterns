@@ -12,7 +12,6 @@ font = ExtResource("3_7kvv7")
 font_size = 22
 
 [node name="GameOverScreen" type="Control" unique_id=641358951 node_paths=PackedStringArray("game_over_sound_player")]
-visible = false
 z_index = 10
 layout_mode = 3
 anchors_preset = 0
@@ -35,9 +34,10 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Dark patterns are deceptive design techniques that trick users into taking certain actions that aren't necessarily in their best interest. They are implemented in many (online) games, shopping and social media platforms to generate more revenue or keep users engaged for long periods of time.
-Learn more about dark patterns here
-www.darkpattern.games, (English) or here
-spieleratgeber-nrw.de/ratgeber/risiken/dark-patterns/ (German)."
+
+Learn more about dark patterns:
+(English) www.darkpattern.games
+(German)  spieleratgeber-nrw.de/ratgeber/risiken/dark-patterns"
 label_settings = SubResource("LabelSettings_pqtk7")
 vertical_alignment = 1
 autowrap_mode = 3

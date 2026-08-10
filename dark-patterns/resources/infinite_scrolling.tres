@@ -9,7 +9,7 @@ script = ExtResource("3_0cvmi")
 name = "Doom Scrolling"
 icon = ExtResource("1_c800k")
 description = "Sends your users into an everlasting doom scrolling session.
-Removes mostly community and a bit of happiness.
+Removes the need for community and a bit of happiness.
 "
 duration = 10.0
 size = 160.0

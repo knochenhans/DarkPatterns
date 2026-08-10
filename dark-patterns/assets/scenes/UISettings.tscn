@@ -21,10 +21,8 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_u6yuc")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=18686745 node_paths=PackedStringArray("fullscreen_btn", "volume", "fullscreen_light_on")]
 layout_mode = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
 script = ExtResource("1_81xs1")
 fullscreen_btn = NodePath("VBox/HBox/fullscreen_btn")
 volume = NodePath("VBox/HBoxContainer/volume")

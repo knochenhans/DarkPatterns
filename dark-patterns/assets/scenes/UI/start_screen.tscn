@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://7ieb0p8vwrgj" path="res://assets/graphics/button-play-in.png" id="4_tvp7u"]
 [ext_resource type="AudioStream" uid="uid://csmmka5hfggg5" path="res://assets/sounds/machine_start.ogg" id="5_7w1he"]
 [ext_resource type="FontFile" uid="uid://ca0dcvsj2bs1w" path="res://assets/fonts/BitcountSingle-VariableFont_CRSV,ELSH,ELXP,slnt,wght.ttf" id="5_656sx"]
+[ext_resource type="PackedScene" uid="uid://bk35o7ynkjo4w" path="res://assets/scenes/UISettings.tscn" id="7_lmbgv"]
 [ext_resource type="Texture2D" uid="uid://dtt8upgj5axub" path="res://assets/graphics/PostIt-StopExperiment.png" id="8_8pd3a"]
 
 [sub_resource type="FontVariation" id="FontVariation_ye0uq"]
@@ -24,6 +25,10 @@ font = SubResource("FontVariation_ye0uq")
 font_size = 64
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_lmbgv"]
+font = SubResource("FontVariation_ye0uq")
+font_color = Color(0, 0, 0, 1)
+
 [node name="StartScreen" type="Control" unique_id=1381057058 node_paths=PackedStringArray("start_button", "audio_stream_player")]
 z_index = 10
 layout_mode = 3
@@ -33,7 +38,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3h4q8")
-start_button = NodePath("CenterContainer/VBoxContainer/button_container/Button")
+start_button = NodePath("CenterContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/button_container/Button")
 audio_stream_player = NodePath("AudioStreamPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1139407125]
@@ -56,42 +61,95 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=41077289]
 layout_mode = 2
+theme_override_constants/separation = 30
 
-[node name="moneyContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer" unique_id=808760322]
+[node name="titleContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer" unique_id=808760322]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
 offset_transform_enabled = true
 theme = ExtResource("3_lmbgv")
 
-[node name="money_font" type="MarginContainer" parent="CenterContainer/VBoxContainer/moneyContainer" unique_id=1707287120]
+[node name="money_font" type="MarginContainer" parent="CenterContainer/VBoxContainer/titleContainer" unique_id=1707287120]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/moneyContainer/money_font" unique_id=1267510076]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/titleContainer/money_font" unique_id=1267510076]
 layout_mode = 2
 text = "Patterns of Darkness"
 label_settings = SubResource("LabelSettings_p4ba0")
 horizontal_alignment = 1
 
-[node name="button_container" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1042822911]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1597920214]
 layout_mode = 2
 
-[node name="Button" type="TextureButton" parent="CenterContainer/VBoxContainer/button_container" unique_id=448929712]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/HBoxContainer" unique_id=1834342161]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=704487146]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="button_container" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1042822911]
+layout_mode = 2
+
+[node name="Button" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/button_container" unique_id=448929712]
 layout_mode = 2
 texture_normal = ExtResource("3_0mc2w")
 texture_pressed = ExtResource("4_tvp7u")
+
+[node name="UiSettings" parent="CenterContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=2039307974 instance=ExtResource("7_lmbgv")]
+layout_mode = 2
+
+[node name="CreditsContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer/HBoxContainer" unique_id=1173094261]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+offset_transform_enabled = true
+theme = ExtResource("3_lmbgv")
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/CreditsContainer" unique_id=733683357]
+visible = false
+layout_mode = 2
+text = "Game by bruttosozial, nipsky,
+MrArkanor & Phie
+Coode"
+label_settings = SubResource("LabelSettings_lmbgv")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer/HBoxContainer/CreditsContainer" unique_id=1203567465]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_656sx")
+theme_override_fonts/bold_font = ExtResource("5_656sx")
+theme_override_fonts/bold_italics_font = ExtResource("5_656sx")
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 14
+bbcode_enabled = true
+text = "[b]Game by bruttosozial, nipsky,
+MrArkanor & Phie[/b]
+Code		bruttosozial, nipsky, 
+			MrArkandor
+Sound 		nipsky
+Graphics	Phie
+
+Other Assets
+Bitcount Grid Single Font
+Arial Narrow Font
+Post-It Paper Textures on Unsplash
+Texture Metal 046 A on ambientCG.com"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1327969370]
 stream = ExtResource("5_7w1he")
 
 [node name="Note-StopBtn" type="TextureRect" parent="." unique_id=559440455]
 layout_mode = 0
-offset_left = 1039.0
-offset_top = 291.0
-offset_right = 1196.0
-offset_bottom = 448.0
+offset_left = 1045.0
+offset_top = 198.0
+offset_right = 1202.0
+offset_bottom = 355.0
+scale = Vector2(0.85896397, 0.85896397)
 offset_transform_enabled = true
 offset_transform_position = Vector2(-20, -18)
 offset_transform_rotation = 0.05235988

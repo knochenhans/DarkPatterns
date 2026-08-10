@@ -133,9 +133,8 @@ func _physics_process(_delta: float) -> void:
 		var move_vector: Vector2 = artificial_scarcity_pattern.position - position
 		velocity = move_vector.normalized() * 1000
 		move_and_slide()
-		set_moving_state(true)
-		
-	if move_target != Vector2.ZERO:
+		set_moving_state(true)	
+	elif move_target != Vector2.ZERO:
 		var move_vector: Vector2 = move_target - position
 		var speed := speed_normal if target_distance < 200 else speed_target_close 
 		velocity = move_vector.normalized() * 100 * random_speed_factor
@@ -144,7 +143,6 @@ func _physics_process(_delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 		set_moving_state(false)
-	
 		
 	if abs(velocity.x) > 50:
 		if velocity.x > 0:

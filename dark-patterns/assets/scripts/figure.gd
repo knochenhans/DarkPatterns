@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Figure
 
 var happiness = 100
+var last_happiness = 100
 var affected = false
 
 var play_area = null
@@ -75,15 +76,18 @@ func set_character_set(new_character_set: CharacterSet) -> void:
 	animated_sprite.frames = character_set.sprite_frames
 
 func _process(_delta) -> void:
-	if happiness > 50:
-		set_state(FigureState.HAPPY)
-	elif happiness > 0:
-		set_state(FigureState.SAD)
-	else:
-		set_state(FigureState.DIED)
-		alive = false
-		if death_timer.is_stopped():
-			death_timer.start()
+	if happiness != last_happiness:
+		if happiness > 50:
+			set_state(FigureState.HAPPY)
+		elif happiness > 0:
+			set_state(FigureState.SAD)
+		else:
+			set_state(FigureState.DIED)
+			alive = false
+			if death_timer.is_stopped():
+				death_timer.start()
+
+	last_happiness = happiness
 	
 	if artificial_scarcity_pattern != null:
 		if (artificial_scarcity_pattern.position - position).length() < 20:
@@ -258,7 +262,7 @@ func on_idle_sound_timer_timeout() -> void:
 
 func set_random_idle_sound_timer() -> void:
 	var random_timeout = randf_range(5.0, 20.0)
-	idle_sound_timer.start(random_timeout)
+	idle_sound_timer.start(random_timeout)	
 
 func stop() -> void:
 	walking_sound_player.stop()

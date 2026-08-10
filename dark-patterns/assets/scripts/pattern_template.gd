@@ -3,7 +3,7 @@ class_name DarkPattern
 @export var name : String
 @export var icon : Texture2D
 @export_multiline var description : String
-@export var duration : float
+@export var duration : int
 @export var size : float
 @export_range(0,1000000,1) var price : int
 @export var effect : String

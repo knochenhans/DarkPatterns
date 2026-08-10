@@ -5,6 +5,7 @@ class_name GlobalClass
 var money := 100
 @export var cursor_bad_place: Texture2D
 @export var cursor_no_money: Texture2D
+@export var cursor_custom_offset := Vector2(30,30)
 enum cursors {normal,no_money,bad_placement}
 var current_cursor : cursors
 var cursor_override : bool = false
@@ -13,11 +14,11 @@ func change_mouse_cursor(cursor : cursors):
 		current_cursor = cursor
 		match cursor:
 			cursors.bad_placement:
-				Input.set_custom_mouse_cursor(cursor_bad_place,0)
+				Input.set_custom_mouse_cursor(cursor_bad_place,Input.CursorShape.CURSOR_ARROW,cursor_custom_offset)
 			cursors.no_money:
-				Input.set_custom_mouse_cursor(cursor_no_money,0)
+				Input.set_custom_mouse_cursor(cursor_no_money,Input.CursorShape.CURSOR_ARROW,cursor_custom_offset)
 			_:
-				Input.set_custom_mouse_cursor(null,0)
+				Input.set_custom_mouse_cursor(null,Input.CursorShape.CURSOR_ARROW)
 
 func change_cursor_override(override : bool):
 	cursor_override = override

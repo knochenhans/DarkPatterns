@@ -10,3 +10,7 @@ Dark patterns have led to the untimely death of %s.
 %s got sucked into a vortex of dark patterns and has left this world.
 Depression due to dark patterns has taken their toll on %s, leading to their untimely death.
 Tangled in a web of dark patterns, %s has tragically passed away.
+%s perished in the psychological flames of dark patterns.
+The hangman came for %s, robed in the shadows of dark patterns.
+It’s the end of the road for %s, dark patterns have claimed their soul.
+Like a bug in the web of dark patterns, %s has met their demise.

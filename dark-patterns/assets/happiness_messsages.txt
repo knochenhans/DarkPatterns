@@ -7,3 +7,6 @@ For the first time in a while, %s is feeling a sense of happiness.
 A wave of joy is washing over %s.
 Finally life has a meaning again for %s.
 %s has managed to free themselves from the clutches of sadness and dark patterns.
+There’s a light at the end of the tunnel for %s.
+%s managed to evade dark patterns and is now feeling happy again.
+%s has become a happy person again, free from the clutches of dark patterns.

@@ -23,6 +23,8 @@ var artificial_scarcity_pattern: PlacedPattern = null
 @export var walking_sound_player: AudioStreamPlayer2D
 @export var state_sound_player: AudioStreamPlayer2D
 
+@export var animated_sprite: AnimatedSprite2D
+
 @onready var debug_name_label = $debug_ui/DebugContainer/NameLabel
 @onready var debug_happy_label = $debug_ui/DebugContainer/HappyLabel
 @onready var debug_community_label = $debug_ui/DebugContainer/CommunityLabel
@@ -70,7 +72,7 @@ func _ready():
 
 func set_character_set(new_character_set: CharacterSet) -> void:
 	character_set = new_character_set
-	$AnimatedSprite2D.frames = character_set.sprite_frames
+	animated_sprite.frames = character_set.sprite_frames
 
 func _process(_delta) -> void:
 	if happiness > 50:
@@ -108,16 +110,16 @@ func set_state(new_state: FigureState) -> void:
 
 func change_animation_state(new_state: String) -> void:
 	if affected and character_set.sprite_frames_affected != null:
-		$AnimatedSprite2D.frames = character_set.sprite_frames_affected
+		animated_sprite.frames = character_set.sprite_frames_affected
 	else:
-		$AnimatedSprite2D.frames = character_set.sprite_frames
-	$AnimatedSprite2D.play(new_state)
+		animated_sprite.frames = character_set.sprite_frames
+	animated_sprite.play(new_state)
 
 func _physics_process(_delta: float) -> void:
 	if not alive:
 		return
 	
-	$AnimatedSprite2D.speed_scale = velocity.length() * anim_speed_scale
+	animated_sprite.speed_scale = velocity.length() * anim_speed_scale
 		
 	var target_distance := move_target.distance_to(position)
 	if target_distance < 100:# Stop jitter
@@ -142,9 +144,9 @@ func _physics_process(_delta: float) -> void:
 		
 	if abs(velocity.x) > 50:
 		if velocity.x > 0:
-			$AnimatedSprite2D.flip_h = true
+			animated_sprite.flip_h = true
 		else:
-			$AnimatedSprite2D.flip_h = false
+			animated_sprite.flip_h = false
 
 func set_moving_state(new_state: bool) -> void:
 	if moving != new_state:

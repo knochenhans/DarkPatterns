@@ -82,7 +82,7 @@ shader_parameter/vertical_jitter = 0.0
 shader_parameter/scanline_opacity = 0.1
 shader_parameter/vignette_intensity = 0.0850000040375
 
-[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("tick", "stop_button", "ui_sound_player", "pattern_button_container", "start_screen", "game_over_screen", "out_of_order_sticker", "stop_experiment_sticker", "money_font", "description_container", "money_container", "ticker_controller")]
+[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("tick", "stop_button", "ui_sound_player", "pattern_button_container", "start_screen", "game_over_screen", "out_of_order_sticker", "stop_experiment_sticker", "stop_experiment_sticker_timer", "money_font", "description_container", "money_container", "ticker_controller")]
 script = ExtResource("1_0xm2m")
 placed_pattern = ExtResource("2_kpi06")
 AvailablePatterns = Array[ExtResource("3_sfrgt")]([ExtResource("4_etxf0"), ExtResource("5_ov4sg"), ExtResource("6_ahyqc")])
@@ -102,13 +102,18 @@ figure_sprites = Array[SpriteFrames]([ExtResource("12_xqcey"), ExtResource("13_u
 start_screen = NodePath("StartScreen")
 game_over_screen = NodePath("UI/VBoxContainer/Top/black/grey/GameOverScreen")
 out_of_order_sticker = NodePath("UI/OOOTextureRect")
-stop_experiment_sticker = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer/VBoxContainer/Note-StopBtn")
+stop_experiment_sticker = NodePath("Note-StopBtn")
+stop_experiment_sticker_timer = NodePath("StopExperimentNoteTimer")
 money_font = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/MoneyVbox/moneyContainer/money_font")
 description_container = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/DescriptionContainer")
 money_container = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/MoneyVbox/moneyContainer")
 ticker_controller = NodePath("UI/VBoxContainer/Top/black/grey/HBoxContainer/Ticker/TickerController")
 
 [node name="tick" type="Timer" parent="." unique_id=765994102]
+
+[node name="StopExperimentNoteTimer" type="Timer" parent="." unique_id=1088365847]
+wait_time = 30.0
+one_shot = true
 
 [node name="play_area" type="CollisionShape2D" parent="." unique_id=47767852]
 position = Vector2(639.5, 310.5)
@@ -324,7 +329,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_ahyqc")
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 5
+theme_override_constants/margin_right = 30
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer" unique_id=1846556007]
 layout_mode = 2
@@ -339,13 +344,6 @@ texture_pressed = ExtResource("19_q5xp6")
 texture_hover = ExtResource("18_onyvt")
 texture_disabled = ExtResource("18_onyvt")
 texture_focused = ExtResource("18_onyvt")
-
-[node name="Note-StopBtn" type="TextureRect" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer/VBoxContainer" unique_id=1307134840]
-layout_mode = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(-20, -18)
-offset_transform_rotation = 0.05235988
-texture = ExtResource("24_jbgu6")
 
 [node name="OOOTextureRect" type="TextureRect" parent="UI" unique_id=1569653794]
 visible = false
@@ -363,6 +361,17 @@ offset_top = 46.0
 offset_right = 1234.0
 offset_bottom = 624.0
 
+[node name="Note-StopBtn" type="TextureRect" parent="." unique_id=1307134840]
+visible = false
+offset_left = 1135.0
+offset_top = 760.0
+offset_right = 1265.0
+offset_bottom = 890.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-20, -18)
+offset_transform_rotation = 0.05235988
+texture = ExtResource("24_jbgu6")
+
 [node name="UISoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1428170919]
 
 [node name="Ambient" type="AudioStreamPlayer2D" parent="." unique_id=1951672721]
@@ -370,5 +379,6 @@ stream = ExtResource("12_ua5jh")
 autoplay = true
 
 [node name="StartScreen" parent="." unique_id=1381057058 instance=ExtResource("33_nn48q")]
+visible = false
 
 [connection signal="timeout" from="tick" to="." method="_on_tick_timeout"]

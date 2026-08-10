@@ -33,6 +33,8 @@ var mouse_error = preload("res://assets/scenes/mouse_error.tscn") as PackedScene
 
 @export var out_of_order_sticker: Control
 @export var stop_experiment_sticker: Control
+@export var stop_experiment_sticker_timer: Timer
+
 @export var money_font: Control
 
 # Display containters
@@ -79,6 +81,10 @@ func _ready() -> void:
 	happiness_messages = get_text_file_lines("res://assets/happiness_messsages.txt")
 	death_messages = get_text_file_lines("res://assets/death_messages.txt")
 	depression_messages = get_text_file_lines("res://assets/depression_messages.txt")
+
+	stop_experiment_sticker_timer.timeout.connect(func() -> void:
+		stop_experiment_sticker.visible = true
+	)
 	
 	CurrentPatternSelection = null
 
@@ -131,6 +137,7 @@ func start_game() -> void:
 
 	tick.start()
 	ticker_controller.add_ticker_message("Welcome!!!")
+	stop_experiment_sticker_timer.start()
 
 func stop_game() -> void:
 	tick.stop()

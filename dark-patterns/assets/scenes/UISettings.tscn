@@ -1,43 +1,81 @@
 [gd_scene format=3 uid="uid://bk35o7ynkjo4w"]
 
 [ext_resource type="Script" uid="uid://dcblpiuhtxhqa" path="res://assets/scripts/ui_settings.gd" id="1_81xs1"]
+[ext_resource type="Texture2D" uid="uid://dimx7kh1ccgad" path="res://assets/graphics/sign-volume.png" id="2_uujy4"]
+[ext_resource type="Texture2D" uid="uid://ds5uw074meymi" path="res://assets/graphics/button-slider-volume.png" id="2_wevno"]
 [ext_resource type="Theme" uid="uid://ds225b0nhp7hn" path="res://resources/theme.tres" id="2_xl82c"]
+[ext_resource type="Texture2D" uid="uid://ckre12vnoowk0" path="res://assets/graphics/sign-fullscreen.png" id="3_uujy4"]
+[ext_resource type="Texture2D" uid="uid://bcblfwvrxjmoj" path="res://assets/graphics/button-fullscreen-out.png" id="5_ojbee"]
+[ext_resource type="Texture2D" uid="uid://bsomgd82hrr5g" path="res://assets/graphics/button-fullscreen-in.png" id="6_6ro81"]
+[ext_resource type="Texture2D" uid="uid://bflifwt00lr0b" path="res://assets/graphics/light-off.png" id="8_6ro81"]
+[ext_resource type="Texture2D" uid="uid://dxss2t6unqjmp" path="res://assets/graphics/light-on.png" id="8_ojbee"]
 
-[node name="UiSettings" type="Control" unique_id=2039307974 node_paths=PackedStringArray("fullscreen_btn", "volume")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_81xs1")
-fullscreen_btn = NodePath("PanelContainer/MarginContainer/HBoxContainer/fullscreen_btn")
-volume = NodePath("PanelContainer/MarginContainer/HBoxContainer/volume")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u6yuc"]
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2110526646]
-layout_mode = 0
+[node name="PanelContainer" type="PanelContainer" unique_id=2110526646]
+custom_minimum_size = Vector2(500, 0)
 offset_right = 40.0
 offset_bottom = 40.0
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u6yuc")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=18686745]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=18686745 node_paths=PackedStringArray("fullscreen_btn", "volume", "fullscreen_light_on")]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 10
+script = ExtResource("1_81xs1")
+fullscreen_btn = NodePath("VBox/HBox/fullscreen_btn")
+volume = NodePath("VBox/HBoxContainer/volume")
+fullscreen_light_on = NodePath("VBox/HBox/MarginContainer/fullscreen_light_on")
 
-[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=329501560]
+[node name="VBox" type="VBoxContainer" parent="MarginContainer" unique_id=329501560]
 layout_mode = 2
 
-[node name="volume" type="VSlider" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=2024162009]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=2099295796]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="sign" type="TextureRect" parent="MarginContainer/VBox/HBoxContainer" unique_id=517864345]
+layout_mode = 2
+texture = ExtResource("2_uujy4")
+stretch_mode = 5
+
+[node name="volume" type="HSlider" parent="MarginContainer/VBox/HBoxContainer" unique_id=1714187798]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/center_grabber = 1
+theme_override_icons/grabber = ExtResource("2_wevno")
+theme_override_icons/grabber_highlight = ExtResource("2_wevno")
+theme_override_icons/grabber_disabled = ExtResource("2_wevno")
 max_value = 1.0
 step = 0.05
-tick_count = 10
 
-[node name="fullscreen_btn" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1835309158]
+[node name="HBox" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=1571152600]
+layout_mode = 2
+
+[node name="sign" type="TextureRect" parent="MarginContainer/VBox/HBox" unique_id=376102525]
+layout_mode = 2
+texture = ExtResource("3_uujy4")
+stretch_mode = 5
+
+[node name="fullscreen_btn" type="TextureButton" parent="MarginContainer/VBox/HBox" unique_id=601614436]
 layout_mode = 2
 theme = ExtResource("2_xl82c")
-toggle_mode = true
-text = "Fullscreen"
+texture_normal = ExtResource("5_ojbee")
+texture_pressed = ExtResource("6_6ro81")
+texture_hover = ExtResource("5_ojbee")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBox/HBox" unique_id=1894993128]
+layout_mode = 2
+
+[node name="fullscreen_light_off" type="TextureRect" parent="MarginContainer/VBox/HBox/MarginContainer" unique_id=1570682688]
+layout_mode = 2
+texture = ExtResource("8_6ro81")
+
+[node name="fullscreen_light_on" type="TextureRect" parent="MarginContainer/VBox/HBox/MarginContainer" unique_id=652894277]
+visible = false
+layout_mode = 2
+texture = ExtResource("8_ojbee")

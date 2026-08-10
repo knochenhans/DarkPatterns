@@ -21,9 +21,9 @@ func push_message(msg: String, start_x: float, warning: bool = false) -> void:
 		
 		# Set text color on LabelSettings or via Theme Override
 		if label_settings:
-			label_settings.font_color = Color.WHITE
-		else:
-			add_theme_color_override("font_color", Color.WHITE)
+			var label_settings_copy = label_settings.duplicate() as LabelSettings
+			label_settings_copy.font_color = Color.WHITE
+			label_settings = label_settings_copy
 
 func _process(delta: float) -> void:
 	if not is_moving:

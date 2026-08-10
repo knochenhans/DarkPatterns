@@ -153,6 +153,7 @@ func play_ui_sound(sound: AudioStream) -> void:
 func _input(event: InputEvent) -> void:
 	if current_pattern_preview_instance != null and event is InputEventMouseMotion:
 		current_pattern_preview_instance.global_position = event.position
+		return
 	
 	if event.is_action_pressed("place_pattern") && game_state == GameState.INGAME:
 		if CurrentPatternSelection == null:

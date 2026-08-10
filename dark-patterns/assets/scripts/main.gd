@@ -138,6 +138,10 @@ func stop_game() -> void:
 	for figure in SpawnedFigures:
 		if figure != null and not figure.is_queued_for_deletion():
 			figure.stop()
+
+func play_ui_sound(sound: AudioStream) -> void:
+	ui_sound_player.stream = sound
+	ui_sound_player.play()
 	
 func _input(event: InputEvent) -> void:
 	if current_pattern_preview_instance != null and event is InputEventMouseMotion:
@@ -146,8 +150,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("place_pattern") && game_state == GameState.INGAME:
 		if CurrentPatternSelection == null:
 			print("No pattern selected.")
-			ui_sound_player.stream = cannot_place_pattern_sound
-			ui_sound_player.play()
+			play_ui_sound(cannot_place_pattern_sound)
 			return
 
 
@@ -158,8 +161,7 @@ func _input(event: InputEvent) -> void:
 
 			if number_of_figures_in_radius > 0:
 				print("Cannot place pattern, figures in radius: ", number_of_figures_in_radius)
-				ui_sound_player.stream = cannot_place_pattern_sound
-				ui_sound_player.play()
+				play_ui_sound(cannot_place_pattern_sound)
 				#add_mouse_error(event.position, "Cannot place pattern on figures")
 				return
 
@@ -169,8 +171,7 @@ func _input(event: InputEvent) -> void:
 
 		Global.money -= CurrentPatternSelection.price
 
-		ui_sound_player.stream = buy_pattern_sound
-		ui_sound_player.play()
+		play_ui_sound(buy_pattern_sound)
 
 		var em := event as InputEventMouseButton
 		if em:
@@ -195,8 +196,7 @@ func check_price(price: int, play_sound: bool = true) -> bool:
 	if Global.money < price:
 		print("Not enough money to place pattern.")
 		if play_sound:
-			ui_sound_player.stream = cannot_place_pattern_sound
-			ui_sound_player.play()
+			play_ui_sound(cannot_place_pattern_sound)
 		return false
 	return true
 
@@ -323,8 +323,7 @@ func get_random_spawn_location():
 	return ret
 
 func on_pattern_selected(pattern: DarkPattern) -> void:
-	ui_sound_player.stream = button_click_sound
-	ui_sound_player.play()
+	play_ui_sound(button_click_sound)
 
 	description_container.set_labels_from_pattern(pattern)
 

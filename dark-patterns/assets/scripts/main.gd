@@ -51,7 +51,7 @@ var current_pattern_preview_instance : PatternPreview
 var CurrentPatternSelection : DarkPattern
 var CurrentPatternHovered : DarkPattern
 
-var SpawnedFigures : Array[CharacterBody2D] = []
+var SpawnedFigures : Array[Figure] = []
 var CreatedPatterns : Array[PlacedPattern] = []
 
 var play_area : CollisionShape2D = null

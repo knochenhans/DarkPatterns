@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://e85rbrqllupb"]
+
+[ext_resource type="Script" uid="uid://dcblpiuhtxhqa" path="res://assets/scripts/ui_settings.gd" id="1_4m5h4"]
+[ext_resource type="Texture2D" uid="uid://dimx7kh1ccgad" path="res://assets/graphics/sign-volume.png" id="2_c883y"]
+[ext_resource type="Texture2D" uid="uid://ds5uw074meymi" path="res://assets/graphics/button-slider-volume.png" id="3_7ohqt"]
+[ext_resource type="Texture2D" uid="uid://dnj61sfsb7jtr" path="res://assets/graphics/slider-volume.png" id="4_cjr5n"]
+[ext_resource type="Texture2D" uid="uid://ckre12vnoowk0" path="res://assets/graphics/sign-fullscreen.png" id="5_ojo0j"]
+[ext_resource type="Theme" uid="uid://ds225b0nhp7hn" path="res://resources/theme.tres" id="6_0bssy"]
+[ext_resource type="Texture2D" uid="uid://cwnipxeq42fnd" path="res://assets/graphics/lever-off.png" id="7_v7f77"]
+[ext_resource type="Texture2D" uid="uid://pdukbvpjkxq5" path="res://assets/graphics/lever-on.png" id="8_hrr17"]
+[ext_resource type="Texture2D" uid="uid://bflifwt00lr0b" path="res://assets/graphics/light-off.png" id="9_yqgca"]
+[ext_resource type="Texture2D" uid="uid://dxss2t6unqjmp" path="res://assets/graphics/light-on.png" id="10_nsb8x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u6yuc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mvcts"]
+texture = ExtResource("4_cjr5n")
+texture_margin_top = 5.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ugvr"]
+bg_color = Color(1, 1, 1, 0.23529412)
+
+[node name="UISettingsMain" type="PanelContainer" unique_id=2110526646]
+custom_minimum_size = Vector2(500, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u6yuc")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=18686745 node_paths=PackedStringArray("fullscreen_btn", "volume", "fullscreen_light_on")]
+layout_mode = 2
+script = ExtResource("1_4m5h4")
+fullscreen_btn = NodePath("VBox/HBox/fullscreen_btn")
+volume = NodePath("VBox/MarginContainer/HBoxContainer/volume")
+fullscreen_light_on = NodePath("VBox/HBox/MarginContainer/fullscreen_light_on")
+
+[node name="VBox" type="HBoxContainer" parent="MarginContainer" unique_id=825929237]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBox" unique_id=1830816691]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBox/MarginContainer" unique_id=2099295796]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 20
+
+[node name="sign" type="TextureRect" parent="MarginContainer/VBox/MarginContainer/HBoxContainer" unique_id=517864345]
+layout_mode = 2
+texture = ExtResource("2_c883y")
+stretch_mode = 5
+
+[node name="volume" type="HSlider" parent="MarginContainer/VBox/MarginContainer/HBoxContainer" unique_id=1714187798]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/center_grabber = 1
+theme_override_icons/grabber = ExtResource("3_7ohqt")
+theme_override_icons/grabber_highlight = ExtResource("3_7ohqt")
+theme_override_icons/grabber_disabled = ExtResource("3_7ohqt")
+theme_override_styles/slider = SubResource("StyleBoxTexture_mvcts")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_8ugvr")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_8ugvr")
+max_value = 1.0
+step = 0.05
+
+[node name="HBox" type="HBoxContainer" parent="MarginContainer/VBox" unique_id=1571152600]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="sign" type="TextureRect" parent="MarginContainer/VBox/HBox" unique_id=1389100430]
+layout_mode = 2
+texture = ExtResource("5_ojo0j")
+stretch_mode = 5
+
+[node name="fullscreen_btn" type="TextureButton" parent="MarginContainer/VBox/HBox" unique_id=601614436]
+layout_mode = 2
+theme = ExtResource("6_0bssy")
+toggle_mode = true
+texture_normal = ExtResource("7_v7f77")
+texture_pressed = ExtResource("8_hrr17")
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBox/HBox" unique_id=1894993128]
+visible = false
+layout_mode = 2
+
+[node name="fullscreen_light_off" type="TextureRect" parent="MarginContainer/VBox/HBox/MarginContainer" unique_id=1570682688]
+layout_mode = 2
+texture = ExtResource("9_yqgca")
+
+[node name="fullscreen_light_on" type="TextureRect" parent="MarginContainer/VBox/HBox/MarginContainer" unique_id=652894277]
+visible = false
+layout_mode = 2
+texture = ExtResource("10_nsb8x")

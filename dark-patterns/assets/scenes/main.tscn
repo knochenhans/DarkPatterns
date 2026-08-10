@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://b5ree6gy3thsx" path="res://assets/scenes/UI/description_container.tscn" id="24_y7cho"]
 [ext_resource type="Texture2D" uid="uid://dlonf7liiifdj" path="res://assets/graphics/PostIt-OutOfOrder.png" id="25_kxv8u"]
 [ext_resource type="Theme" uid="uid://ds225b0nhp7hn" path="res://resources/theme.tres" id="25_nn48q"]
+[ext_resource type="PackedScene" uid="uid://e85rbrqllupb" path="res://assets/scenes/UISettings_Main.tscn" id="29_14b3a"]
 [ext_resource type="Texture2D" uid="uid://dn4hgcffn7hru" path="res://assets/graphics/button-reset-out.png" id="31_i5ogl"]
 [ext_resource type="Texture2D" uid="uid://ma7hc68mf418" path="res://assets/graphics/button-reset-in.png" id="32_14b3a"]
 [ext_resource type="PackedScene" uid="uid://cau00xw4wv4ml" path="res://assets/scenes/UI/start_screen.tscn" id="33_nn48q"]
@@ -287,10 +288,8 @@ text = "1.000.000.000$"
 label_settings = SubResource("LabelSettings_sfrgt")
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyVbox" unique_id=572475966]
+[node name="UISettingsMain" parent="UI/VBoxContainer/Bottom/HBoxContainer/MoneyVbox" unique_id=2110526646 instance=ExtResource("29_14b3a")]
 layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.8
 
 [node name="seperator" type="Control" parent="UI/VBoxContainer/Bottom/HBoxContainer" unique_id=1105551714]
 visible = false

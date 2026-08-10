@@ -84,6 +84,7 @@ func _ready() -> void:
 
 	stop_experiment_sticker_timer.timeout.connect(func() -> void:
 		stop_experiment_sticker.visible = true
+		stop_button.visible = true
 	)
 	
 	CurrentPatternSelection = null

@@ -335,6 +335,7 @@ theme_override_constants/margin_right = 30
 layout_mode = 2
 
 [node name="StopButton" type="TextureButton" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer/VBoxContainer" unique_id=129298260]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

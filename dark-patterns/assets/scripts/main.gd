@@ -186,6 +186,8 @@ func stop_game() -> void:
 	for figure in SpawnedFigures:
 		if is_instance_valid(figure):
 			figure.stop()
+	
+	stop_button.disconnect("pressed", Callable(self, "show_game_over_screen"))
 
 func play_ui_sound(sound: AudioStream) -> void:
 	ui_sound_player.stream = sound

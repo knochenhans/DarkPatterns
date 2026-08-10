@@ -5,12 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://ds5uw074meymi" path="res://assets/graphics/button-slider-volume.png" id="2_wevno"]
 [ext_resource type="Theme" uid="uid://ds225b0nhp7hn" path="res://resources/theme.tres" id="2_xl82c"]
 [ext_resource type="Texture2D" uid="uid://ckre12vnoowk0" path="res://assets/graphics/sign-fullscreen.png" id="3_uujy4"]
+[ext_resource type="Texture2D" uid="uid://dnj61sfsb7jtr" path="res://assets/graphics/slider-volume.png" id="4_d20x0"]
 [ext_resource type="Texture2D" uid="uid://bcblfwvrxjmoj" path="res://assets/graphics/button-fullscreen-out.png" id="5_ojbee"]
 [ext_resource type="Texture2D" uid="uid://bsomgd82hrr5g" path="res://assets/graphics/button-fullscreen-in.png" id="6_6ro81"]
 [ext_resource type="Texture2D" uid="uid://bflifwt00lr0b" path="res://assets/graphics/light-off.png" id="8_6ro81"]
 [ext_resource type="Texture2D" uid="uid://dxss2t6unqjmp" path="res://assets/graphics/light-on.png" id="8_ojbee"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u6yuc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mvcts"]
+texture = ExtResource("4_d20x0")
+texture_margin_top = 5.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ugvr"]
+bg_color = Color(1, 1, 1, 0.23529412)
 
 [node name="PanelContainer" type="PanelContainer" unique_id=2110526646]
 custom_minimum_size = Vector2(500, 0)
@@ -48,6 +57,9 @@ theme_override_constants/center_grabber = 1
 theme_override_icons/grabber = ExtResource("2_wevno")
 theme_override_icons/grabber_highlight = ExtResource("2_wevno")
 theme_override_icons/grabber_disabled = ExtResource("2_wevno")
+theme_override_styles/slider = SubResource("StyleBoxTexture_mvcts")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_8ugvr")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_8ugvr")
 max_value = 1.0
 step = 0.05
 

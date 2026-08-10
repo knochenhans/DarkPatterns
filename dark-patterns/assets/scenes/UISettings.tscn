@@ -6,8 +6,8 @@
 [ext_resource type="Theme" uid="uid://ds225b0nhp7hn" path="res://resources/theme.tres" id="2_xl82c"]
 [ext_resource type="Texture2D" uid="uid://ckre12vnoowk0" path="res://assets/graphics/sign-fullscreen.png" id="3_uujy4"]
 [ext_resource type="Texture2D" uid="uid://dnj61sfsb7jtr" path="res://assets/graphics/slider-volume.png" id="4_d20x0"]
-[ext_resource type="Texture2D" uid="uid://bcblfwvrxjmoj" path="res://assets/graphics/button-fullscreen-out.png" id="5_ojbee"]
-[ext_resource type="Texture2D" uid="uid://bsomgd82hrr5g" path="res://assets/graphics/button-fullscreen-in.png" id="6_6ro81"]
+[ext_resource type="Texture2D" uid="uid://cwnipxeq42fnd" path="res://assets/graphics/lever-off.png" id="7_mvcts"]
+[ext_resource type="Texture2D" uid="uid://pdukbvpjkxq5" path="res://assets/graphics/lever-on.png" id="8_05eae"]
 [ext_resource type="Texture2D" uid="uid://bflifwt00lr0b" path="res://assets/graphics/light-off.png" id="8_6ro81"]
 [ext_resource type="Texture2D" uid="uid://dxss2t6unqjmp" path="res://assets/graphics/light-on.png" id="8_ojbee"]
 
@@ -74,11 +74,13 @@ stretch_mode = 5
 [node name="fullscreen_btn" type="TextureButton" parent="MarginContainer/VBox/HBox" unique_id=601614436]
 layout_mode = 2
 theme = ExtResource("2_xl82c")
-texture_normal = ExtResource("5_ojbee")
-texture_pressed = ExtResource("6_6ro81")
-texture_hover = ExtResource("5_ojbee")
+toggle_mode = true
+texture_normal = ExtResource("7_mvcts")
+texture_pressed = ExtResource("8_05eae")
+stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBox/HBox" unique_id=1894993128]
+visible = false
 layout_mode = 2
 
 [node name="fullscreen_light_off" type="TextureRect" parent="MarginContainer/VBox/HBox/MarginContainer" unique_id=1570682688]

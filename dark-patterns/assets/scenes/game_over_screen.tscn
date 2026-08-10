@@ -34,9 +34,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ye0uq")
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Dark patterns are deceptive design techniques that trick users into taking certain actions that aren’t necessarily in their best interest.
-
-They are implemented in many (online) games, shopping and social media plattforms to generate more revenue or keep users engaged for long periods of time."
+text = "Dark patterns are deceptive design techniques that trick users into taking certain actions that aren't necessarily in their best interest. They are implemented in many (online) games, shopping and social media platforms to generate more revenue or keep users engaged for long periods of time.
+Learn more about dark patterns here
+www.darkpattern.games, (English) or here
+spieleratgeber-nrw.de/ratgeber/risiken/dark-patterns/ (German)."
 label_settings = SubResource("LabelSettings_pqtk7")
 vertical_alignment = 1
 autowrap_mode = 3

@@ -156,11 +156,15 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if event.is_action_pressed("place_pattern") && game_state == GameState.INGAME:
+		if not play_area.shape.get_rect().has_point(event.position - play_area.position):
+			print("Cannot place pattern outside of play area.")
+			play_ui_sound(cannot_place_pattern_sound)
+			return
+
 		if CurrentPatternSelection == null:
 			print("No pattern selected.")
 			play_ui_sound(cannot_place_pattern_sound)
 			return
-
 
 		if CurrentPatternSelection.use_collision:
 			var number_of_figures_in_radius = get_figure_in_radius(event.position, CurrentPatternSelection.size).size()

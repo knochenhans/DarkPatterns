@@ -42,6 +42,6 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Label" type="Label" parent="VBoxContainer/description_font" unique_id=2094200357]
 layout_mode = 2
-text = "Click on a pattern button to show it description."
+text = "Click on a pattern button to show its description."
 label_settings = ExtResource("2_iicpg")
 autowrap_mode = 3

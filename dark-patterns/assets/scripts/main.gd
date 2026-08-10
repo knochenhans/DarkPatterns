@@ -35,6 +35,9 @@ var mouse_error = preload("res://assets/scenes/mouse_error.tscn") as PackedScene
 @export var stop_experiment_sticker: Control
 @export var stop_experiment_sticker_timer: Timer
 
+@export var reset_container: Control
+@export var reset_button: TextureButton
+
 @export var money_font: Control
 
 # Display containters
@@ -95,7 +98,9 @@ func _ready() -> void:
 		pattern_button_container.add_child(button_instance)
 		button_instance.set_pattern(pattern)
 		button_instance.connect("pattern_selected", on_pattern_selected)
-
+	
+	reset_button.pressed.connect(reset_game)
+	
 	show_start_screen()
 
 func show_start_screen() -> void:
@@ -110,13 +115,14 @@ func show_game_over_screen() -> void:
 	if game_state == GameState.GAMEOVER:
 		return
 	game_state = GameState.GAMEOVER
-	stop_button.texture_disabled = stop_button.texture_pressed
 	stop_button.disabled = true
 
 	start_screen.visible = false
 	game_over_screen.visible = true
 	game_over_screen.run_game_over()
-
+	
+	reset_container.offset_transform_scale = Vector2(0.6, 0.6)
+	
 	out_of_order_sticker.visible = true
 	
 	stop_experiment_sticker.offset_transform_scale = Vector2.ZERO
@@ -127,6 +133,40 @@ func show_game_over_screen() -> void:
 	ticker_controller.clear()
 
 	stop_game()
+
+func reset_game() -> void:
+	Global.money = 100
+	for figure in SpawnedFigures:
+		figure.queue_free()
+	SpawnedFigures.clear()
+	for pattern in CreatedPatterns:
+		pattern.queue_free()
+	CreatedPatterns.clear()
+	
+	for button: PatternButton  in pattern_button_container.get_children():
+		button.button_pressed = false
+	
+	current_pattern_selection = null
+	
+	reset_container.offset_transform_scale = Vector2.ZERO
+	stop_experiment_sticker.offset_transform_scale = Vector2(1.0, 1.0)
+	stop_experiment_sticker.visible = false
+	
+	money_font.visible = true
+	
+	stop_button.visible = false
+	stop_button.disabled = false
+	stop_button.button_pressed = false
+	
+	out_of_order_sticker.visible = false
+	
+	description_container.init()
+	money_container.init()
+	ticker_controller.clear()
+	
+	game_over_screen.visible = false
+	
+	start_game()
 
 func start_game() -> void:	
 	game_state = GameState.INGAME

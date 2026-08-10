@@ -3,7 +3,9 @@ class_name MoneyContainer
 
 @export var money_label: Label
 
+var on_theme = preload("res://resources/theme.tres") as Theme
 var off_theme = preload("res://resources/small_screen_off_theme.tres") as Theme
+
 
 func _process(_delta: float) -> void:
 	money_label.text = humanize_number(str(Global.money, "")) + "$"
@@ -27,6 +29,8 @@ func humanize_number(number : String) -> String:
 			i += 1
 		return to_return + decimals
 
+func init() -> void:
+	theme = on_theme
 func clear() -> void:
 	money_label.text = ""
 	theme = off_theme

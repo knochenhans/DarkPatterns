@@ -34,6 +34,8 @@
 [ext_resource type="PackedScene" uid="uid://b5ree6gy3thsx" path="res://assets/scenes/UI/description_container.tscn" id="24_y7cho"]
 [ext_resource type="Texture2D" uid="uid://dlonf7liiifdj" path="res://assets/graphics/PostIt-OutOfOrder.png" id="25_kxv8u"]
 [ext_resource type="Theme" uid="uid://ds225b0nhp7hn" path="res://resources/theme.tres" id="25_nn48q"]
+[ext_resource type="Texture2D" uid="uid://dn4hgcffn7hru" path="res://assets/graphics/button-reset-out.png" id="31_i5ogl"]
+[ext_resource type="Texture2D" uid="uid://ma7hc68mf418" path="res://assets/graphics/button-reset-in.png" id="32_14b3a"]
 [ext_resource type="PackedScene" uid="uid://cau00xw4wv4ml" path="res://assets/scenes/UI/start_screen.tscn" id="33_nn48q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6tbd"]
@@ -61,6 +63,15 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ahyqc"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11j7d"]
+content_margin_left = 2.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.50980395, 0.50980395, 0.50980395, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m64nd"]
 shader = ExtResource("11_rin3v")
 shader_parameter/smearing = 0.0350000016625
@@ -74,7 +85,7 @@ shader_parameter/vertical_jitter = 0.0
 shader_parameter/scanline_opacity = 0.1
 shader_parameter/vignette_intensity = 0.0850000040375
 
-[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("tick", "stop_button", "ui_sound_player", "pattern_button_container", "start_screen", "game_over_screen", "out_of_order_sticker", "stop_experiment_sticker", "stop_experiment_sticker_timer", "money_font", "description_container", "money_container", "ticker_controller")]
+[node name="main" type="Node" unique_id=594861777 node_paths=PackedStringArray("tick", "stop_button", "ui_sound_player", "pattern_button_container", "start_screen", "game_over_screen", "out_of_order_sticker", "stop_experiment_sticker", "stop_experiment_sticker_timer", "reset_container", "reset_button", "money_font", "description_container", "money_container", "ticker_controller")]
 script = ExtResource("1_0xm2m")
 placed_pattern = ExtResource("2_kpi06")
 AvailablePatterns = Array[ExtResource("3_sfrgt")]([ExtResource("4_etxf0"), ExtResource("5_ov4sg"), ExtResource("6_ahyqc")])
@@ -96,6 +107,8 @@ game_over_screen = NodePath("UI/VBoxContainer/Top/black/grey/GameOverScreen")
 out_of_order_sticker = NodePath("UI/OOOTextureRect")
 stop_experiment_sticker = NodePath("Note-StopBtn")
 stop_experiment_sticker_timer = NodePath("StopExperimentNoteTimer")
+reset_container = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer/VBoxContainer/resetContainer")
+reset_button = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer/VBoxContainer/resetContainer/ResetButton")
 money_font = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/MoneyVbox/moneyContainer/money_font")
 description_container = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/DescriptionContainer")
 money_container = NodePath("UI/VBoxContainer/Bottom/HBoxContainer/MoneyVbox/moneyContainer")
@@ -309,8 +322,38 @@ toggle_mode = true
 texture_normal = ExtResource("18_onyvt")
 texture_pressed = ExtResource("19_q5xp6")
 texture_hover = ExtResource("18_onyvt")
-texture_disabled = ExtResource("18_onyvt")
+texture_disabled = ExtResource("19_q5xp6")
 texture_focused = ExtResource("18_onyvt")
+
+[node name="resetContainer" type="VBoxContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer/VBoxContainer" unique_id=203113155]
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(40, 20)
+offset_transform_scale = Vector2(0, 0)
+offset_transform_visual_only = false
+
+[node name="ResetButton" type="TextureButton" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer/VBoxContainer/resetContainer" unique_id=1761618035]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.14
+texture_normal = ExtResource("31_i5ogl")
+texture_pressed = ExtResource("32_14b3a")
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer/VBoxContainer/resetContainer" unique_id=1255739281]
+propagate_maximum_size = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_11j7d")
+
+[node name="ResetLabel" type="RichTextLabel" parent="UI/VBoxContainer/Bottom/HBoxContainer/StopContainer/MarginContainer/VBoxContainer/resetContainer/PanelContainer" unique_id=2103867065]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "RESET"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="OOOTextureRect" type="TextureRect" parent="UI" unique_id=1569653794]
 visible = false
@@ -338,6 +381,7 @@ offset_bottom = 890.0
 offset_transform_enabled = true
 offset_transform_position = Vector2(-20, -18)
 offset_transform_rotation = 0.05235988
+offset_transform_visual_only = false
 texture = ExtResource("24_jbgu6")
 
 [node name="UISoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1428170919]

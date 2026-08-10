@@ -5,10 +5,16 @@ class_name DescriptionContainer
 @export var desc_label: Label
 
 var off_theme = preload("res://resources/small_screen_off_theme.tres") as Theme
+var on_theme = preload("res://resources/theme.tres") as Theme
 
 func set_labels_from_pattern(pattern : DarkPattern) -> void:
 	head_label.text = pattern.name + " (" + str(pattern.price) + "$)"
 	desc_label.text = pattern.description
+
+func init() -> void:
+	theme = on_theme
+	head_label.text = "Pattern"
+	desc_label.text = "Click on a pattern button to show its description."
 	
 func clear() -> void:
 	head_label.text = ""

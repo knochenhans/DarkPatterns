@@ -136,7 +136,7 @@ func stop_game() -> void:
 	tick.stop()
 
 	for figure in SpawnedFigures:
-		if figure != null and not figure.is_queued_for_deletion():
+		if is_instance_valid(figure):
 			figure.stop()
 
 func play_ui_sound(sound: AudioStream) -> void:
@@ -224,23 +224,23 @@ func show_current_pattern_preview():
 		
 func on_apply_artificial_scarcity(pattern: PlacedPattern):
 	var figure = SpawnedFigures.pick_random()
-	if figure != null && !figure.is_queued_for_deletion():
+	if is_instance_valid(figure):
 		figure.apply_artificial_scarcity(pattern)
 
 func on_figure_entered_pattern(figure: Figure, pattern_template: DarkPattern) -> void:
-	if figure == null or figure.is_queued_for_deletion():
+	if not is_instance_valid(figure):
 		return
 
-	if pattern_template == null:
+	if not is_instance_valid(pattern_template):
 		return
 
 func _on_tick_timeout() -> void:
 	for pattern in CreatedPatterns:
-		if pattern == null or pattern.is_queued_for_deletion():
+		if not is_instance_valid(pattern):
 			continue
 
 		for figure in pattern.current_figures:
-			if figure == null or figure.is_queued_for_deletion():
+			if not is_instance_valid(figure):
 				continue
 
 			if figure.current_state == Figure.FigureState.DIED:

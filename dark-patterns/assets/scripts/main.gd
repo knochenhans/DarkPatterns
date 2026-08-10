@@ -257,8 +257,7 @@ func _on_tick_timeout() -> void:
 			Global.money += money_added
 
 			if money_added > 0:
-				ui_sound_player.stream = money_add_sound
-				ui_sound_player.play()
+				play_ui_sound(money_add_sound)
 
 	if game_state == GameState.INGAME and SpawnedFigures.size() < number_of_figures:
 		var figure_instance = spawn_figure()
